@@ -1,0 +1,54 @@
+{
+  "experiment": "update_commitment_gas_sweep",
+  "network": "hardhat",
+  "degrees": [
+    2,
+    16,
+    256,
+    1024,
+    4096
+  ],
+  "evaluation_point": 5,
+  "results": [
+    {
+      "degree": 2,
+      "update_commitment_gas": 39997,
+      "verify_non_revocation_gas": 43026,
+      "commitment_size_bytes": 48,
+      "payload_size_bytes": 160
+    },
+    {
+      "degree": 16,
+      "update_commitment_gas": 39997,
+      "verify_non_revocation_gas": 43026,
+      "commitment_size_bytes": 48,
+      "payload_size_bytes": 160
+    },
+    {
+      "degree": 256,
+      "update_commitment_gas": 39997,
+      "verify_non_revocation_gas": 43026,
+      "commitment_size_bytes": 48,
+      "payload_size_bytes": 160
+    },
+    {
+      "degree": 1024,
+      "update_commitment_gas": 39997,
+      "verify_non_revocation_gas": 43026,
+      "commitment_size_bytes": 48,
+      "payload_size_bytes": 160
+    },
+    {
+      "degree": 4096,
+      "update_commitment_gas": 39997,
+      "verify_non_revocation_gas": 43026,
+      "commitment_size_bytes": 48,
+      "payload_size_bytes": 160
+    }
+  ],
+  "metadata": {
+    "timestamp": "2026-04-02T09:02:58.303Z",
+    "pairing_mock": "AlwaysTruePairing (always returns true)",
+    "note": "Commitment is always 48 bytes (G1 point); payload is always 160 bytes. Both gas figures are O(1) w.r.t. polynomial degree."
+  }
+}

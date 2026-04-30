@@ -1,0 +1,38 @@
+{
+  "test_configuration": {
+    "contract_address": "0xd73eaba26e88bD3579eDCC02000e0CAD41143F5B",
+    "pairing_precompile": "0x000000000000000000000000000000000000000f",
+    "polynomial_degree": 4,
+    "polynomial_coefficients": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "blockchain_node": "http://127.0.0.1:8545"
+  },
+  "timing_results_ms": {
+    "trusted_setup_load_ms": 1002.8750896453857,
+    "contract_connection_ms": 140.88797569274902,
+    "test_case_1_proof_generation_ms": 2020.1342105865479,
+    "test_case_2_proof_generation_ms": 2003.3609867095947,
+    "commitment_generation_ms": 4.958868026733398,
+    "test_case_1_end_to_end_ms": 1.2788772583007812,
+    "test_case_2_end_to_end_ms": 1.2738704681396484,
+    "test_case_1_pure_ms": 0.00476837158203125,
+    "test_case_2_pure_ms": 0.0
+  },
+  "gas_results": {
+    "test_case_1_end_to_end_gas": 171000,
+    "test_case_2_end_to_end_gas": 171000,
+    "test_case_1_pure_gas": 124600,
+    "test_case_2_pure_gas": 124600
+  },
+  "test_metadata": {
+    "timestamp": 1763988519.607198,
+    "test_type": "hoodi_contract_kzg_verification",
+    "c_kzg_version": "c-kzg-4844",
+    "trusted_setup": "mainnet"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "scenario_a": [
+    {
+      "depth": 2,
+      "leaf_count": 4,
+      "updateRoot_gas": 30075,
+      "updateRoot_time_ms": 12605,
+      "verify_gas": 27465,
+      "verify_time_ms": 12593,
+      "proof_size_bytes32": 2
+    },
+    {
+      "depth": 4,
+      "leaf_count": 16,
+      "updateRoot_gas": 30075,
+      "updateRoot_time_ms": 12474,
+      "verify_gas": 28371,
+      "verify_time_ms": 12580,
+      "proof_size_bytes32": 4
+    },
+    {
+      "depth": 8,
+      "leaf_count": 256,
+      "updateRoot_gas": 30075,
+      "updateRoot_time_ms": 11956,
+      "verify_gas": 30183,
+      "verify_time_ms": 13198,
+      "proof_size_bytes32": 8
+    },
+    {
+      "depth": 10,
+      "leaf_count": 1024,
+      "updateRoot_gas": 30075,
+      "updateRoot_time_ms": 11591,
+      "verify_gas": 31089,
+      "verify_time_ms": 12082,
+      "proof_size_bytes32": 10
+    },
+    {
+      "depth": 12,
+      "leaf_count": 4096,
+      "updateRoot_gas": 30075,
+      "updateRoot_time_ms": 12079,
+      "verify_gas": 31995,
+      "verify_time_ms": 13257,
+      "proof_size_bytes32": 12
+    }
+  ],
+  "scenario_b": [
+    {
+      "batch_size": 10,
+      "incremental_total_gas": 300738,
+      "incremental_tx_count": 10,
+      "batch_total_gas": 30075,
+      "batch_tx_count": 1,
+      "gas_per_revocation_incremental": 30074,
+      "gas_per_revocation_batch": 3008,
+      "efficiency_gain_pct": 90
+    },
+    {
+      "batch_size": 25,
+      "incremental_total_gas": 751851,
+      "incremental_tx_count": 25,
+      "batch_total_gas": 30075,
+      "batch_tx_count": 1,
+      "gas_per_revocation_incremental": 30074,
+      "gas_per_revocation_batch": 1203,
+      "efficiency_gain_pct": 96
+    },
+    {
+      "batch_size": 50,
+      "incremental_total_gas": 1503678,
+      "incremental_tx_count": 50,
+      "batch_total_gas": 30075,
+      "batch_tx_count": 1,
+      "gas_per_revocation_incremental": 30074,
+      "gas_per_revocation_batch": 602,
+      "efficiency_gain_pct": 98
+    },
+    {
+      "batch_size": 75,
+      "incremental_total_gas": 2255529,
+      "incremental_tx_count": 75,
+      "batch_total_gas": 30075,
+      "batch_tx_count": 1,
+      "gas_per_revocation_incremental": 30074,
+      "gas_per_revocation_batch": 401,
+      "efficiency_gain_pct": 99
+    },
+    {
+      "batch_size": 100,
+      "incremental_total_gas": 3007380,
+      "incremental_tx_count": 100,
+      "batch_total_gas": 30075,
+      "batch_tx_count": 1,
+      "gas_per_revocation_incremental": 30074,
+      "gas_per_revocation_batch": 301,
+      "efficiency_gain_pct": 99
+    }
+  ],
+  "metadata": {
+    "timestamp": "2026-04-02T11:13:26.166Z",
+    "network": "hoodi",
+    "contract": "0x216553E924B90776C9C75846edd575ec026ae650",
+    "iterations": 5,
+    "note": "verifyNonRevocation() called with dummy proof of correct depth for a non-revoked leaf.  Gas is O(depth) because keccak256 is computed once per proof element regardless of proof validity."
+  }
+}
