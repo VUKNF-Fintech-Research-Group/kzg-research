@@ -14,6 +14,7 @@
 const { ethers } = require("hardhat");
 const fs   = require("fs");
 const path = require("path");
+const { buildRevocationTree } = require("./merkleHelper");
 
 async function main() {
   console.log(`Deploying MerkleRevocation.sol`);
@@ -25,7 +26,7 @@ async function main() {
       "\nError: no deployer account configured.\n" +
       "Set your private key and RPC URL before running:\n\n" +
       "  export PRIVATE_KEY=<your_hex_private_key_without_0x>\n" +
-      "  export HOODI_RPC_URL=https://rpc.hoodi.ethpandaops.io\n\n" +
+      "  export HOODI_RPC=https://rpc.hoodi.ethpandaops.io\n\n" +
       "Then re-run:\n" +
       "  npx hardhat run scripts/deployMerkle.js --network hoodi"
     );
@@ -37,10 +38,10 @@ async function main() {
   const balance = await ethers.provider.getBalance(deployer.address);
   console.log(`Balance  : ${ethers.formatEther(balance)} ETH\n`);
 
-  // Deploy with a zero root; the owner will call updateRoot() to set the
-  // first revocation-set root after deployment.
+  // Deploy with the root of the empty revoked set (a single leaf covering
+  // the whole ID range), so every ID is "not revoked" until the first update.
   const Factory = await ethers.getContractFactory("MerkleRevocation");
-  const merkle  = await Factory.deploy(ethers.ZeroHash);
+  const merkle  = await Factory.deploy(buildRevocationTree([]).root);
   await merkle.waitForDeployment();
 
   const address     = await merkle.getAddress();

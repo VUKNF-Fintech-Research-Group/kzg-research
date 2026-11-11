@@ -1,0 +1,8 @@
+# Off-chain KZG (official c-kzg-4844 Python bindings)
+ckzg==2.1.8
+
+# BLS12-381 point decompression for the EIP-2537 encoding
+py_ecc==8.0.0
+
+# Tests
+pytest==9.2.0
