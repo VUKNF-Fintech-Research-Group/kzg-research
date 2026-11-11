@@ -1,7 +1,7 @@
 {
   "name": "kzg-revocation-analysis",
   "version": "1.0.0",
-  "description": "KZG polynomial commitment revocation analysis \u2013 gas benchmarks",
+  "description": "KZG polynomial commitment revocation analysis – gas benchmarks",
   "scripts": {
     "test": "npx hardhat test",
     "test:py": "python3 -m pytest test/python",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.2",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.1.3",
     "chai": "^4.3.7",
     "dotenv": "^17.4.0",
     "ethers": "^6.0.0",

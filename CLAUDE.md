@@ -35,7 +35,8 @@ The code was corrected after an audit in Nov 2026 (tasks T1–T8, branch `fix/au
 | `scripts/merkleHelper.js` | `buildRevocationTree`, `getNonRevocationProof`, `proofForLeaf` (merkletreejs, keccak256, sorted pairs). |
 | `scripts/benchmark_offchain_timing.py` | Off-chain timing per step and d → `results/offchain_timing.csv` + metadata JSON. |
 | `scripts/compareResults.js` | Pure Node: KZG vs Merkle table from the result files of one network. |
-| `scripts/deployMerkle.js` | Deploys `MerkleRevocation` and writes `deployments/merkle_<network>.json`. |
+| `scripts/deploy.js` | Deploys `KZGRevocation` and `MerkleRevocation`, verifies their source on Etherscan (needs `ETHERSCAN_API_KEY` in `contracts/.env`) and writes `deployments/<network>.json`. |
+| `scripts/lib/benchUtils.js` `TxQueue` | Sends transactions with locally assigned nonces and explicit gas limits, several per block. All benchmark and deploy transactions go through it. |
 | `test/*.test.js` | Hardhat + chai tests, run against the real precompiles (hardfork `prague`). |
 | `test/python/` | pytest: modulus, evaluation-form encoding, Solidity constants vs the SRS, fixtures, timing smoke test. |
 | `test/fixtures/` | Generated proofs. Do not edit by hand; run `npm run fixtures`. |

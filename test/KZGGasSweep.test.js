@@ -8,8 +8,9 @@
 
 const { expect } = require("chai");
 const { ethers, network } = require("hardhat");
-const { runKzgGasSweep, BenchmarkAssertionError, MIN_VERIFY_GAS } = require("../scripts/lib/kzgGasSweep");
+const { runKzgGasSweep, runKzgBatchSweep, BenchmarkAssertionError, MIN_VERIFY_GAS } = require("../scripts/lib/kzgGasSweep");
 const { points } = require("./fixtures/kzg_gas_sweep.json");
+const { commitments } = require("./fixtures/kzg_batch_sweep.json");
 
 const smallPoints = points.filter((p) => p.degree <= 16);
 
@@ -53,6 +54,19 @@ describe("KZG gas benchmark assertions", function () {
     const p = smallPoints[0];
     const bad = [{ ...p, valid: { ...p.valid, offchain_verifies: false } }];
     await expectBenchmarkFailure(runKzgGasSweep(ethers, { points: bad }), /does not verify off-chain/);
+  });
+
+  it("batch sweep: k incremental updates against one batch update", async function () {
+    const { results } = await runKzgBatchSweep(ethers, { commitments, batchSizes: [1, 10], samples: 2 });
+    const [one, ten] = results;
+    expect(one.batch_gain_pct).to.be.closeTo(0, 0.5);
+    expect(ten.incremental_tx_count).to.equal(10);
+    expect(ten.samples.incremental_update).to.have.length(10);
+    expect(ten.samples.batch_update).to.have.length(2);
+    expect(ten.batch_gain_pct).to.be.closeTo(90, 0.5);
+    // gain = 1 - (batch gas / k) / single-update gas
+    const expected = (1 - ten.batch_total_gas_median / 10 / ten.single_update_gas_median) * 100;
+    expect(ten.batch_gain_pct).to.be.closeTo(expected, 0.01);
   });
 
   it("refuses to run when code is planted at a precompile address", async function () {

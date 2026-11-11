@@ -33,3 +33,5 @@ approves deleting them.
 - `Makefile`, `src/Makefile`: build files inherited from upstream c-kzg-4844.
   They expect a `blst` submodule, C tests and language bindings that this
   repository does not contain (audit task T7).
+- `scripts/deployMerkle.js`: replaced by `scripts/deploy.js`, which deploys and
+  verifies both contracts (audit task T8).

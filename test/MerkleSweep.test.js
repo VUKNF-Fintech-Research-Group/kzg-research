@@ -39,7 +39,9 @@ describe("Merkle benchmark assertions", function () {
   });
 
   it("batch sweep: one update costs the same as each incremental update", async function () {
-    const [row] = await runBatchSweep(contract, { batchSizes: [10] });
+    const [row] = await runBatchSweep(contract, { batchSizes: [10], samples: 2 });
+    expect(row.samples.batch_update).to.have.length(2);
+    expect(row.samples.incremental_update).to.have.length(10);
     expect(row.incremental_tx_count).to.equal(10);
     expect(row.batch_tx_count).to.equal(1);
     expect(row.batch_gain_pct).to.be.closeTo(90, 0.5);

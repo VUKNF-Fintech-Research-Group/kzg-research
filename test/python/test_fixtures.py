@@ -26,6 +26,18 @@ def test_gas_sweep_file_is_up_to_date():
         assert point["commitment"] != point["next_commitment"]
 
 
+def test_batch_sweep_file_is_up_to_date():
+    committed = json.loads(gen_kzg_fixtures.BATCH_PATH.read_text())
+    batch = gen_kzg_fixtures.build_batch()
+    assert committed == batch, "run `python3 scripts/gen_kzg_fixtures.py` and commit the result"
+    commitments = batch["commitments"]
+    assert len(commitments) == gen_kzg_fixtures.BATCH_MAX + 1
+    assert len(set(commitments)) == len(commitments)
+    # the empty set commits to f = 1, i.e. the G1 generator
+    import eip2537
+    assert commitments[0] == "0x" + eip2537.g1_generator_eip2537().hex()
+
+
 def test_fixture_openings_are_consistent():
     sets = gen_kzg_fixtures.build_fixtures()["sets"]
     for data in sets.values():

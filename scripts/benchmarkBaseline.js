@@ -25,8 +25,8 @@
 const { ethers, network } = require("hardhat");
 const fs = require("fs");
 const path = require("path");
-const { runDepthSweep, runBatchSweep } = require("./lib/merkleSweep");
-const { REPO_ROOT, gitCommit } = require("./lib/benchUtils");
+const { runDepthSweep, runBatchSweep, GAS_LIMIT } = require("./lib/merkleSweep");
+const { REPO_ROOT, TxQueue, gitCommit } = require("./lib/benchUtils");
 const { buildRevocationTree } = require("./merkleHelper");
 
 const DEPTHS = [2, 4, 8, 10, 12];
@@ -46,8 +46,9 @@ async function main() {
   console.log(`Samples : ${samples} per measurement, median reported`);
   if (breakProof) console.log("Self-test: MERKLE_BENCH_BREAK_PROOF=1, this run must fail");
 
-  const contract = await (await ethers.getContractFactory("MerkleRevocation")).deploy(buildRevocationTree([]).root);
-  const deployReceipt = await contract.deploymentTransaction().wait();
+  const queue = new TxQueue(owner);
+  const { contract, record: deployRecord } = await queue.deploy(
+    await ethers.getContractFactory("MerkleRevocation"), [buildRevocationTree([]).root], GAS_LIMIT.deploy);
   console.log(`Contract: ${await contract.getAddress()}`);
 
   console.log("\n--- Scenario A: depth sweep ---");
@@ -56,6 +57,7 @@ async function main() {
     depths: DEPTHS,
     samples,
     breakProof,
+    queue,
     log: (r) => console.log(
       `${pad(r.depth, 5)} | ${pad(r.revoked_count, 7)} | ${pad(r.update_root_gas_median.toLocaleString(), 10)} | ` +
       `${pad(r.verify_non_revoked_gas_median.toLocaleString(), 18)} | ${pad(r.verify_revoked_gas_median.toLocaleString(), 14)} | ${pad(r.proof_size_bytes, 11)}`
@@ -66,8 +68,10 @@ async function main() {
   console.log(`${pad("k", 4)} | ${pad("k updates, total gas", 20)} | ${pad("1 update, gas", 13)} | ${pad("gas/revocation", 14)} | ${pad("gain", 7)}`);
   const scenarioB = await runBatchSweep(contract, {
     batchSizes: BATCH_SIZES,
+    samples,
+    queue,
     log: (r) => console.log(
-      `${pad(r.batch_size, 4)} | ${pad(r.incremental_total_gas.toLocaleString(), 20)} | ${pad(r.batch_total_gas.toLocaleString(), 13)} | ` +
+      `${pad(r.batch_size, 4)} | ${pad(r.incremental_total_gas.toLocaleString(), 20)} | ${pad(r.batch_total_gas_median.toLocaleString(), 13)} | ` +
       `${pad(r.gas_per_revocation_batch.toLocaleString(), 14)} | ${pad(r.batch_gain_pct + "%", 7)}`
     ),
   });
@@ -80,8 +84,9 @@ async function main() {
     commit: gitCommit(),
     date: new Date().toISOString(),
     contract_address: await contract.getAddress(),
-    deploy_tx_hash: deployReceipt.hash,
-    deploy_gas: Number(deployReceipt.gasUsed),
+    account: owner.address,
+    deploy_tx_hash: deployRecord.tx_hash,
+    deploy_gas: deployRecord.gas_used,
     samples_per_measurement: samples,
     checks: {
       verified_event: "notRevoked = true asserted for every non-revoked verify, false for every revoked verify",
