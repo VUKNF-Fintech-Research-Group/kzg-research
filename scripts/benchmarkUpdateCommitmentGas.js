@@ -1,189 +1,105 @@
 /**
  * benchmarkUpdateCommitmentGas.js
  *
- * Dedicated experiment: measure updateCommitment() and verifyNonRevocation()
- * gas across polynomial degree sweep {2, 16, 256, 1024, 4096}.
+ * KZG gas sweep: updateCommitment() and verifyNonRevocation() for revocation
+ * polynomials of degree {2, 16, 256, 1024, 4095}, against the real EIP-2537
+ * precompiles. No pairing mock.
  *
- * Run:
- *   npm install
+ * Run (in-process Hardhat network, hardfork prague):
  *   npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hardhat
+ * Run on Hoodi (needs PRIVATE_KEY in contracts/.env):
+ *   npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hoodi
  *
- * No external node required – Hardhat spins up an in-process EVM.
+ * Inputs:  test/fixtures/kzg_gas_sweep.json  (real commitments and proofs from
+ *          c-kzg; regenerate with `python3 scripts/gen_kzg_fixtures.py`)
+ * Output:  results/kzg_gas_sweep_<network>.json
  *
- * Commitment / payload sizing:
- *   - A KZG commitment is always a 48-byte BLS12-381 G1 compressed point,
- *     independent of polynomial degree.
- *   - verifyNonRevocation() expects commit(48) || proof(48) || z(32) || y(32)
- *     = 160 bytes, also independent of degree.
- *   - Both gas figures are therefore expected to be identical for all degrees,
- *     empirically confirming O(1) on-chain cost.
+ * Environment:
+ *   SAMPLES=<n>              transactions per measurement (default 5)
+ *   KZG_BENCH_BREAK_PROOF=1  self-test: use a wrong witness; the script must
+ *                            exit non-zero and write nothing
  *
- * Pairing mock:
- *   AlwaysTruePairing returns abi.encode(true) for any calldata, so the
- *   pairing check succeeds without the BLS12-381 precompile.  The precompile
- *   cost on a live network (~43 k gas) is reported separately in hoodi results.
+ * Every transaction's Verified event is checked before its gas is recorded
+ * (ok = true for non-revoked IDs, false for revoked IDs). Any mismatch aborts
+ * the run with a non-zero exit code.
  */
 
-const { ethers } = require("hardhat");
+const { ethers, network } = require("hardhat");
+const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const { runKzgGasSweep, PAIRING_BACKEND, MIN_VERIFY_GAS } = require("./lib/kzgGasSweep");
 
-// ---------------------------------------------------------------------------
-// Degree sweep configuration
-// ---------------------------------------------------------------------------
-const DEGREES = [2, 16, 256, 1024, 4096];
+const REPO_ROOT = path.join(__dirname, "..");
+const INPUT_PATH = path.join(REPO_ROOT, "test", "fixtures", "kzg_gas_sweep.json");
 
-// ---------------------------------------------------------------------------
-// Synthetic payload helpers
-// ---------------------------------------------------------------------------
-// Because a KZG commitment is always 48 bytes regardless of degree, we build
-// a deterministic synthetic commitment per degree (byte pattern = degree % 256)
-// to make each measurement visually distinct while keeping size fixed.
-// AlwaysTruePairing accepts any bytes, so cryptographic validity is not needed.
-
-function makeCommitment(degree) {
-  // 48-byte G1-sized buffer with a recognisable per-degree pattern.
-  // Use (degree % 254) + 1 so the fill byte is always in [1, 255] – never
-  // zero.  Real KZG commitments are BLS12-381 G1 points whose bytes are
-  // never all-zero; all-zero fill would hit the EVM zero-byte calldata
-  // discount (4 gas vs 16 gas per byte) and the SSTORE_SET path
-  // (zero→nonzero, 20 k gas) rather than the SSTORE_RESET path
-  // (nonzero→nonzero, 2.9 k gas), producing spurious gas variation.
-  return ethers.hexlify(Buffer.alloc(48, (degree % 254) + 1));
-}
-
-function makePayload(commitHex) {
-  // payload = commit(48) || proof(48) || z(32) || y(32)  = 160 bytes
-  const commit = Buffer.from(commitHex.slice(2), "hex"); // 48 bytes
-  const proof  = Buffer.alloc(48, 0xaa);                 // dummy proof
-  const z      = Buffer.alloc(32, 0); z[31] = 5;         // z = 5
-  const y      = Buffer.alloc(32, 0); y[31] = 1;         // y = 1 (≠ 0 → not revoked)
-  return ethers.hexlify(Buffer.concat([commit, proof, z, y]));
-}
-
-// ---------------------------------------------------------------------------
-// Formatting helpers
-// ---------------------------------------------------------------------------
-function pad(str, width) {
-  return String(str).padStart(width);
-}
-
-// ---------------------------------------------------------------------------
-// Main
-// ---------------------------------------------------------------------------
-async function main() {
-  const [owner] = await ethers.getSigners();
-
-  // ---- deploy AlwaysTruePairing (one instance, shared across degrees) ----
-  const ATP  = await ethers.getContractFactory("AlwaysTruePairing");
-  const atp  = await ATP.deploy();
-  await atp.waitForDeployment();
-
-  const RevFactory = await ethers.getContractFactory("KZGRevocationFixed");
-
-  console.log("=== KZG Gas Sweep: updateCommitment() vs verifyNonRevocation() ===");
-  console.log(`Pairing mock : AlwaysTruePairing @ ${await atp.getAddress()}`);
-  console.log(`Degrees      : ${DEGREES.join(", ")}`);
-  console.log(`Commitment   : always 48 bytes (G1 compressed point)`);
-  console.log(`Payload      : always 160 bytes (commit||proof||z||y)`);
-  console.log();
-
-  const header =
-    `${pad("Degree", 7)} | ${pad("updateCommitment gas", 21)} | ${pad("verifyNonRevocation gas", 24)} | commit | payload`;
-  const sep = "-".repeat(header.length);
-  console.log(header);
-  console.log(sep);
-
-  const results = [];
-
-  for (const degree of DEGREES) {
-    const commitHex  = makeCommitment(degree);
-    const payloadHex = makePayload(commitHex);
-
-    // Deploy a fresh contract per degree with the initial commitment.
-    // Constructor writes the storage slot (cold); updateCommitment() then
-    // overwrites it (warm) – reflecting steady-state operational cost.
-    const rev = await RevFactory.deploy(await atp.getAddress(), commitHex);
-    await rev.waitForDeployment();
-
-    // ---- updateCommitment() ----
-    // Write a different commitment (same size) to trigger a real SSTORE.
-    // Add 1 to the degree so makeCommitment() produces a different fill byte.
-    const commitHex2 = makeCommitment(degree + 1);
-    const txUpdate   = await rev.updateCommitment(commitHex2);
-    const rcptUpdate = await txUpdate.wait();
-    const gasUpdate  = Number(rcptUpdate.gasUsed);
-
-    // Reset to the original commitment so the payload's security check passes.
-    const txReset = await rev.updateCommitment(commitHex);
-    await txReset.wait();
-
-    // ---- verifyNonRevocation() ----
-    const txVerify   = await rev.verifyNonRevocation(payloadHex);
-    const rcptVerify = await txVerify.wait();
-    const gasVerify  = Number(rcptVerify.gasUsed);
-
-    results.push({ degree, gasUpdate, gasVerify });
-
-    console.log(
-      `${pad(degree, 7)} | ${pad(gasUpdate.toLocaleString(), 21)} | ${pad(gasVerify.toLocaleString(), 24)} |   48 B |    160 B`
-    );
+function gitCommit() {
+  try {
+    const hash = execSync("git rev-parse HEAD", { cwd: REPO_ROOT }).toString().trim();
+    const dirty = execSync("git status --porcelain --untracked-files=no", { cwd: REPO_ROOT }).toString().trim() !== "";
+    return dirty ? `${hash}-dirty` : hash;
+  } catch {
+    return "unknown";
   }
+}
 
-  console.log(sep);
+const pad = (v, width) => String(v).padStart(width);
+
+async function main() {
+  const samples = Number(process.env.SAMPLES || 5);
+  const breakProof = process.env.KZG_BENCH_BREAK_PROOF === "1";
+  const { points } = JSON.parse(fs.readFileSync(INPUT_PATH, "utf8"));
+  const { chainId } = await ethers.provider.getNetwork();
+
+  console.log("=== KZG gas sweep: updateCommitment() and verifyNonRevocation() ===");
+  console.log(`Network         : ${network.name} (chain ${chainId})`);
+  console.log(`Pairing backend : ${PAIRING_BACKEND} (real precompiles)`);
+  console.log(`Samples         : ${samples} per measurement, median reported`);
+  if (breakProof) console.log("Self-test       : KZG_BENCH_BREAK_PROOF=1, this run must fail");
   console.log();
 
-  // ---- summary ----
-  const updateGasValues = results.map((r) => r.gasUpdate);
-  const verifyGasValues = results.map((r) => r.gasVerify);
+  const header = `${pad("Degree", 6)} | ${pad("updateCommitment", 16)} | ${pad("verify non-revoked", 18)} | ${pad("verify revoked", 14)} | ok (non-revoked / revoked)`;
+  console.log(header);
+  console.log("-".repeat(header.length));
 
-  const minU = Math.min(...updateGasValues);
-  const maxU = Math.max(...updateGasValues);
-  const minV = Math.min(...verifyGasValues);
-  const maxV = Math.max(...verifyGasValues);
+  const results = await runKzgGasSweep(ethers, {
+    points,
+    samples,
+    breakProof,
+    log: (row) => console.log(
+      `${pad(row.degree, 6)} | ${pad(row.update_commitment_gas_median.toLocaleString(), 16)} | ` +
+      `${pad(row.verify_non_revoked_gas_median.toLocaleString(), 18)} | ` +
+      `${pad(row.verify_revoked_gas_median.toLocaleString(), 14)} | true / false`
+    ),
+  });
 
-  console.log("=== Summary ===");
-  console.log(`  updateCommitment()    gas range : ${minU.toLocaleString()} – ${maxU.toLocaleString()}`);
-  console.log(`  verifyNonRevocation() gas range : ${minV.toLocaleString()} – ${maxV.toLocaleString()}`);
-  console.log();
-
-  const O1update = minU === maxU ? "✓ O(1) – identical across all degrees" : `~ varies by ${maxU - minU} gas`;
-  const O1verify = minV === maxV ? "✓ O(1) – identical across all degrees" : `~ varies by ${maxV - minV} gas`;
-  console.log(`  updateCommitment()    : ${O1update}`);
-  console.log(`  verifyNonRevocation() : ${O1verify}`);
-  console.log();
-  console.log("  Note: AlwaysTruePairing mock used; BLS12-381 precompile gas (~43 k)");
-  console.log("  is excluded here and measured separately on Hoodi (see hoodi results).");
-
-  // ---- persist results ----
   const output = {
-    experiment: "update_commitment_gas_sweep",
-    network: "hardhat",
-    degrees: DEGREES,
-    evaluation_point: 5,
-    results: results.map((r) => ({
-      degree:                    r.degree,
-      update_commitment_gas:     r.gasUpdate,
-      verify_non_revocation_gas: r.gasVerify,
-      commitment_size_bytes:     48,
-      payload_size_bytes:        160,
-    })),
-    metadata: {
-      timestamp: new Date().toISOString(),
-      pairing_mock: "AlwaysTruePairing (always returns true)",
-      note:
-        "Commitment is always 48 bytes (G1 point); payload is always 160 bytes. " +
-        "Both gas figures are O(1) w.r.t. polynomial degree.",
+    experiment: "kzg_gas_sweep",
+    pairing_backend: PAIRING_BACKEND,
+    network: network.name,
+    chain_id: Number(chainId),
+    hardfork: network.name === "hardhat" ? network.config.hardfork : "live network",
+    commit: gitCommit(),
+    date: new Date().toISOString(),
+    samples_per_measurement: samples,
+    checks: {
+      verified_event: "ok = true asserted for every non-revoked verify, ok = false for every revoked verify",
+      min_verify_gas: MIN_VERIFY_GAS,
+      fee_reconciliation: "gasUsed == fee / effective gas price, asserted for every transaction",
+      negative_controls: "wrong y and wrong witness must give ok = false",
+      offchain_cross_check: "every proof also verified off-chain with c-kzg (see input file)",
     },
+    input_file: path.relative(REPO_ROOT, INPUT_PATH),
+    results,
   };
 
-  const outPath = path.join(__dirname, "..", "results", "gas_sweep_update_commitment.json");
+  const outPath = path.join(REPO_ROOT, "results", `kzg_gas_sweep_${network.name}.json`);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify(output, null, 2));
-  console.log(`\n  Results saved to: ${outPath}`);
+  fs.writeFileSync(outPath, JSON.stringify(output, null, 2) + "\n");
+  console.log(`\nAll checks passed. Results saved to ${path.relative(REPO_ROOT, outPath)}`);
 }
 
 main().catch((err) => {
-  console.error(err);
+  console.error(`\nBENCHMARK FAILED: ${err.message}`);
   process.exit(1);
 });

@@ -16,6 +16,16 @@ def test_fixture_file_is_up_to_date():
     )
 
 
+def test_gas_sweep_file_is_up_to_date():
+    committed = json.loads(gen_kzg_fixtures.SWEEP_PATH.read_text())
+    sweep = gen_kzg_fixtures.build_sweep()
+    assert committed == sweep, "run `python3 scripts/gen_kzg_fixtures.py` and commit the result"
+    for point in sweep["points"]:
+        assert point["valid"]["offchain_verifies"] and point["valid"]["y"] != "0"
+        assert point["revoked"]["offchain_verifies"] and point["revoked"]["y"] == "0"
+        assert point["commitment"] != point["next_commitment"]
+
+
 def test_fixture_openings_are_consistent():
     sets = gen_kzg_fixtures.build_fixtures()["sets"]
     for data in sets.values():
