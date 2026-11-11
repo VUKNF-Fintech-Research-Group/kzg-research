@@ -1,0 +1,31 @@
+{
+  "experiment": "offchain_timing",
+  "date": "2026-11-11T09:59:41+00:00",
+  "commit": "7b23dd4e8367265da311f6ccac5c5542aafda746",
+  "runs_kept": 30,
+  "warmups_dropped": 2,
+  "degrees": [
+    2,
+    16,
+    256,
+    1024,
+    4095
+  ],
+  "update_sizes": [
+    1,
+    10,
+    100
+  ],
+  "cpu": "Apple M4",
+  "machine": "arm64",
+  "os": "Darwin 24.5.0",
+  "python": "3.14.4",
+  "ckzg_version": "2.1.8",
+  "ckzg_build": "prebuilt PyPI wheel (c-kzg-4844 with blst); compiler flags are those of the upstream wheel build",
+  "trusted_setup": "src/trusted_setup.txt (EIP-4844 mainnet), loaded with precompute = 0",
+  "timer": "time.perf_counter_ns, single thread",
+  "notes": [
+    "build_blob and the polynomial part of witness_update run in pure Python; commit, prove and verify run in C.",
+    "witness_update with k new revocations starts from d - k revoked IDs and ends at d."
+  ]
+}
