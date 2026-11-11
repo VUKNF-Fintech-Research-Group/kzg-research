@@ -25,23 +25,12 @@
  */
 
 const { ethers, network } = require("hardhat");
-const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const { runKzgGasSweep, PAIRING_BACKEND, MIN_VERIFY_GAS } = require("./lib/kzgGasSweep");
+const { REPO_ROOT, gitCommit } = require("./lib/benchUtils");
 
-const REPO_ROOT = path.join(__dirname, "..");
 const INPUT_PATH = path.join(REPO_ROOT, "test", "fixtures", "kzg_gas_sweep.json");
-
-function gitCommit() {
-  try {
-    const hash = execSync("git rev-parse HEAD", { cwd: REPO_ROOT }).toString().trim();
-    const dirty = execSync("git status --porcelain --untracked-files=no", { cwd: REPO_ROOT }).toString().trim() !== "";
-    return dirty ? `${hash}-dirty` : hash;
-  } catch {
-    return "unknown";
-  }
-}
 
 const pad = (v, width) => String(v).padStart(width);
 

@@ -17,3 +17,6 @@ approves deleting them.
   (`benchmark_update_commitment_gas.py`, `hoodi_revocation_helper.py`,
   `encode_constructor_manual.js`). Replaced by `bindings/python/eip2537.py` and
   `scripts/gen_kzg_fixtures.py`.
+- `contracts/merkle/MerkleRevocation.sol` and `test/MerkleRevocation.test.js`:
+  the pre-audit Merkle baseline, which returned "not revoked" whenever an
+  inclusion proof failed, so any invalid proof passed (audit task T6).
