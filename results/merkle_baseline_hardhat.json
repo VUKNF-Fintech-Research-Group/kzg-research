@@ -3,8 +3,8 @@
   "scheme": "sorted range-leaf Merkle tree, keccak256, real non-membership proofs",
   "network": "hardhat",
   "chain_id": 31337,
-  "commit": "4559d5f40266970c9d1d102003dc6bf6475182ec",
-  "date": "2026-11-11T09:56:46.113Z",
+  "commit": "5660ec32ba035a4b37a278b2e5fe864acad4957a-dirty",
+  "date": "2026-11-11T10:02:33.410Z",
   "contract_address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
   "deploy_tx_hash": "0x9fc2bd5d0a412e245e6844ee9a37c56a3f78b22da32c583526b0d5a47e1982a2",
   "deploy_gas": 334004,
@@ -25,7 +25,7 @@
       "verify_non_revoked_gas_median": 28696,
       "verify_revoked_gas_median": 25512,
       "update_root_ms_median": 0,
-      "verify_ms_median": 0,
+      "verify_ms_median": 1,
       "samples": {
         "update_root": [
           {
@@ -34,7 +34,7 @@
             "gas_used": 28036,
             "effective_gas_price_wei": "1671076963",
             "fee_wei": "46850313734668",
-            "confirmation_ms": 0
+            "confirmation_ms": 1
           },
           {
             "tx_hash": "0x5706c7bc7b62e932c6b20936a34748ede7e09e7fdbf316ed3a3ce5055b615d71",
@@ -76,7 +76,7 @@
             "gas_used": 28696,
             "effective_gas_price_wei": "1513930498",
             "fee_wei": "43443749570608",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": true
           },
           {
@@ -103,7 +103,7 @@
             "gas_used": 28696,
             "effective_gas_price_wei": "1103677663",
             "fee_wei": "31671134217448",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": true
           },
           {
@@ -150,7 +150,7 @@
             "gas_used": 25512,
             "effective_gas_price_wei": "1090730352",
             "fee_wei": "27826712740224",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": false
           },
           {
@@ -159,7 +159,7 @@
             "gas_used": 25512,
             "effective_gas_price_wei": "1053212404",
             "fee_wei": "26869554850848",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": false
           }
         ]
@@ -203,7 +203,7 @@
             "gas_used": 28036,
             "effective_gas_price_wei": "1020915824",
             "fee_wei": "28622396041664",
-            "confirmation_ms": 0
+            "confirmation_ms": 1
           },
           {
             "tx_hash": "0x6cc637bb7e6fbab62cd12247e37f477319682e5f8414c105dbac33ac227a48d2",
@@ -237,7 +237,7 @@
             "gas_used": 30320,
             "effective_gas_price_wei": "1027311041",
             "fee_wei": "31148070763120",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": true
           },
           {
@@ -255,7 +255,7 @@
             "gas_used": 30320,
             "effective_gas_price_wei": "1009394548",
             "fee_wei": "30604842695360",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": true
           },
           {
@@ -284,7 +284,7 @@
             "gas_used": 28000,
             "effective_gas_price_wei": "1023900612",
             "fee_wei": "28669217136000",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": false
           },
           {
@@ -293,7 +293,7 @@
             "gas_used": 28000,
             "effective_gas_price_wei": "1014017735",
             "fee_wei": "28392496580000",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": false
           },
           {
@@ -302,7 +302,7 @@
             "gas_used": 28000,
             "effective_gas_price_wei": "1008221417",
             "fee_wei": "28230199676000",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": false
           },
           {
@@ -320,7 +320,7 @@
             "gas_used": 28000,
             "effective_gas_price_wei": "1002828033",
             "fee_wei": "28079184924000",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": false
           }
         ]
@@ -416,7 +416,7 @@
             "gas_used": 33672,
             "effective_gas_price_wei": "1000499335",
             "fee_wei": "33688813608120",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": true
           },
           {
@@ -481,7 +481,7 @@
             "gas_used": 33150,
             "effective_gas_price_wei": "1000150332",
             "fee_wei": "33154983505800",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": false
           }
         ]
@@ -533,7 +533,7 @@
             "gas_used": 28036,
             "effective_gas_price_wei": "1000034666",
             "fee_wei": "28036971895976",
-            "confirmation_ms": 1
+            "confirmation_ms": 0
           },
           {
             "tx_hash": "0x5be4bf1244b84f0574ac4160d7bfa69d1c70fd511a91ce1679adc89eed4b0e81",
@@ -541,7 +541,7 @@
             "gas_used": 28036,
             "effective_gas_price_wei": "1000020335",
             "fee_wei": "28036570112060",
-            "confirmation_ms": 0
+            "confirmation_ms": 1
           },
           {
             "tx_hash": "0xdaa6ca36081421ab5928ba4a1c74fb224630b1194a77588cc4795422172616f0",
@@ -568,7 +568,7 @@
             "gas_used": 35680,
             "effective_gas_price_wei": "1000045261",
             "fee_wei": "35681614912480",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": true
           },
           {
@@ -577,7 +577,7 @@
             "gas_used": 35680,
             "effective_gas_price_wei": "1000026549",
             "fee_wei": "35680947268320",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": true
           },
           {
@@ -595,7 +595,7 @@
             "gas_used": 35680,
             "effective_gas_price_wei": "1000009137",
             "fee_wei": "35680326008160",
-            "confirmation_ms": 1,
+            "confirmation_ms": 0,
             "ok": true
           }
         ],
@@ -615,7 +615,7 @@
             "gas_used": 35710,
             "effective_gas_price_wei": "1000039611",
             "fee_wei": "35711414508810",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": false
           },
           {
@@ -642,7 +642,7 @@
             "gas_used": 35710,
             "effective_gas_price_wei": "1000007997",
             "fee_wei": "35710285572870",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": false
           }
         ]
@@ -654,7 +654,7 @@
           "gas_used": 31784,
           "effective_gas_price_wei": "1000006999",
           "fee_wei": "31784222456216",
-          "confirmation_ms": 1,
+          "confirmation_ms": 0,
           "ok": false
         }
       }
@@ -668,7 +668,7 @@
       "update_root_gas_median": 28024,
       "verify_non_revoked_gas_median": 38300,
       "verify_revoked_gas_median": 38300,
-      "update_root_ms_median": 0,
+      "update_root_ms_median": 1,
       "verify_ms_median": 1,
       "samples": {
         "update_root": [
@@ -678,7 +678,7 @@
             "gas_used": 28024,
             "effective_gas_price_wei": "1000005361",
             "fee_wei": "28024150236664",
-            "confirmation_ms": 0
+            "confirmation_ms": 1
           },
           {
             "tx_hash": "0xbf092482e68961c0f93b1c474c2224e8045fe855c534255a0a533bddd5961dd5",
@@ -794,7 +794,7 @@
             "gas_used": 38300,
             "effective_gas_price_wei": "1000000730",
             "fee_wei": "38300027959000",
-            "confirmation_ms": 0,
+            "confirmation_ms": 1,
             "ok": false
           },
           {
