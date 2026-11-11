@@ -15,7 +15,7 @@ artifacts/
 cache/
 
 # Precompiled libraries
-lib/
+/lib/
 
 # Claude Code local settings
 .claude/
