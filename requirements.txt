@@ -1,0 +1,5 @@
+# Off-chain KZG (official c-kzg-4844 Python bindings)
+ckzg==2.1.8
+
+# Tests
+pytest==9.2.0

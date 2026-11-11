@@ -7,7 +7,7 @@ Notes:
 - This module serializes small polynomials into a full-size `Blob` (FIELD_ELEMENTS_PER_BLOB = 4096),
   padding trailing coefficients with zeros. It then calls into the C library via the
   `ckzg` extension to compute commitments and proofs.
-- Requires the Python C extension `ckzg` to be built (run `make` in this directory).
+- Requires the `ckzg` package from PyPI (`pip install -r requirements.txt`).
 """
 import time
 from typing import List
@@ -16,7 +16,7 @@ import math
 try:
     import ckzg
 except Exception as e:
-    raise ImportError("Failed to import C KZG extension `ckzg`. Build it with `make` in bindings/python: " + str(e))
+    raise ImportError("Failed to import `ckzg`. Install it with `pip install -r requirements.txt`: " + str(e))
 
 # Constants from the C implementation / spec
 FIELD_ELEMENTS_PER_BLOB = 4096
