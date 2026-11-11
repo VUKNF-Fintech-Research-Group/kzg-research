@@ -7,7 +7,7 @@ Compares two ways of publishing a credential revocation list on Ethereum:
 
 ## Status
 
-The code was audited and corrected in November 2026. Earlier result files came from a mock pairing contract and dummy proofs and did not reflect a successful on-chain verification. They are kept in [`_to_delete/`](_to_delete/) for reference and must not be cited.
+The code was audited and corrected in November 2026. Earlier result files came from a mock pairing contract. They are kept in [`_to_delete/`](_to_delete/) for reference and must not be cited.
 
 The figures below are from the in-process Hardhat network (Prague hardfork, real EIP-2537 precompiles). Testnet measurements with transaction hashes will be added.
 
