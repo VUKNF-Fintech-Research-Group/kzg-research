@@ -24,3 +24,12 @@ approves deleting them.
   all 4,096 blob entries with a byte pattern for every "degree", so the degree
   had no effect on what was measured. Replaced by
   `scripts/benchmark_offchain_timing.py` (audit task T5).
+- `results/`: pre-audit result files. `gas_sweep_update_commitment.json` came
+  from the `AlwaysTruePairing` mock with dummy proofs, `baseline_merkle.json`
+  from dummy Merkle proofs, and `hoodi_kzg_test_results.json` from the old
+  contract. None of them reflects a successful on-chain verification.
+  Replaced by `results/kzg_gas_sweep_<network>.json`,
+  `results/merkle_baseline_<network>.json` and `results/offchain_timing.csv`.
+- `Makefile`, `src/Makefile`: build files inherited from upstream c-kzg-4844.
+  They expect a `blst` submodule, C tests and language bindings that this
+  repository does not contain (audit task T7).

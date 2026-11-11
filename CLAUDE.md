@@ -10,68 +10,75 @@ Guidance for Claude Code (and other contributors) working in this repository.
 Research artifact for the paper *"KZG Polynomial Commitment for Shared SSI Revocation"*.
 It compares two on-chain credential-revocation schemes on Ethereum (Hoodi testnet + Hardhat in-process EVM):
 
-- **KZG polynomial commitments** (BLS12-381, EIP-4844 trusted setup): the revoked set is encoded as the roots of a polynomial; the chain stores a 48-byte commitment and verifies a constant 160-byte payload. O(1) gas.
-- **Merkle tree baseline** (keccak256, OpenZeppelin `MerkleProof`): stores a 32-byte root, proof size grows with depth. O(depth) gas.
+- **KZG polynomial commitment** (BLS12-381, EIP-4844 trusted setup): the revoked set is the roots of f(x) = ∏(x − id). The chain stores the commitment C and checks an opening (w, z, y) with the EIP-2537 precompiles. y ≠ 0 means not revoked. Gas is constant in the number of revoked IDs (about 179k).
+- **Merkle tree baseline** (keccak256, OpenZeppelin `MerkleProof`): a sorted tree over the gaps between revoked IDs, with real non-membership proofs. Gas grows with depth (about 29k–38k).
 
 Headline results are in [README.md](README.md); raw numbers are in [results/](results/).
+
+The code was corrected after an audit in Nov 2026 (tasks T1–T8, branch `fix/audit-2026-11`). Pre-audit contracts, scripts and results are in [_to_delete/](_to_delete/): they are superseded, and are moved there instead of deleted until the author approves removal.
 
 ## Repository layout
 
 | Path | Contents |
 |------|----------|
-| [contracts/](contracts/) | Solidity sources |
-| `contracts/KZGRevocation.sol` | Contract `KZGRevocationFixed`: stores commitment, `updateCommitment()` (owner-only), `verifyNonRevocation(payload)`, where payload = `commit(48) ‖ proof(48) ‖ z(32) ‖ y(32)`. Checks the payload commitment matches the stored one, forwards to the pairing address, and treats `y != 0` as not revoked. |
-| `contracts/KZGVerifier.sol` / `KZGVerifier_flattened.sol` | Thin wrapper that forwards pre-encoded input to a pairing precompile (Hoodi BLS12-381 pairing at `0x…12`). The flattened file pins solc **0.8.19** (used for explorer verification). |
-| `contracts/MerkleRevocation.sol` | Merkle baseline: `updateRoot()` (owner-only), `verifyNonRevocation(leaf, proof)`, `RootUpdated` event. |
-| `contracts/AlwaysTruePairing.sol`, `MockPairing.sol` | **Test mocks only.** They make the pairing check pass without the precompile. Never deploy them as a real verifier. |
-| [scripts/](scripts/) | Benchmarks and helpers (JS for Hardhat, Python for off-chain KZG) |
-| `scripts/benchmarkUpdateCommitmentGas.js` | KZG gas sweep over degrees {2,16,256,1024,4096} → `results/gas_sweep_update_commitment.json` |
-| `scripts/benchmarkBaseline.js` | Merkle Scenario A (depth sweep {2,4,8,10,12}) + Scenario B (batch sizes) → `results/baseline_merkle.json` |
-| `scripts/compareResults.js` | Pure Node: prints the KZG vs Merkle table from the results JSON |
-| `scripts/deployMerkle.js` | Deploys `MerkleRevocation` and writes `deployments/merkle_<network>.json` |
-| `scripts/merkleHelper.js` | `buildTree`, `getProof`, `getRevocationProof` (merkletreejs, keccak256, sorted pairs; matches OZ) |
-| `scripts/kzg_helper.py`, `hoodi_revocation_helper.py` | Off-chain KZG proof generation / precompile input encoding (via Python bindings) |
-| `scripts/benchmark_update_commitment_gas.py` | Python/web3 variant of the KZG gas sweep against a local node |
-| [src/](src/) | Vendored **c-kzg-4844** C library (`ckzg.c`, `eip4844/`, `eip7594/`, `common/`, `setup/`) plus `benchmark_kzg_timing.c` (off-chain timing) and `trusted_setup.txt` |
-| `src/TASK.md` | Original spec for the Merkle baseline experiment (historical context) |
-| [bindings/python/](bindings/python/) | c-kzg Python bindings + `oneProofOffChain_KZG.py` (revocation polynomial builder, commit/prove/verify, incremental vs batch benchmark) |
-| [inc/](inc/) | blst headers. `lib/libblst.a` is a local prebuilt library (gitignored) |
-| [test/](test/) | `MerkleRevocation.test.js` (Hardhat + chai) |
-| [results/](results/) | Benchmark outputs used in the paper. Treat them as data of record and don't overwrite them casually. |
-| [deployments/](deployments/) | Public deployment records (contract address, timestamp) |
+| `contracts/KZGVerifier.sol` | Library. Hard-coded EIP-2537 addresses (G1MSM `0x0c`, G2MSM `0x0e`, pairing `0x0f`), G1/G2 generators and [τ]₂ as constants. `verify` (one 3-term G1MSM + pairing) and `verifyWithG2Msm` (textbook form, kept for cross-checks). Reverts on non-canonical scalars, bad lengths or a failing precompile. |
+| `contracts/KZGRevocation.sol` | Stores C uncompressed (128 bytes). `updateCommitment()` (owner-only), `checkNonRevocation(w, z, y)` (view), `verifyNonRevocation(w, z, y)` (emits `Verified(caller, ok, z, y)`). |
+| `contracts/MerkleRevocation.sol` | Range-leaf tree: leaf = hash of (lo, hi) for neighbouring revoked IDs, sentinels 0 and r − 1. `verifyNonRevocation(id, lo, hi, proof)` is true only if lo < id < hi and the leaf is in the tree. |
+| `contracts/test/` | Test-only harness contracts. |
+| `bindings/python/kzg_constants.py` | The single definition of the scalar modulus r (`BLS_MODULUS`) and blob sizes. Never redefine these elsewhere. |
+| `bindings/python/oneProofOffChain_KZG.py` | Off-chain KZG on the PyPI `ckzg` package: `build_revoked_poly`, `coeffs_to_blob` (converts coefficients to the evaluation form c-kzg expects), commit / prove / verify wrappers, accumulator class. |
+| `bindings/python/eip2537.py` | Compressed points (48/96 bytes) → EIP-2537 encoding (128/256 bytes). Prints the Solidity constants. |
+| `scripts/gen_kzg_fixtures.py` | Generates real commitments and proofs into `test/fixtures/`. Deterministic; a pytest fails if the committed fixtures are stale. |
+| `scripts/benchmarkUpdateCommitmentGas.js` + `scripts/lib/kzgGasSweep.js` | KZG gas sweep over degrees {2, 16, 256, 1024, 4095} → `results/kzg_gas_sweep_<network>.json`. |
+| `scripts/benchmarkBaseline.js` + `scripts/lib/merkleSweep.js` | Merkle depth sweep and batch sweep → `results/merkle_baseline_<network>.json`. |
+| `scripts/lib/benchUtils.js` | Shared benchmark helpers (assertions, fee reconciliation, median, commit hash). |
+| `scripts/merkleHelper.js` | `buildRevocationTree`, `getNonRevocationProof`, `proofForLeaf` (merkletreejs, keccak256, sorted pairs). |
+| `scripts/benchmark_offchain_timing.py` | Off-chain timing per step and d → `results/offchain_timing.csv` + metadata JSON. |
+| `scripts/compareResults.js` | Pure Node: KZG vs Merkle table from the result files of one network. |
+| `scripts/deployMerkle.js` | Deploys `MerkleRevocation` and writes `deployments/merkle_<network>.json`. |
+| `test/*.test.js` | Hardhat + chai tests, run against the real precompiles (hardfork `prague`). |
+| `test/python/` | pytest: modulus, evaluation-form encoding, Solidity constants vs the SRS, fixtures, timing smoke test. |
+| `test/fixtures/` | Generated proofs. Do not edit by hand; run `npm run fixtures`. |
+| `src/trusted_setup.txt` | EIP-4844 trusted setup (the SRS). [τ]₂ is its second G2 point. |
+| `src/` (other files), `inc/` | Vendored, unbuilt copy of c-kzg-4844. Nothing in the repo compiles it; the Python code uses the PyPI `ckzg` wheel. |
+| [results/](results/) | Benchmark outputs. Each file records backend, network, commit and date. |
+| [deployments/](deployments/) | Public deployment records (contract address, timestamp). |
 
 ## Common commands
 
 ```bash
 npm install
+python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 
-npm test                    # npx hardhat test
-npm run benchmark           # KZG gas sweep on in-process Hardhat network
-npm run benchmark:merkle    # Merkle baseline on Hardhat network
-npm run compare             # print comparison table
+npm test                     # Hardhat tests
+npm run test:py              # pytest test/python
+npm run fixtures             # regenerate test/fixtures/*.json
+npm run benchmark            # KZG gas sweep on the Hardhat network
+npm run benchmark:merkle     # Merkle baseline on the Hardhat network
+npm run compare              # comparison table (add a network name after `--`)
+npm run benchmark:offchain   # off-chain timing, about 2 minutes
 
 # Live Hoodi testnet (needs PRIVATE_KEY in contracts/.env, see below)
-npx hardhat run scripts/deployMerkle.js --network hoodi
+npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hoodi
 npx hardhat run scripts/benchmarkBaseline.js --network hoodi
-
-# Python bindings (build + test)
-make -C bindings/python
 ```
 
 Notes / gotchas:
-- Hardhat compiles with solc 0.8.20 and 0.8.19, optimizer on (200 runs). See `hardhat.config.js`.
-- Gas on the `hardhat` network uses `AlwaysTruePairing`, so it **excludes** the ~43k-gas BLS12-381 pairing precompile cost. Live-network figures come from `results/hoodi_kzg_test_results.json`.
-- The root `Makefile` and `src/Makefile` are inherited from upstream c-kzg-4844. Several targets (other language bindings, `src/test/tests.c`, the `blst` submodule) are **not present** in this repo, so `make -C src test` will not work as-is. `benchmark_kzg_timing.c` has no Makefile target; build it manually against `../lib/libblst.a` with `-I. -I../inc`, and run it from `src/` (it opens `trusted_setup.txt` from the CWD).
-- The RPC env var is `HOODI_RPC` (read by `hardhat.config.js`). Some script comments say `HOODI_RPC_URL`, but that name is not read. It defaults to the public endpoint `https://rpc.hoodi.ethpandaops.io`.
-- KZG security bound: polynomial degree ≤ 4,095 (EIP-4844 setup). Scale horizontally with more polynomials, never by raising the degree.
-- The Nov 2026 audit found that the committed `results/*.json` and the current `KZGRevocation.sol` do not run a real pairing check. They are being fixed and re-measured on the `fix/audit-2026-11` branch. Change contracts or results only as part of that work or at the author's explicit request, and move superseded files to `_to_delete/` instead of deleting them.
+- **Reported numbers must come from the real precompiles.** There is no pairing mock in `contracts/`, and none may be added to a benchmark path. The benchmarks assert the logged result (`ok` / `notRevoked`) of every transaction before recording gas, and exit non-zero on any mismatch. Keep that property when changing them. A valid KZG verification can never cost less than 123,900 gas.
+- **Blob encoding:** c-kzg reads a blob as evaluations over the bit-reversed 4096th roots of unity, not as coefficients. Always go through `coeffs_to_blob` / `revoked_ids_to_blob`.
+- **Point encoding:** EIP-2537 wants uncompressed points with 64-byte coordinates, and G2 as x.c0 ‖ x.c1 ‖ y.c0 ‖ y.c1 (the compressed form has c1 first). Use `eip2537.py`.
+- **Degree bound:** at most 4,095 revoked IDs per polynomial. The Python code raises `ValueError` above that.
+- Hardhat compiles with solc 0.8.20, optimizer on (200 runs), and the `hardhat` network uses `hardfork: "prague"`. Without Prague the precompiles do not exist.
+- If a constant in `KZGVerifier.sol` or a fixture changes, the pytest suite must still pass: it checks both against `src/trusted_setup.txt`.
+- The RPC env var is `HOODI_RPC` (read by `hardhat.config.js`). It defaults to the public endpoint `https://rpc.hoodi.ethpandaops.io`.
+- Result files written from a working tree with uncommitted changes get a `-dirty` commit suffix. Commit the code first, then run the benchmark, then commit the results.
+- CI (`.github/workflows/ci.yml`) runs both test suites and the benchmark self-checks.
 
 ## Code style
 
-- JS: CommonJS (`require`), **ethers v6** API (`ethers.keccak256`, `ethers.toBeHex`, `getSigners()`), Hardhat 2.x. Keep the existing header-comment style (purpose, run command, outputs).
-- Solidity: SPDX `Apache-2.0`, pragma `^0.8.19`, `onlyOwner` modifier pattern, emit an event on every state change.
-- Python: stdlib + the local bindings via `sys.path.insert(... 'bindings/python')`.
-- C under `src/` is upstream code. Avoid editing it unless the change is necessary, and keep the strict warning flags clean.
+- JS: CommonJS (`require`), **ethers v6** API, Hardhat 2.x. Keep the existing header-comment style (purpose, run command, outputs).
+- Solidity: SPDX `Apache-2.0`, pragma `^0.8.20`, custom errors, owner-only state changes, an event on every state change.
+- Python: stdlib, `ckzg` and `py_ecc`, with the local modules imported via `sys.path.insert(... 'bindings/python')`.
 
 ## Security & Privacy (read before every commit)
 
@@ -113,6 +120,6 @@ Do **not** just delete it in a new commit. Tell the author immediately. They mus
 
 ### Smart-contract safety notes
 
-- `AlwaysTruePairing` and `MockPairing` accept forged proofs. They exist for gas benchmarking only and must never back a real deployment.
+- Never reintroduce a configurable pairing address or a pairing mock into `contracts/`. The pre-audit mocks (`_to_delete/contracts/`) accept forged proofs.
 - Deployments here are research prototypes on a testnet. They are unaudited and not for production or mainnet use.
-- Keep owner-only access control on `updateCommitment` / `updateRoot`, and keep the commitment-match check in `verifyNonRevocation`. Removing either one is a security regression.
+- Keep owner-only access control on `updateCommitment` / `updateRoot`. Keep the `y != 0` and canonical-scalar checks in the KZG path, and the `lo < id < hi` check in the Merkle path. Removing any of them is a security regression.

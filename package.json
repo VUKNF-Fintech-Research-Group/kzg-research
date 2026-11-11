@@ -1,12 +1,15 @@
 {
   "name": "kzg-revocation-analysis",
   "version": "1.0.0",
-  "description": "KZG polynomial commitment revocation analysis – gas benchmarks",
+  "description": "KZG polynomial commitment revocation analysis \u2013 gas benchmarks",
   "scripts": {
+    "test": "npx hardhat test",
+    "test:py": "python3 -m pytest test/python",
+    "fixtures": "python3 scripts/gen_kzg_fixtures.py",
     "benchmark": "npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hardhat",
     "benchmark:merkle": "npx hardhat run scripts/benchmarkBaseline.js --network hardhat",
-    "compare": "node scripts/compareResults.js",
-    "test": "npx hardhat test"
+    "benchmark:offchain": "python3 scripts/benchmark_offchain_timing.py",
+    "compare": "node scripts/compareResults.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0",

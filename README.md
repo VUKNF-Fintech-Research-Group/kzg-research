@@ -1,63 +1,112 @@
 # KZG Revocation Analysis
 
-Compares **KZG polynomial commitments** (O(1) gas) against a **Merkle tree baseline** (O(depth) gas) for blockchain-based credential revocation, benchmarked on the Hoodi testnet with the EIP-4844 trusted setup.
+Compares two ways of publishing a credential revocation list on Ethereum:
+
+- **KZG polynomial commitment.** The issuer commits to f(x) = ∏(x − id) over the revoked IDs. A holder shows that credential z is not revoked by opening f at z to a value y ≠ 0. The contract checks the opening with the BLS12-381 precompiles from [EIP-2537](https://eips.ethereum.org/EIPS/eip-2537), using the EIP-4844 trusted setup.
+- **Merkle tree baseline.** A sorted tree over the gaps between revoked IDs, with a real non-membership proof.
+
+## Status
+
+The code was audited and corrected in November 2026. Earlier result files came from a mock pairing contract and dummy proofs and did not reflect a successful on-chain verification. They are kept in [`_to_delete/`](_to_delete/) for reference and must not be cited.
+
+The figures below are from the in-process Hardhat network (Prague hardfork, real EIP-2537 precompiles). Testnet measurements with transaction hashes will be added.
 
 ## Results
 
-### KZG vs. Merkle
+### On-chain gas (Hardhat network, median of 5)
 
-| Property               | KZG                          | Merkle                    |
-|------------------------|------------------------------|---------------------------|
-| Verify gas             | **O(1)** — 43,026 gas        | O(depth) — 27k–32k gas    |
-| Update gas             | O(1) — 39,997 gas            | O(1) — 30,075 gas         |
-| Commitment size        | 48 bytes (G1 point)          | 32 bytes (keccak256)      |
-| Proof size             | 160 bytes (constant)         | 32 × depth bytes          |
-| Security bound         | ≤ 4,095 credentials/poly     | Unlimited                 |
-| Off-chain verify       | 0.59 ms (C backend)          | Sub-ms                    |
+| Revoked IDs | KZG update | KZG verify | Merkle update | Merkle verify | KZG proof | Merkle proof |
+|------------:|-----------:|-----------:|--------------:|--------------:|----------:|-------------:|
+| 2 / 3       | 49,193     | 179,043    | 28,036        | 28,696        | 128 B     | 128 B        |
+| 16 / 15     | 49,205     | 179,175    | 28,036        | 30,320        | 128 B     | 192 B        |
+| 256 / 255   | 49,205     | 179,439    | 28,036        | 33,672        | 128 B     | 320 B        |
+| 1024 / 1023 | 49,193     | 179,439    | 28,036        | 35,680        | 128 B     | 384 B        |
+| 4095        | 49,193     | 179,439    | 28,024        | 38,300        | 128 B     | 448 B        |
 
-KZG gas is constant because the commitment is always a 48-byte G1 point and the verification payload always 160 bytes, independent of polynomial degree. Merkle verification adds ~906 gas per depth level (one keccak256 per proof element).
+- KZG verification gas does not depend on the number of revoked IDs. Most of it is the pairing check (102,900 gas for two pairs) and one 3-term G1 multi-scalar multiplication.
+- Merkle verification grows by about 900 gas per tree level and is cheaper at every size measured.
+- The KZG commitment is stored uncompressed (128 bytes) because the precompiles do not accept compressed points. Its compressed form is 48 bytes. The KZG witness is likewise 128 bytes in calldata, 48 compressed.
+- One polynomial holds at most 4,095 revoked IDs (the degree bound of the EIP-4844 setup).
 
-### Merkle Batch Efficiency (Hoodi testnet)
+Source files: [`results/kzg_gas_sweep_hardhat.json`](results/kzg_gas_sweep_hardhat.json), [`results/merkle_baseline_hardhat.json`](results/merkle_baseline_hardhat.json). Both record every transaction with its gas and logged result.
 
-| Batch size | Gas per revocation | Saving |
-|-----------:|-------------------:|-------:|
-| 1          | 30,074             | —      |
-| 10         | 3,008              | 90%    |
-| 50         | 602                | 98%    |
-| 100        | 301                | 99%    |
+### Off-chain time (ms, mean of 30 runs)
+
+| Revoked IDs | Build blob | Commit | Prove | Verify | Witness update, 1 new | 10 new | 100 new |
+|------------:|-----------:|-------:|------:|-------:|----------------------:|-------:|--------:|
+| 2           | 9.4        | 25.4   | 25.6  | 0.66   | 36.5                  | –      | –       |
+| 16          | 11.7       | 25.1   | 25.5  | 0.64   | 37.5                  | 37.1   | –       |
+| 256         | 22.6       | 25.3   | 25.8  | 0.64   | 41.6                  | 41.2   | 47.3    |
+| 1024        | 146.5      | 28.3   | 25.8  | 0.64   | 42.8                  | 44.4   | 65.8    |
+| 4095        | 2,058.0    | 26.8   | 26.8  | 0.66   | 44.7                  | 54.0   | 141.3   |
+
+Commit, prove and verify run in C (c-kzg-4844) and do not depend on the number of revoked IDs, because the blob always holds 4,096 evaluations. Building the blob runs in pure Python and grows quadratically. Standard deviations and the machine description are in [`results/offchain_timing.csv`](results/offchain_timing.csv) and [`results/offchain_timing_meta.json`](results/offchain_timing_meta.json).
 
 ## Structure
 
 ```
-contracts/   KZGRevocation.sol, KZGVerifier.sol, MerkleRevocation.sol
-scripts/     benchmarkUpdateCommitmentGas.js, benchmarkBaseline.js, compareResults.js
-results/     gas_sweep_update_commitment.json, baseline_merkle.json, hoodi_kzg_test_results.json
-src/         C implementation (c-kzg-4844)
-bindings/    Python bindings
-test/        MerkleRevocation.test.js
+contracts/         KZGVerifier.sol (EIP-2537 pairing check), KZGRevocation.sol, MerkleRevocation.sol
+bindings/python/   off-chain KZG: polynomial and blob encoding, EIP-2537 point encoding, constants
+scripts/           benchmarks, fixture generator, Merkle tree helper, comparison table
+test/              Hardhat tests (*.test.js), Python tests (python/), generated proofs (fixtures/)
+results/           benchmark outputs
+deployments/       testnet deployment records
+src/               EIP-4844 trusted setup (trusted_setup.txt) and a vendored, unbuilt copy of c-kzg-4844
+_to_delete/        superseded files, kept for reference
 ```
 
-## Running the Benchmarks
+## Setup
+
+Requires Node.js 22 or newer and Python 3.12 or newer.
 
 ```bash
 npm install
 
-# KZG gas sweep — no external node needed
-npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hardhat
-
-# Merkle baseline — requires Hoodi RPC in hardhat.config.js
-npx hardhat run scripts/benchmarkBaseline.js --network hoodi
-
-# C backend timing
-cd src && make benchmark_kzg_timing && ./benchmark_kzg_timing
-
-# Merkle contract tests
-npx hardhat test test/MerkleRevocation.test.js
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-## Security Note
+`ckzg` (the official c-kzg-4844 bindings) is installed from PyPI. No C build is needed.
 
-KZG security requires degree ≤ 4,095 (EIP-4844 trusted setup bound). Gas costs are identical beyond this limit but cryptographic guarantees are not. Scale horizontally with multiple polynomials rather than increasing degree.
+## Tests
+
+```bash
+npm test            # Solidity tests on the Hardhat network, real EIP-2537 precompiles
+npm run test:py     # off-chain KZG tests
+```
+
+## Benchmarks
+
+```bash
+npm run benchmark             # KZG gas sweep      -> results/kzg_gas_sweep_hardhat.json
+npm run benchmark:merkle      # Merkle baseline    -> results/merkle_baseline_hardhat.json
+npm run compare               # side-by-side table
+npm run benchmark:offchain    # off-chain timing   -> results/offchain_timing.csv (about 2 minutes)
+```
+
+Each gas benchmark checks the result the contract logged for every transaction before recording its gas, and exits with an error on any mismatch. The KZG benchmark only runs against the real precompiles.
+
+To run on the Hoodi testnet, put a funded **testnet-only** key in `contracts/.env` (this file is gitignored; never commit it):
+
+```
+PRIVATE_KEY=<hex key>
+HOODI_RPC=https://rpc.hoodi.ethpandaops.io
+```
+
+```bash
+npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hoodi
+npx hardhat run scripts/benchmarkBaseline.js --network hoodi
+node scripts/compareResults.js hoodi
+```
+
+The proofs used by the tests and the gas sweep are generated with `npm run fixtures` and committed in `test/fixtures/`.
+
+## Security notes
+
+- The contracts are research prototypes. They are unaudited and not intended for production use.
+- A polynomial of degree above 4,095 cannot be committed with the EIP-4844 setup. Use several polynomials for larger revocation lists.
+- Credential IDs are visible on-chain when a proof is verified.
 
 ## License
 

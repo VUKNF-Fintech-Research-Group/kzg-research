@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python tests (off-chain KZG)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest test/python -v
+
+  solidity:
+    name: Solidity tests and benchmark checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx hardhat test
+      - name: KZG gas sweep runs against the real precompiles
+        run: SAMPLES=1 npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hardhat
+      - name: KZG gas sweep fails on a broken proof
+        run: |
+          if KZG_BENCH_BREAK_PROOF=1 SAMPLES=1 npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hardhat; then
+            echo "benchmark accepted a broken proof" && exit 1
+          fi
+      - name: Merkle baseline runs with real proofs
+        run: SAMPLES=1 npx hardhat run scripts/benchmarkBaseline.js --network hardhat
+      - name: Merkle baseline fails on a dummy proof
+        run: |
+          if MERKLE_BENCH_BREAK_PROOF=1 SAMPLES=1 npx hardhat run scripts/benchmarkBaseline.js --network hardhat; then
+            echo "benchmark accepted a dummy proof" && exit 1
+          fi
+      - run: node scripts/compareResults.js hardhat
