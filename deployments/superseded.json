@@ -1,0 +1,20 @@
+{
+  "note": "Pre-audit deployments on Hoodi. Superseded by deployments/hoodi.json. Do not use them or cite figures measured against them.",
+  "superseded_on": "2026-11-11",
+  "contracts": [
+    {
+      "contract": "KZGRevocationFixed",
+      "address": "0xd73eaba26e88bD3579eDCC02000e0CAD41143F5B",
+      "reason": "Forwarded a 160-byte compressed payload to a configurable pairing address and never ran a real pairing check, so its verifications logged ok = false.",
+      "replaced_by": "KZGRevocation in deployments/hoodi.json"
+    },
+    {
+      "contract": "MerkleRevocation",
+      "address": "0x69F4Ef455B2EF6592233EE1fb117959E26aC394e",
+      "deployed_at": "2026-04-02T09:20:37.764Z",
+      "reason": "Returned \"not revoked\" whenever an inclusion proof failed, so any invalid proof passed.",
+      "replaced_by": "MerkleRevocation in deployments/hoodi.json",
+      "original_record": "_to_delete/deployments/merkle_hoodi.json"
+    }
+  ]
+}

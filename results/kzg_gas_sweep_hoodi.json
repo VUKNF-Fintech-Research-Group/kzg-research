@@ -1,0 +1,2951 @@
+{
+  "experiment": "kzg_gas_sweep",
+  "account": "0xCA1C3c4242D700259B66dcCFfcd355abD8f17BA9",
+  "pairing_backend": "eip2537",
+  "network": "hoodi",
+  "chain_id": 560048,
+  "hardfork": "live network",
+  "commit": "c29cd1317039ab8a00b9288ff3e91faa68373fe7",
+  "date": "2026-11-11T10:50:14.391Z",
+  "samples_per_measurement": 5,
+  "checks": {
+    "verified_event": "ok = true asserted for every non-revoked verify, ok = false for every revoked verify",
+    "min_verify_gas": 123900,
+    "fee_reconciliation": "gasUsed == fee / effective gas price, asserted for every transaction",
+    "negative_controls": "wrong y and wrong witness must give ok = false",
+    "offchain_cross_check": "every proof also verified off-chain with c-kzg (see input file)"
+  },
+  "input_files": [
+    "test/fixtures/kzg_gas_sweep.json",
+    "test/fixtures/kzg_batch_sweep.json"
+  ],
+  "results": [
+    {
+      "degree": 2,
+      "revoked_ids": "1..2",
+      "contract_address": "0x4F1300578E70C5e4779b9f1E65E42bb9d6B5549a",
+      "deploy_tx_hash": "0x46caf485c82febc033dd07c418b324728e5e4ccb182bf322b01a9268b251713f",
+      "deploy_gas": 869952,
+      "commitment_compressed_bytes": 48,
+      "commitment_stored_bytes": 128,
+      "witness_calldata_bytes": 128,
+      "update_commitment_gas_median": 49193,
+      "verify_non_revoked_gas_median": 179043,
+      "verify_revoked_gas_median": 179043,
+      "offchain_vs_onchain": "match",
+      "samples": {
+        "update_commitment": [
+          {
+            "tx_hash": "0x174e4c1a0b40f3ee0c885607b00fdba7f0fa64e7ada9f2d21a21f198778de7a2",
+            "block_number": 3993990,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "55737373389871"
+          },
+          {
+            "tx_hash": "0x0a6b4523a28989c907faf98b37f027b4acfb95a97e914c82590d8f5c92582477",
+            "block_number": 3993990,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "55737373389871"
+          },
+          {
+            "tx_hash": "0x4b3359c2742a848b30fbca83f53064e01083f8d812c1a66ab86215282868f4cd",
+            "block_number": 3993990,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "55737373389871"
+          },
+          {
+            "tx_hash": "0x711fa514fcaf7660f4806d5771115cd76e5b126785d593870f078a3ab9883a01",
+            "block_number": 3993991,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1187718482",
+            "fee_wei": "58427435285026"
+          },
+          {
+            "tx_hash": "0xbd600af1c2aff994aac5eacc7aa172ca9690da7805edd540e0fc6b53fe643cb4",
+            "block_number": 3993991,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1187718482",
+            "fee_wei": "58427435285026"
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0x7075c00d84543b2c5e141f641e726a9b0c83851b12f3af2578ba4e602c03e878",
+            "block_number": 3993990,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "202861922302821",
+            "ok": true
+          },
+          {
+            "tx_hash": "0xfca8caa5d74efeb1fd01773bf3ad3f00228022d34dd8a597b4e10f3ba60de075",
+            "block_number": 3993990,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "202861922302821",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x1061a8390ffb230f8df177b00fab037ca8c8bc94f77982bee29d80b4a432092a",
+            "block_number": 3993990,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "202861922302821",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x20fa5398f6002220306e30b0d1dc2bc8897e331949dfabb1c38024a42830efc6",
+            "block_number": 3993991,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1187718482",
+            "fee_wei": "212652680172726",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x032cbce06e54acfcdc13d15730d2fc9ee7d607e123213bbcb41e0428e632fe53",
+            "block_number": 3993991,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1187718482",
+            "fee_wei": "212652680172726",
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0xf09f88d05db1ebc1b625f7db9b3766000d37bd5296455f3fea9b2696ac30e9dc",
+            "block_number": 3993990,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "202861922302821",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x7679b6e7f06610e48b2e7e2e9a884db2fe0ab0fd779b4c6a9c1985c32cfad9d4",
+            "block_number": 3993990,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "202861922302821",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x296d426feb4f9fa942a85b0a0e597b15705b46b793e051e27809e9b1a87d0a70",
+            "block_number": 3993990,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1133034647",
+            "fee_wei": "202861922302821",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xb210b3a3957704bd216fc7e6d58892527df86098389bce989b8f0781227e9275",
+            "block_number": 3993991,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1187718482",
+            "fee_wei": "212652680172726",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x9528d6d823b9a098d826e1237a60c8e966639a74650dafe69a588bfc568dbe82",
+            "block_number": 3993991,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1187718482",
+            "fee_wei": "212652680172726",
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "wrong_y": {
+          "tx_hash": "0x45b735720e856941fdc528d11761fb6f698f75e24c64174b8f1dac89f09ef7d7",
+          "block_number": 3993991,
+          "gas_used": 179032,
+          "effective_gas_price_wei": "1187718482",
+          "fee_wei": "212639615269424",
+          "ok": false
+        },
+        "wrong_witness": {
+          "tx_hash": "0x821a29edb428cfbf2fbb32c84c8e39ae0686068d8c23770358129b1bf9e4751a",
+          "block_number": 3993991,
+          "gas_used": 179056,
+          "effective_gas_price_wei": "1187718482",
+          "fee_wei": "212668120512992",
+          "ok": false
+        }
+      }
+    },
+    {
+      "degree": 16,
+      "revoked_ids": "1..16",
+      "contract_address": "0x9f24e731656A8aBC75FAE922e1350eC3166A28Dc",
+      "deploy_tx_hash": "0x3c761c36bfcf7c1eddb83d00d486e9e007ed3b2e3ed16e4c7352b52eaa14ddbf",
+      "deploy_gas": 869952,
+      "commitment_compressed_bytes": 48,
+      "commitment_stored_bytes": 128,
+      "witness_calldata_bytes": 128,
+      "update_commitment_gas_median": 49205,
+      "verify_non_revoked_gas_median": 179175,
+      "verify_revoked_gas_median": 179043,
+      "offchain_vs_onchain": "match",
+      "samples": {
+        "update_commitment": [
+          {
+            "tx_hash": "0xde8c3b5dd2e8c63bbbe6b2a7a6e23e84651f95d48f2a2ff5bc38b048cc09f442",
+            "block_number": 3993993,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "51347547732065"
+          },
+          {
+            "tx_hash": "0x046c128a745874bf7fabe36b41f0846f4a05b8ecd8a77a68aa6c7027009b1f44",
+            "block_number": 3993993,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "51347547732065"
+          },
+          {
+            "tx_hash": "0x6c17d7a8a2ae20ac7deb633bf3616bb0bdf6c22031afa8b5a931b73e55b8e33e",
+            "block_number": 3993993,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "51347547732065"
+          },
+          {
+            "tx_hash": "0x1621e8077561cba4db1680f47b5df48006c6dbf302f819fed86081ecd83401ed",
+            "block_number": 3993994,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1153391908",
+            "fee_wei": "56752648833140"
+          },
+          {
+            "tx_hash": "0x91c25203e39046845b4a1626a54a497d5d275ca53afe06b66b31955c2191af8c",
+            "block_number": 3993994,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1153391908",
+            "fee_wei": "56752648833140"
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0x9a5b6cd0a8ca0110a00eff68d6d180596fb1bdeac8c9467e31505351bf2fbde0",
+            "block_number": 3993993,
+            "gas_used": 179175,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "186976869523275",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x7916c6c9fa84b55a6d0e85525002af693ff46dac1cd79529dac1edee441e549f",
+            "block_number": 3993993,
+            "gas_used": 179175,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "186976869523275",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x0a254fa23516d207f985aeb8ddfd97097c9d5aef9eadeceb6d927dd43523ad28",
+            "block_number": 3993993,
+            "gas_used": 179175,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "186976869523275",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x388a3263a1ce9a9fdc86648fb5d2df01c41cc6e9cdcd290143a792f2ec7e100e",
+            "block_number": 3993994,
+            "gas_used": 179175,
+            "effective_gas_price_wei": "1153391908",
+            "fee_wei": "206658995115900",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x496cac9161273ea58bc3a192c44277a702f9bbef740c15134fc8b58b4f44969a",
+            "block_number": 3993994,
+            "gas_used": 179175,
+            "effective_gas_price_wei": "1153391908",
+            "fee_wei": "206658995115900",
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0x8ee60881b72f3405c2249f7acdb457f6dcff345a12d5fafa4e9cea106794af09",
+            "block_number": 3993993,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "186839121808599",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x78de457428e94a4bab1aaa6c5ff7d8b1c8eff70491fd5bcd650bf360216c5990",
+            "block_number": 3993993,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "186839121808599",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x7d83973cd2b3f2abfcaa0e24a4b38ab15e8f263a7d2038cfdd96f9e7dfc07a63",
+            "block_number": 3993993,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1043543293",
+            "fee_wei": "186839121808599",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xc28f0dcf2bb00c87876900a9501176e96e9fea3757dcfec402ef4095ac6f6cba",
+            "block_number": 3993994,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1153391908",
+            "fee_wei": "206506747384044",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x70542773d09a516bc54d6a8b02cdc4959ae84fbb66a5f32cac4673cffd43700f",
+            "block_number": 3993994,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1153391908",
+            "fee_wei": "206506747384044",
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "wrong_y": {
+          "tx_hash": "0xdb534f86caf650bbb929bdb88ebab54bae6e94808d08bc3077e9410f2576578a",
+          "block_number": 3993994,
+          "gas_used": 179176,
+          "effective_gas_price_wei": "1153391908",
+          "fee_wei": "206660148507808",
+          "ok": false
+        },
+        "wrong_witness": {
+          "tx_hash": "0x2d6af8fef80b6da4dccfbf545b4981fd9af0e00ef67958850238593b411472ee",
+          "block_number": 3993994,
+          "gas_used": 179188,
+          "effective_gas_price_wei": "1153391908",
+          "fee_wei": "206673989210704",
+          "ok": false
+        }
+      }
+    },
+    {
+      "degree": 256,
+      "revoked_ids": "1..256",
+      "contract_address": "0xec76d36e903d68Dd9c954b7c06256D57Bcdf814c",
+      "deploy_tx_hash": "0xed9b567ee402fa6db82bfc22d8e78d41b2511fb4f9d622d81a97c108aee585b8",
+      "deploy_gas": 869952,
+      "commitment_compressed_bytes": 48,
+      "commitment_stored_bytes": 128,
+      "witness_calldata_bytes": 128,
+      "update_commitment_gas_median": 49205,
+      "verify_non_revoked_gas_median": 179439,
+      "verify_revoked_gas_median": 179043,
+      "offchain_vs_onchain": "match",
+      "samples": {
+        "update_commitment": [
+          {
+            "tx_hash": "0xa3c8698fd8ce91067429c82d61397e776de5eaede3f74dee89d96efaadd549fb",
+            "block_number": 3993996,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "60414976195860"
+          },
+          {
+            "tx_hash": "0xc4320a4830831d4d236b4b58d78921352aceeba69a4ea6fe78f5ea21440d7991",
+            "block_number": 3993996,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "60414976195860"
+          },
+          {
+            "tx_hash": "0x694338da03136da7c22a8d6f38b62881fd51b5b5ebe55bce5e2b9162a7de78fc",
+            "block_number": 3993996,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "60414976195860"
+          },
+          {
+            "tx_hash": "0x06c4d936838ac34dda5859bbc42f5bc0b4abe72309691932f4c9dd02f4d9933e",
+            "block_number": 3993997,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1219830250",
+            "fee_wei": "60021747451250"
+          },
+          {
+            "tx_hash": "0xd56d41c22f159e65a98c7ea4812e34cd3742150728977c9235691a9b886c5310",
+            "block_number": 3993997,
+            "gas_used": 49205,
+            "effective_gas_price_wei": "1219830250",
+            "fee_wei": "60021747451250"
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0x1a32a29f979d9cf7e533a4510814e57179a7dc025140f8ccb2232f62541e9f6b",
+            "block_number": 3993996,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "220319132478588",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x01cd392e195be755441b4c3dc06d28154e74e0208648b6bc2465aac7487b65ef",
+            "block_number": 3993996,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "220319132478588",
+            "ok": true
+          },
+          {
+            "tx_hash": "0xcede0fe9d55164e1ef6c41393e4c2a0402cf6f381fb585fac17c8ec90ded4611",
+            "block_number": 3993996,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "220319132478588",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x8540808051625ac1edf77200e2e43985815d7c0f0b120b4a8ae7c67aa10363eb",
+            "block_number": 3993997,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1219830250",
+            "fee_wei": "218885120229750",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x598aeca8f4224609fd28904f1963747d91eb0a1420bb9215044b33baee58abe4",
+            "block_number": 3993997,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1219830250",
+            "fee_wei": "218885120229750",
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0xd42c26cebc7640c2a83a0760f7e611b6772622ec34d0e82b04f2921e55167e40",
+            "block_number": 3993996,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "219832915009356",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x30c6aa7ecabee7ae5a41d191380a493b555a067470bef410bce28b4c667874a3",
+            "block_number": 3993996,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "219832915009356",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xd11b31a112b47fecd44baf66e624a1b6c16738f1caaa55467c893e3d58c0d15c",
+            "block_number": 3993996,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1227821892",
+            "fee_wei": "219832915009356",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xd1f6acc5b6a6df668fca5b9b4c25abb7dbd3971899025c7b84f508713b5a33b3",
+            "block_number": 3993997,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1219830250",
+            "fee_wei": "218402067450750",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xe8f46a4c74183e0f6abba2c27c2233dcb5bc4985f4d73657f5a8ced2d405136c",
+            "block_number": 3993997,
+            "gas_used": 179043,
+            "effective_gas_price_wei": "1219830250",
+            "fee_wei": "218402067450750",
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "wrong_y": {
+          "tx_hash": "0xf876638a820bb6a582ed8860a9224a8eccec4bc77e57118e17c8b710146614ec",
+          "block_number": 3993997,
+          "gas_used": 179428,
+          "effective_gas_price_wei": "1219830250",
+          "fee_wei": "218871702097000",
+          "ok": false
+        },
+        "wrong_witness": {
+          "tx_hash": "0x8a9f1535691c0e0a6344bfa2d281ce3767b9ef6f93a30a665336d0b36f6e3140",
+          "block_number": 3993997,
+          "gas_used": 179428,
+          "effective_gas_price_wei": "1219830250",
+          "fee_wei": "218871702097000",
+          "ok": false
+        }
+      }
+    },
+    {
+      "degree": 1024,
+      "revoked_ids": "1..1024",
+      "contract_address": "0x9fFA46A2a9eA316223bD5d0E5b9860013fC1E36E",
+      "deploy_tx_hash": "0x8d1cfb434f04ff756c87d344c2bef70df2ab07da9a1ac10b4ccdb7ac7059a962",
+      "deploy_gas": 869952,
+      "commitment_compressed_bytes": 48,
+      "commitment_stored_bytes": 128,
+      "witness_calldata_bytes": 128,
+      "update_commitment_gas_median": 49193,
+      "verify_non_revoked_gas_median": 179439,
+      "verify_revoked_gas_median": 179031,
+      "offchain_vs_onchain": "match",
+      "samples": {
+        "update_commitment": [
+          {
+            "tx_hash": "0xe9f3a1b14393b9a2d7d80ae141baa78c62f9d401affd8d6b96170737b4dff5a4",
+            "block_number": 3993999,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "52794952683734"
+          },
+          {
+            "tx_hash": "0x70460ff323904c794bf658f68a04de47651846ad5a0adc4a59b624d9a7f2e529",
+            "block_number": 3993999,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "52794952683734"
+          },
+          {
+            "tx_hash": "0x2d749d32a093bbea57a8143ab94b8d1d33cfe10fdd66438fe70e30c0bccf357e",
+            "block_number": 3993999,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "52794952683734"
+          },
+          {
+            "tx_hash": "0xadfae94f89b86ee58ab3d298d84c3c6ee4c3c77b145335392048e7e97514ab6a",
+            "block_number": 3994000,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1165459400",
+            "fee_wei": "57332444264200"
+          },
+          {
+            "tx_hash": "0x0eb291de947bfa418cfcbfb425b232f822d913f862d7576cee6456d25457bccc",
+            "block_number": 3994000,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1165459400",
+            "fee_wei": "57332444264200"
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0x05fd600c6202a15c2aa12cdb2602422fa719b2661865e33bdb604dff6c4b3358",
+            "block_number": 3993999,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "192577673949882",
+            "ok": true
+          },
+          {
+            "tx_hash": "0xa8a33f6bdbbe502bad04ea3b440b78aed7e4d112cea0a82b4d004b5f28683973",
+            "block_number": 3993999,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "192577673949882",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x6bb128f5f111359d7161869d2fce44f91f617ffca904d3debcd39e1cab04c9e0",
+            "block_number": 3993999,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "192577673949882",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x6efa41ce25c6061275a92360835ac5cd76441fb5409b5bc9eaa756b66de3f455",
+            "block_number": 3994000,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1165459400",
+            "fee_wei": "209128869276600",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x9c5835170834acfde1e499085800a9535d2f1ac9f42930d8aa63872c133893d5",
+            "block_number": 3994000,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1165459400",
+            "fee_wei": "209128869276600",
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0x97249cbf90d9ef2e1c98fd440ed8d88761afd4975f953c39314226d292b1f78b",
+            "block_number": 3993999,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "192139799847978",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x1149fea0bc6717e424264ad343f6bf4ddfbefd5fa286719e45f4df69e841de80",
+            "block_number": 3993999,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "192139799847978",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xf0ee26623ebb6f8501c4ffeb7e51cea76df60e61279e580ba48dee099aefcbab",
+            "block_number": 3993999,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1073220838",
+            "fee_wei": "192139799847978",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x2ec14d2b72f26cd3b4474005785469fe90641809dda6b01a4afdb35c9497fcf1",
+            "block_number": 3994000,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1165459400",
+            "fee_wei": "208653361841400",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x19fcd4670569a85cf5040c805e0185b8c6b45ee75cf0921d0e1bef35ed37aee8",
+            "block_number": 3994000,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1165459400",
+            "fee_wei": "208653361841400",
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "wrong_y": {
+          "tx_hash": "0xf813e8b751614f30cebc34ff31fd69cf454b728356b2f760c516e42beb66b5dd",
+          "block_number": 3994000,
+          "gas_used": 179428,
+          "effective_gas_price_wei": "1165459400",
+          "fee_wei": "209116049223200",
+          "ok": false
+        },
+        "wrong_witness": {
+          "tx_hash": "0xa66adbe7450cf9a3761313854cc0960e0b992c62e51503970b0eeae2ca426b11",
+          "block_number": 3994000,
+          "gas_used": 179428,
+          "effective_gas_price_wei": "1165459400",
+          "fee_wei": "209116049223200",
+          "ok": false
+        }
+      }
+    },
+    {
+      "degree": 4095,
+      "revoked_ids": "1..4095",
+      "contract_address": "0xc4850004196F28a7a42aA31c84bF25a64c0A09C9",
+      "deploy_tx_hash": "0x38161010e14d1d56b8c2db881c7dbed1c959a3d98260d72a6619f30dcb2a312b",
+      "deploy_gas": 869940,
+      "commitment_compressed_bytes": 48,
+      "commitment_stored_bytes": 128,
+      "witness_calldata_bytes": 128,
+      "update_commitment_gas_median": 49193,
+      "verify_non_revoked_gas_median": 179439,
+      "verify_revoked_gas_median": 179031,
+      "offchain_vs_onchain": "match",
+      "samples": {
+        "update_commitment": [
+          {
+            "tx_hash": "0x28036b167efea879adc79a9233685834224cec6d3bfa73f6d9b6258db65aeade",
+            "block_number": 3994002,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "55050336130184"
+          },
+          {
+            "tx_hash": "0x9b0e4a8c8f5fd1d87a94390ecbb3d1cfcca1c0bf0246b2d14a21a9a70393a821",
+            "block_number": 3994002,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "55050336130184"
+          },
+          {
+            "tx_hash": "0xaf7102c58bef92e5bfc9810521c0dfc4c16b6b8e1d16709122bc12402c6bd3b7",
+            "block_number": 3994002,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "55050336130184"
+          },
+          {
+            "tx_hash": "0x84812c5484c78f2ab7ccd1bc677aa7827862c96d27fe74f56b4850b878366c68",
+            "block_number": 3994003,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1122297368",
+            "fee_wei": "55209174424024"
+          },
+          {
+            "tx_hash": "0x5cf9b21302c095c3fc3c3d03805287114793f3d5a54392294eecc9bdfb6c43a8",
+            "block_number": 3994003,
+            "gas_used": 49193,
+            "effective_gas_price_wei": "1122297368",
+            "fee_wei": "55209174424024"
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0xb690dafa9d7ce5dc22c1f1e251db0dd82f48ef72e42b5087311413870be28a6f",
+            "block_number": 3994002,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "200804530418232",
+            "ok": true
+          },
+          {
+            "tx_hash": "0xf19d139794f51275f512d28e87604e843b07149dd233f427949b5f2e2e711c68",
+            "block_number": 3994002,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "200804530418232",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x2f6ac75f4118cddc7dfabab833fdcbb8f68afed5f6c45e5737be758e45b2e7f6",
+            "block_number": 3994002,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "200804530418232",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x32debb197dc608d6d3a1b1df905475c57c6d322c69a7ed8f22ab6112e712a54c",
+            "block_number": 3994003,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1122297368",
+            "fee_wei": "201383917416552",
+            "ok": true
+          },
+          {
+            "tx_hash": "0x84f002916563bcce8e24fec02c6683b54b7f54e0b68ef00d44e29d882f3de4c7",
+            "block_number": 3994003,
+            "gas_used": 179439,
+            "effective_gas_price_wei": "1122297368",
+            "fee_wei": "201383917416552",
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0x94fa2a6642c6e4e1e8d6c4cfc88418b6f82984d9bef789203ff2fe32ae3c4f60",
+            "block_number": 3994002,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "200347950475128",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xe7f95fe4eaefa7070f196d456177d533dac36b57e632e36898d8f69edc1e729b",
+            "block_number": 3994002,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "200347950475128",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x545fdea202dd5adfbafba8f28d9d0e28a7720a2b684c5261cd5275c485170fc2",
+            "block_number": 3994002,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1119068488",
+            "fee_wei": "200347950475128",
+            "ok": false
+          },
+          {
+            "tx_hash": "0x4ac29c073b12818abfe7c45637c7209e57cc53a35074614c591b9a6a8e5f6628",
+            "block_number": 3994003,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1122297368",
+            "fee_wei": "200926020090408",
+            "ok": false
+          },
+          {
+            "tx_hash": "0xa62327c7ec596c07a11178ba32ec6f1d9410807ad23b03d15954a0dea6739de4",
+            "block_number": 3994003,
+            "gas_used": 179031,
+            "effective_gas_price_wei": "1122297368",
+            "fee_wei": "200926020090408",
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "wrong_y": {
+          "tx_hash": "0xe54b9abe607afbed711dcb2058bb452df212c696dd31cb0811a18ac62cd7e078",
+          "block_number": 3994003,
+          "gas_used": 179428,
+          "effective_gas_price_wei": "1122297368",
+          "fee_wei": "201371572145504",
+          "ok": false
+        },
+        "wrong_witness": {
+          "tx_hash": "0x21890149bb2a9c26a5f7c3849ffe48f301d3a431931b63fb5c131a32574bf6a3",
+          "block_number": 3994003,
+          "gas_used": 179416,
+          "effective_gas_price_wei": "1122297368",
+          "fee_wei": "201358104577088",
+          "ok": false
+        }
+      }
+    }
+  ],
+  "batch": {
+    "contract_address": "0x22d41F0A5c0D06f4EC14D882D978346Aaa5C1478",
+    "deploy_tx_hash": "0x24118db3f5c9220c4f475ab91ecb637564df62b7076094805a0c5430c2c44ec3",
+    "deploy_gas": 869940,
+    "results": [
+      {
+        "batch_size": 1,
+        "incremental_tx_count": 1,
+        "incremental_total_gas": 49181,
+        "single_update_gas_median": 49181,
+        "batch_tx_count": 1,
+        "batch_total_gas_median": 49181,
+        "gas_per_revocation_incremental": 49181,
+        "gas_per_revocation_batch": 49181,
+        "batch_gain_formula": "1 - (batch_total_gas_median / batch_size) / single_update_gas_median",
+        "batch_gain_pct": 0,
+        "samples": {
+          "batch_update": [
+            {
+              "tx_hash": "0x164a8198764b0f5097a814ad3da09230b89a10b238e94684be0ed309292f58bc",
+              "block_number": 3994006,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1113107565",
+              "fee_wei": "54743743154265"
+            },
+            {
+              "tx_hash": "0x4a7187ce79f6e77e8fd5f3459ea99950bd8390bf4377f8f54d466b8df5d50964",
+              "block_number": 3994006,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1113107565",
+              "fee_wei": "54743743154265"
+            },
+            {
+              "tx_hash": "0x2847142af0ecd3901dded9f52339ac0910abcc3d9cc9e266d10ca8f16e01835c",
+              "block_number": 3994006,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1113107565",
+              "fee_wei": "54743743154265"
+            },
+            {
+              "tx_hash": "0x201dbab5a3aa4d477aef8dd017bc2ebf1010f87141d7482b7323536ae99dca57",
+              "block_number": 3994006,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1113107565",
+              "fee_wei": "54743743154265"
+            },
+            {
+              "tx_hash": "0x18012051a46e3b2ac87cd38610ed458947729cab627797670b0161ba6ce83579",
+              "block_number": 3994006,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1113107565",
+              "fee_wei": "54743743154265"
+            }
+          ],
+          "incremental_update": [
+            {
+              "tx_hash": "0xd211590423ce29adfb521819608d1f15e4860b7288614d8ab0404a3665ccf1e3",
+              "block_number": 3994005,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1015949579",
+              "fee_wei": "49965416244799"
+            }
+          ]
+        }
+      },
+      {
+        "batch_size": 10,
+        "incremental_tx_count": 10,
+        "incremental_total_gas": 491990,
+        "single_update_gas_median": 49205,
+        "batch_tx_count": 1,
+        "batch_total_gas_median": 49205,
+        "gas_per_revocation_incremental": 49199,
+        "gas_per_revocation_batch": 4921,
+        "batch_gain_formula": "1 - (batch_total_gas_median / batch_size) / single_update_gas_median",
+        "batch_gain_pct": 90,
+        "samples": {
+          "batch_update": [
+            {
+              "tx_hash": "0x3a0a4be8f7cf37de51adc4758872719f5e342cbaa716a4271a52a51f429ceec4",
+              "block_number": 3994008,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1111634220",
+              "fee_wei": "54697961795100"
+            },
+            {
+              "tx_hash": "0xbd81b230f8e164ce2d970ffe7d651c6436062f31000935e3ac719dd3445f9912",
+              "block_number": 3994008,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1111634220",
+              "fee_wei": "54697961795100"
+            },
+            {
+              "tx_hash": "0xbefc6f52a6187320affa73962449291e8a044ca96285d9b722296824f3948822",
+              "block_number": 3994008,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1111634220",
+              "fee_wei": "54697961795100"
+            },
+            {
+              "tx_hash": "0xf459cf519b62e0a8ed746e6ae189677aa032ec08ae807680bef91fa2e9999a74",
+              "block_number": 3994008,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1111634220",
+              "fee_wei": "54697961795100"
+            },
+            {
+              "tx_hash": "0xd3273649ef1f22080160982f628ec362135ee3c78883631982b91bfac185d942",
+              "block_number": 3994008,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1111634220",
+              "fee_wei": "54697961795100"
+            }
+          ],
+          "incremental_update": [
+            {
+              "tx_hash": "0x403a1e349b008f063ef958a7f9f536cd57e14d42ded5f35f983b2105525376a6",
+              "block_number": 3994007,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52694776086524"
+            },
+            {
+              "tx_hash": "0xaaa82713abdd8784cafb2339c9873d75de782873e4518f83d91c6641ce62a716",
+              "block_number": 3994007,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52720490785820"
+            },
+            {
+              "tx_hash": "0x6310baab40863968a6bb0d91c943168d3506cb09147541fc5d4c06b2830b110d",
+              "block_number": 3994007,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52707633436172"
+            },
+            {
+              "tx_hash": "0xdfde61f6604f41be1648321d905a421a3e602fdbfb69f68b794ce987f37b6091",
+              "block_number": 3994007,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52720490785820"
+            },
+            {
+              "tx_hash": "0xb37c4af9a516ca9891ab6f7fc75ed12e8a175a921626ea91f87f2e31b83e72a5",
+              "block_number": 3994007,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52720490785820"
+            },
+            {
+              "tx_hash": "0x9d9386010dd8c9417d1fdb8726c2019f756a890e305e11a01160008a0d212685",
+              "block_number": 3994007,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52707633436172"
+            },
+            {
+              "tx_hash": "0x7e59b852abdb72e56ee4c4daa0e6a05293cf685698eb845dbc71980688dca0a6",
+              "block_number": 3994007,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52720490785820"
+            },
+            {
+              "tx_hash": "0xf88a0869660d0b86c5ad4e64c1708c5daeeba5de8243a5200abb2598444777b7",
+              "block_number": 3994007,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52707633436172"
+            },
+            {
+              "tx_hash": "0xf2409d0a43d46b56eeba8684a86854024b838f408b86a3a55532ed570194ed0b",
+              "block_number": 3994007,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52720490785820"
+            },
+            {
+              "tx_hash": "0xaddeab867d7b395123d7127396c2236f741d1db51d8b0e45448e221c7c2db276",
+              "block_number": 3994007,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1071445804",
+              "fee_wei": "52720490785820"
+            }
+          ]
+        }
+      },
+      {
+        "batch_size": 25,
+        "incremental_tx_count": 25,
+        "incremental_total_gas": 1229993,
+        "single_update_gas_median": 49205,
+        "batch_tx_count": 1,
+        "batch_total_gas_median": 49205,
+        "gas_per_revocation_incremental": 49200,
+        "gas_per_revocation_batch": 1968,
+        "batch_gain_formula": "1 - (batch_total_gas_median / batch_size) / single_update_gas_median",
+        "batch_gain_pct": 96,
+        "samples": {
+          "batch_update": [
+            {
+              "tx_hash": "0xecbc2f42cc3a20e9654823d90da332b99c5f3bf887e24b1477b9bc285fd2487f",
+              "block_number": 3994012,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185949367",
+              "fee_wei": "58354638603235"
+            },
+            {
+              "tx_hash": "0x7ac5549df391258c90220fbb0ba704e40a013c478dded17e58d461826130d549",
+              "block_number": 3994012,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185949367",
+              "fee_wei": "58354638603235"
+            },
+            {
+              "tx_hash": "0x1d117916671d99f91437d8f16481d8d1a61fc512ab8785cc190919e273c63e3e",
+              "block_number": 3994012,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185949367",
+              "fee_wei": "58354638603235"
+            },
+            {
+              "tx_hash": "0x177ffac5cc992de38a74a02eff42aaf6bf780302c298be6b5625a52d70ae39dc",
+              "block_number": 3994012,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185949367",
+              "fee_wei": "58354638603235"
+            },
+            {
+              "tx_hash": "0x52cf85eb09861fa84e2d6b50916ec343f354da3d3693aab5b9c67f81aa34c05f",
+              "block_number": 3994012,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185949367",
+              "fee_wei": "58354638603235"
+            }
+          ],
+          "incremental_update": [
+            {
+              "tx_hash": "0x0ec93cff1b410a4cdf466828b6c203e021a49879cae95e741a5cf362d9fd1c7a",
+              "block_number": 3994009,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55091777172960"
+            },
+            {
+              "tx_hash": "0xb1e37427487ab751d4c8fe822ceb6f9c670958539ac979668b0ad5a1784f7ee9",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0x28bc8ab568c239d20d692dff19bf4bbbc7064b9d30c91cf1f337d2536b83cb08",
+              "block_number": 3994009,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55105219382880"
+            },
+            {
+              "tx_hash": "0x399ac263617b822845f93d59ed7e233873892776398654b47dbe3eff06ab1237",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0x1c3c811f5225d91be25dcc60942aded13a413b455de0e68965d23d6c7bf3ca1d",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0x953806f1effd198b85d75e03795b7d0eaa9b34ae88e689ce7b1e660096f382b8",
+              "block_number": 3994009,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55105219382880"
+            },
+            {
+              "tx_hash": "0x29e4eeed9a602212ce91440cce9db049cb6bb8fa438f0cf3a185334c60ce4cca",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0x03f8ada6906839d451a922809617f0b5d832e77405eef14c62f32c8625ba14e4",
+              "block_number": 3994009,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55105219382880"
+            },
+            {
+              "tx_hash": "0xb5fa22d44dd9efdb12f0a92a1278f25c71b6aa66795b51929af3b83a31999f50",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0x7c1cb50867001fc7803226be8d64bb69d61aedce646892f63fcfb48e2424e3a0",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0x4045f7d1ce7dc7bb75aa98d99d9c34f38c87164e8c05c8bb71d62180a2d75f05",
+              "block_number": 3994009,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120184160",
+              "fee_wei": "55118661592800"
+            },
+            {
+              "tx_hash": "0xe4a23a3b92dd7e42d029f1ead380baf6250591e56e2d521e72716a5bd2418b91",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0xab2d804d5ce915e024dcc0b9e2190263b03c09f69f84beb64f2a4c91c486d488",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0x58045e694b9a01cf098ff3cba42de90b41b87fb03876c1e3193a191ea5658d87",
+              "block_number": 3994010,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57302625272717"
+            },
+            {
+              "tx_hash": "0xe88bea491e105c553c175528bad1d65cdf8bfa11726a7b2a88668d7b2295e1d3",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0x2ff35b884df2d9e816e5ae87101f28b4644ec886d5027be2188a91cc0f606a2b",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0x3e1db1aa2214dae47cfe7ff174a6a8b036f5272aa9649726d0ec18410b3f212e",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0x3eca1cb7a7c32bde0b8698d1cb281024896a5a085654c2fe6ecb430be634ab17",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0xe3debffa48a49d438d3d8cdff217395f45b1e8ea0e4bf2955873f986c8d443f2",
+              "block_number": 3994010,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57316606922201"
+            },
+            {
+              "tx_hash": "0x374514e4b4698bb171c5e7fcbdf98270eafc3749c7e695649d1ac323052b352b",
+              "block_number": 3994010,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57316606922201"
+            },
+            {
+              "tx_hash": "0xba245bc97baafdaa98b484fe2bc568b7f283182838c74dc76675cb479ddaba11",
+              "block_number": 3994010,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57316606922201"
+            },
+            {
+              "tx_hash": "0x7b12ce9989c49db955ce071f06910bdf2ddceaeb300754fd559d5b73b67ea285",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0x763ed4e2a77e2f640e96accca1b7c7870fd48f2afab663d6a867ad45cd1cddcf",
+              "block_number": 3994010,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1165137457",
+              "fee_wei": "57330588571685"
+            },
+            {
+              "tx_hash": "0xc9df943a1550f1f1b777257d3c72182859a9b5cd02deeccc3dd2c03bb98b5f72",
+              "block_number": 3994011,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1188510096",
+              "fee_wei": "58466377152528"
+            },
+            {
+              "tx_hash": "0x98c5c2e95ac5f78db435952f1266357056d9472ef5d32691b704dcdef2ce864c",
+              "block_number": 3994011,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1188510096",
+              "fee_wei": "58480639273680"
+            }
+          ]
+        }
+      },
+      {
+        "batch_size": 50,
+        "incremental_tx_count": 50,
+        "incremental_total_gas": 2459974,
+        "single_update_gas_median": 49205,
+        "batch_tx_count": 1,
+        "batch_total_gas_median": 49193,
+        "gas_per_revocation_incremental": 49199,
+        "gas_per_revocation_batch": 984,
+        "batch_gain_formula": "1 - (batch_total_gas_median / batch_size) / single_update_gas_median",
+        "batch_gain_pct": 98,
+        "samples": {
+          "batch_update": [
+            {
+              "tx_hash": "0x165f685ac0c0efddafa05a826a97c20bbfc29f67569dbebc20a4466ae4939d88",
+              "block_number": 3994018,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1118735612",
+              "fee_wei": "55033960961116"
+            },
+            {
+              "tx_hash": "0x5fee2c7aa6cc6cbc5c6964dbf59c387c0091bd724bec3a8559e92deacdcc7cfa",
+              "block_number": 3994018,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1118735612",
+              "fee_wei": "55033960961116"
+            },
+            {
+              "tx_hash": "0xa3a599757442172d453e510265c7f0093502ab25330dc76bd49cfe15e96a7043",
+              "block_number": 3994018,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1118735612",
+              "fee_wei": "55033960961116"
+            },
+            {
+              "tx_hash": "0xf52d07aebc8faa410a89b6ec895525a61e7b9ec20cc6e64da7ab0b7f5a9e70f6",
+              "block_number": 3994018,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1118735612",
+              "fee_wei": "55033960961116"
+            },
+            {
+              "tx_hash": "0xa97d5b600e9297f8d72b1ea4234af0ca64368dd9ff9a708af2a7815cfe062a75",
+              "block_number": 3994018,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1118735612",
+              "fee_wei": "55033960961116"
+            }
+          ],
+          "incremental_update": [
+            {
+              "tx_hash": "0x251e934a4c700d662302d6414b3be40abc62f7cc7c9786f82735b22894b92057",
+              "block_number": 3994013,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53888920766934"
+            },
+            {
+              "tx_hash": "0x73f61a17c629ee25a4fd14e6198a260cde2cda3e92ee62d0e0c84c2e89357cd0",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0xf73b72be68c12f2b64acd0cbe6f7886976623f91221b06b32a699211cf19e462",
+              "block_number": 3994013,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53902069483902"
+            },
+            {
+              "tx_hash": "0xd0a98581b4e3f5331189907e4c4247bc74ad956b171d4d436c4ed9a52620476e",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0x30743389094c59b1c93806d9491d842f3cb32322cb3d3088f5ea7da1878cd6c2",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0xb24d6df5121dc586fd4fd08b9408be817365f01c9dc6372a8d2ecbb65ad5cbac",
+              "block_number": 3994013,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53902069483902"
+            },
+            {
+              "tx_hash": "0xcfad08c1e5defcb7e8c4d15cb396acf36cb7ef8fc3591f9e01cceaca26a962ae",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0xf1d058f4d4cc52cecfba91f95878e2682dc0a6ffd16652bfeb04695e9b3f22ef",
+              "block_number": 3994013,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53902069483902"
+            },
+            {
+              "tx_hash": "0xad7bb6ae1675a1cdd8141bf5060f190264232b16ce9e33fea23e5014d29687ce",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0xb9849eabb192464fa974f5e55c8e9ab922e626b6591aa4541b18ea7ffba86e9d",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0xc33af5b077663e6495bece9003dd71e584b6594fe72ae6532112eb2616949c54",
+              "block_number": 3994013,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1095726414",
+              "fee_wei": "53915218200870"
+            },
+            {
+              "tx_hash": "0xc6808ae2d4610e5e016afcea3f6d035b2edaff4e8f642b31bd0e14fbe913a4f6",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0x727eb7d67ea503277fbed92dc35a1eb8b3b23f4847f5bd2ece68c116fec255d2",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0x7f09cb550a7f818b8929cf59a3d53b35fcdd89f3da1f307a640d635789bf1e05",
+              "block_number": 3994014,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55083322221345"
+            },
+            {
+              "tx_hash": "0x07db76f355bda1e6d666bb5b78bd08302344b82817273bebd77b2236910291d3",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0x205fd74a65a100a06c53d4655cb5f0a247e9de70f2178ff7ad3a932e8a965f76",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0x7643919d3be126b9a094d588d27a7a0be22e21225a815a30efb399dbe6636534",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0x1f20f450679d959995609a8ca9fae3ed9d8f2426d0c8f92b72ecaad17407f45b",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0xe38749d270c54a0837b2437ce96dcbd351fb9a35a0b42f65827ee57690f52c7a",
+              "block_number": 3994014,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55096762368285"
+            },
+            {
+              "tx_hash": "0xadd5bb62859bc4c00c6a6289fb1319c251bef75a102361a7a671a429fd000be5",
+              "block_number": 3994014,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55096762368285"
+            },
+            {
+              "tx_hash": "0x41be828679b8d4a0c0a10e9d199131776eca222dfab1052a848cbcf83394e7b1",
+              "block_number": 3994014,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55096762368285"
+            },
+            {
+              "tx_hash": "0xd32a981a58571e6e225be5248f6a55bbde6565af73d54fd3a4b365e6dc5bc618",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0x2bba424ae95f9d81e510e97d9e2a6ee3f65e16c27d9ca6b9b9d3a31d6013a064",
+              "block_number": 3994014,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1120012245",
+              "fee_wei": "55110202515225"
+            },
+            {
+              "tx_hash": "0xa9b52a94671227bda505720919fb73fbade62c58d4f3e465d5666a72384d4166",
+              "block_number": 3994015,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57870500769352"
+            },
+            {
+              "tx_hash": "0x3ffab9c49256d672f263f1bde56df7320cad098243b62f8eb7787f688bdd9f24",
+              "block_number": 3994015,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57884617534120"
+            },
+            {
+              "tx_hash": "0x091d85465a3c44eb6752190c9d5754d35616abe6139923a524c0ad81fc474d94",
+              "block_number": 3994015,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57870500769352"
+            },
+            {
+              "tx_hash": "0xc75a1e297cfa53fbbe9126941de77905f25c7c303a3e8ec7b6c63d92214ef4f0",
+              "block_number": 3994015,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57870500769352"
+            },
+            {
+              "tx_hash": "0x9e77fa50e219583f36272591e1f9c8228af92ed469841010a401a5b64e46aae4",
+              "block_number": 3994015,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57870500769352"
+            },
+            {
+              "tx_hash": "0x713eda88cf71014c721d8c7542885639fe8ac27d90ad32e4a039e25f44daca80",
+              "block_number": 3994015,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57884617534120"
+            },
+            {
+              "tx_hash": "0x0159ae0e95f901067ed6da17605fb4149ad22a841b54909dc10ac6e74045239c",
+              "block_number": 3994015,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57870500769352"
+            },
+            {
+              "tx_hash": "0x9b27eb9e0ddd92db2772d9b3134d7f23e821039cf82063abd24d2abf352ad0e8",
+              "block_number": 3994015,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57884617534120"
+            },
+            {
+              "tx_hash": "0x2d210db72b892a059fcc14ba8359d23fbee3263dfca55ded3d30127188527323",
+              "block_number": 3994015,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57884617534120"
+            },
+            {
+              "tx_hash": "0x92fdc8872b03b52ef8c695c16e4aad22293cbf27dd9cc27e9fc180e823814f7b",
+              "block_number": 3994015,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57884617534120"
+            },
+            {
+              "tx_hash": "0x24d2b669de2e28129017643e038c910a6693c24a63326f8a468a182cd5494efc",
+              "block_number": 3994015,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57870500769352"
+            },
+            {
+              "tx_hash": "0x80c47145bca47313210c31a078536a6e076b4d0d5ce8594ee3d1bf15746f1f64",
+              "block_number": 3994015,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1176397064",
+              "fee_wei": "57884617534120"
+            },
+            {
+              "tx_hash": "0x9d4ff6f141bd5947bba0e67a61c0b7011fd4b2bec4ed72e08955ce7a7039162a",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0x5bc8f50d48765a4da1a42eaaf87d17af5c68f3d3c5263ab1e749477296de3af2",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0xa4adcbc0f289d1a3ba5ca491fea3569a20b13b8779ea6667e14a2f4fb6a8e7ea",
+              "block_number": 3994016,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58320599649381"
+            },
+            {
+              "tx_hash": "0xdde7b272ceb9ac8a961de7fde4bb5a356d51bfb8a186279f720ab00523ec97f9",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0x90d5d8a50ee6d52b90c03715a07d1d94575aa40fd55f88d364ccc5ef185c3c75",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0xc59d81c3391b0879f422a13c9db38a68f88187ac555946bc86eab894231a7067",
+              "block_number": 3994016,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58306373088777"
+            },
+            {
+              "tx_hash": "0x70ab927f528c546b2e11aa7b6516d783aea431094402bdc4ecb3236d5e971843",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0x58d9bbfb0cd3d197b469e682fc416df506048dfde5adc41e8fd5f3f12b1526f8",
+              "block_number": 3994016,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58320599649381"
+            },
+            {
+              "tx_hash": "0xf7ce95dd571964a3626fa1dad51e31eec3583e51696d729689ac33ec35042daa",
+              "block_number": 3994016,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58320599649381"
+            },
+            {
+              "tx_hash": "0xe21d76c503f4477d0af6fe3983cb19f3af03568a15b45351fa988512d67a1475",
+              "block_number": 3994016,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58320599649381"
+            },
+            {
+              "tx_hash": "0x1d45e1ed013835c0b11967e28155f49550cd263caa42534d6631e260bb6baa47",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0x0f512df99c685436f9eef622f9f09bec93d6b9bd1e566704e0cc05570cf0bd18",
+              "block_number": 3994016,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1185546717",
+              "fee_wei": "58334826209985"
+            },
+            {
+              "tx_hash": "0x659d75c6e2751008d514d5ca4e7ad0a7805979958664e3fba70c0bb58c78a44f",
+              "block_number": 3994017,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075606070",
+              "fee_wei": "52925196674350"
+            },
+            {
+              "tx_hash": "0x707a4a0c6517a9cb5b8e75a90c3524b85195883716187581871507c1316b37ab",
+              "block_number": 3994017,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075606070",
+              "fee_wei": "52925196674350"
+            },
+            {
+              "tx_hash": "0x1a2f8f768fd5db43eee64df51b7a5d04d6a69ec4fe3f583aabaa9a34538e256b",
+              "block_number": 3994017,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1075606070",
+              "fee_wei": "52912289401510"
+            }
+          ]
+        }
+      },
+      {
+        "batch_size": 75,
+        "incremental_tx_count": 75,
+        "incremental_total_gas": 3690039,
+        "single_update_gas_median": 49205,
+        "batch_tx_count": 1,
+        "batch_total_gas_median": 49193,
+        "gas_per_revocation_incremental": 49201,
+        "gas_per_revocation_batch": 656,
+        "batch_gain_formula": "1 - (batch_total_gas_median / batch_size) / single_update_gas_median",
+        "batch_gain_pct": 98.67,
+        "samples": {
+          "batch_update": [
+            {
+              "tx_hash": "0xd96727656c2d429b689c4ef1b9a9290904212d9abd1cf382073a5528df915abd",
+              "block_number": 3994026,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1178608600",
+              "fee_wei": "57979292859800"
+            },
+            {
+              "tx_hash": "0x3afe409e270c930c6e442f0675ae1e10af0a607d248a26d44bedd2d50975a862",
+              "block_number": 3994026,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1178608600",
+              "fee_wei": "57979292859800"
+            },
+            {
+              "tx_hash": "0x3460ff57012fe8d19c8e0f1716771a390e4a1e0625850dfb77e7c450a1b7e2d4",
+              "block_number": 3994026,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1178608600",
+              "fee_wei": "57979292859800"
+            },
+            {
+              "tx_hash": "0xd64f2bdf243bbf4336f3f6df2082b1483b688e84f5eda1af4ee2a95cfb2f602b",
+              "block_number": 3994026,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1178608600",
+              "fee_wei": "57979292859800"
+            },
+            {
+              "tx_hash": "0x7971c415fef6d4292d1fd2d6010b9895b63064cd36129da4a3ddccec5ca6df9f",
+              "block_number": 3994026,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1178608600",
+              "fee_wei": "57979292859800"
+            }
+          ],
+          "incremental_update": [
+            {
+              "tx_hash": "0x503e545ae147ed8549c00b6bf0cc62e654b9e4109b7cb0d475ec28fc5f969355",
+              "block_number": 3994019,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55611240272192"
+            },
+            {
+              "tx_hash": "0x17ecf993923f61b1f5ebe0c6ab4e149b53bb0213c8fd4c37f86df84ae8af9807",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0xfb953928b965c2d41e7ccfc00aed61520ebff5bd6e80c23c402bd5de2d3d7029",
+              "block_number": 3994019,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55624809229376"
+            },
+            {
+              "tx_hash": "0xa034c90d0f43e7396c53b649dd8b22c5bcda93bf6338dea34b276c6797c58083",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0x79b431bc7e6c2aa5895c25610ad7f84f494f2494cf56c920a1d24c6946519e83",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0x1d03716c9d028a656ed987fd6af18d2712e2dfc6b0b16b0a4e08d3aabfec076e",
+              "block_number": 3994019,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55624809229376"
+            },
+            {
+              "tx_hash": "0xed909edf4ad1a96c2d6e0bddb70a21713a3dd8499bc28edbc19a5ad7040f7fe0",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0xf34913c1ffd49f31853069574f039f5e10f00b6b472df1b464f1891600880bc5",
+              "block_number": 3994019,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55624809229376"
+            },
+            {
+              "tx_hash": "0xc23177feb57d438d5bc7e4f6c28c7a9f1e259f16d2a0347d3a8337fed4352d00",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0x27c3e862fb2bad3326ce54e95f1695ac19eccef0a214addab41912f5efc6c8fc",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0x27c398357d044ca18bb0da74b80db68079f5c60b0b45372e1149e6a9a78a84f8",
+              "block_number": 3994019,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1130746432",
+              "fee_wei": "55638378186560"
+            },
+            {
+              "tx_hash": "0x8c59a893497e08f5adca48577316c87707db1f76dde51b00a3c421081996ef73",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0x6fff5a9bc5d37b37e964ccf3d47abd7e567b4aa5e0a0146916dc6468bad66fd9",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0xa541845fdee51d270d998808f43dc6fa66d95501b7fe5468828160e4c01114ad",
+              "block_number": 3994020,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53028392891793"
+            },
+            {
+              "tx_hash": "0x60350ab3bf93888c92875054c264c9c2de6045fa44d6b89d159946bb30db3101",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0xddbb3770c83f5068cf5d3bed130db48a2dc9fbbd2c02531e19304cea158343bf",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0xb5e3d96680ad10ba61dabe8fdfac9b92846ad59cf6f8280143e3cf9bc0f0b8eb",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0x0f4aaffb5f8f1463b4fd0cc3b6f1e7d26ea6d99c2915dd7a27ea3d496dc00efb",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0x87d84cb1ae2df3cffe189ffc992d8b29a9eb0e5236007cc87f289c0d789dcda9",
+              "block_number": 3994020,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53041331642829"
+            },
+            {
+              "tx_hash": "0x9f00147a689c11e8ccc96abb0eb8f0015736407689fc268eb76b1c03f42e599f",
+              "block_number": 3994020,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53041331642829"
+            },
+            {
+              "tx_hash": "0xd52eebc137abc67d5a994930a9d3a48bbfabf605a93553f8297e57be162521b0",
+              "block_number": 3994020,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53041331642829"
+            },
+            {
+              "tx_hash": "0x52f6537903778cae651113f12b85f7790e295423fcb0f7d248da8312c4958c70",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0x84acdca0f3d921e6a67d94af93011483b9c687004e632a048d9247e242aaee70",
+              "block_number": 3994020,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1078229253",
+              "fee_wei": "53054270393865"
+            },
+            {
+              "tx_hash": "0x3c564826099cf6932f68b86ae07aef46e2f60d0c3def7424faf08ca2375576c6",
+              "block_number": 3994021,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54749567570148"
+            },
+            {
+              "tx_hash": "0x6f402af7f53044b92ba18cb3272e1ff63300e150d144debbbdf5e568d72ffd1f",
+              "block_number": 3994021,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54762923023380"
+            },
+            {
+              "tx_hash": "0xa05118d66089842dc27ec6b8594e25e68e1d784af26b014772755385ea8cb348",
+              "block_number": 3994021,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54749567570148"
+            },
+            {
+              "tx_hash": "0x6887cd56b325cde358433b8aada64b35dc4b530de2b52d9ff4270267d0bd7c4d",
+              "block_number": 3994021,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54749567570148"
+            },
+            {
+              "tx_hash": "0x6689cec4a0df456bca0966caaf7186ce3cef2e2c41d2a59fcdcc54cde7114b48",
+              "block_number": 3994021,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54749567570148"
+            },
+            {
+              "tx_hash": "0x0250a729eba36830860f353cbf5d0162553e4c590a84a8a77a9ec8d04bb01773",
+              "block_number": 3994021,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54762923023380"
+            },
+            {
+              "tx_hash": "0xd575226b7d4a3bed38f2662eddccc6d6095fcd39e40a52cb6538ffff3aac08e5",
+              "block_number": 3994021,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54749567570148"
+            },
+            {
+              "tx_hash": "0xe411e3fd337813d75cacac3da779b8513df5467f07869b3f21a7699de2c90e9e",
+              "block_number": 3994021,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54762923023380"
+            },
+            {
+              "tx_hash": "0xb2935bfb4326b59b1b70b9e00a971db4b1b35833bc073b3181600889b9c8f811",
+              "block_number": 3994021,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54762923023380"
+            },
+            {
+              "tx_hash": "0xa163752ebad56e2909de72118fb91374664ab3c9b1c574177068c28d588c6d1c",
+              "block_number": 3994021,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54762923023380"
+            },
+            {
+              "tx_hash": "0xcb461fbe877b9bc7ed102207a80f04e020628b30d9dec7d156e08358d6e050c1",
+              "block_number": 3994021,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54749567570148"
+            },
+            {
+              "tx_hash": "0xddc28ed696b548338a72f9f31528118dbbc536f9aacfc1ad689c0e479da9c118",
+              "block_number": 3994021,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112954436",
+              "fee_wei": "54762923023380"
+            },
+            {
+              "tx_hash": "0xd7bae5534f985e4a901526a9f1e4bbf9e6dd20e536c4c90c9922e1114c09922d",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0x11adb092db056f6cd80065168c4c7d4ba4449f8bde8980968df2824642bb03aa",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0x1fa5e0925ac71b5b9cecedb90a1193f506029ebc43e87d39f29aec70a033ee1d",
+              "block_number": 3994022,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56434264991318"
+            },
+            {
+              "tx_hash": "0x69b5773f47007a2af0975bc67e15e1b8396dc18be264733b7ce64004479f821f",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0xd6d0ff43bcbbea66b8373ee9d9a493ac6a849648c42ae6393cd9f2405b904618",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0x193cffbd5287e644ccbfc18ba125abade8e686540e8420f97461957891838fc5",
+              "block_number": 3994022,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56420498577806"
+            },
+            {
+              "tx_hash": "0x1cec7a1845a14101b751e21a6b23c49109375d3a4422fcfb51be8d30bbed5f88",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0xc105a231d3f269e919932fbacead9d37c65be56df09a5420741746f98eb3f9f2",
+              "block_number": 3994022,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56434264991318"
+            },
+            {
+              "tx_hash": "0x0c4fd6b872bbe1707e81e8df4d2dbc7cdf4db8a833f2441a10a5b6a969f995a5",
+              "block_number": 3994022,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56434264991318"
+            },
+            {
+              "tx_hash": "0x02f1839df7939c735bb2d36bd4547eed697827b575217dbd1bd770e49ecf2a0d",
+              "block_number": 3994022,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56434264991318"
+            },
+            {
+              "tx_hash": "0x9b4c2116d8bf1348cce4d1cd8672e470b7c9debfd2984c23cf3d0d65ef2b834e",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0xefb6d3bf14d9c7713394801ae183661fbb0a237a23799684422d7f740862c73a",
+              "block_number": 3994022,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1147201126",
+              "fee_wei": "56448031404830"
+            },
+            {
+              "tx_hash": "0x415b3e99e33360656a1476ec5915493f609135a71c2f56c6ae76b02e242e559f",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x17ff3f1a3a0c2b4be6594686ceae7cbf1e72cc6ca401624ef60ac9c256fcfe53",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0xe424051f20279ce5b8c1476559acb312c9fce0940dc5e6d74f1890cd22cdc25e",
+              "block_number": 3994023,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54713335695823"
+            },
+            {
+              "tx_hash": "0x9fde6cb679ffeea7796156868489b2ea9bcbb243a38c2d340b302bee9bbc1581",
+              "block_number": 3994023,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54713335695823"
+            },
+            {
+              "tx_hash": "0xff74831084c22cc0aca805f7f8f88c4010ddce42ca3f2ff7864339136517246f",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x8948ba895f4e529532c48af81a2ca5d2f670779d56e76a85e9a94c1d1550c8b1",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x4207e2d37cb4934ec38f09dfb4f7e810007fde6da07adf2e88e858927fd10737",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0xfe7b49aa31c587c5f6e5a0aa589813720115e20e84bd6ea1be138242fb5fba6b",
+              "block_number": 3994023,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54713335695823"
+            },
+            {
+              "tx_hash": "0x4a0d0be7035dce7d1622b5cbbfdf379007bcba201b3f3a1e4f2c0b488b756763",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x3ce5eac14526a0f917328dd8d1cd8ef48c9e00678324adc0c910a2e3ea3d2fb6",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x8b2fe5b3d75321779249d46ddf0915ee62091cc5f0c8e7a85d163521fa9a7516",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x4e271cebc6bebe5759de189a42fbb87646485341749bf774ae61c97105447967",
+              "block_number": 3994023,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1112217911",
+              "fee_wei": "54726682310755"
+            },
+            {
+              "tx_hash": "0x7aa2e70b2f695851daf35a288d20249c1a75772b5e73270ff49c3f0a4cf79b64",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x55ed2f34263ea3bb537ca54d6eede3431dfd83bb8d89150aa3db735531d16630",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x7a3e1061abb0a1d7fb0ddcd10306c4538b299c3d7bdc6d65388f6deb9964aa42",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0xb69e32a6f360123827571a69437fd050e41ef6d5340a47474979c61e0865e380",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x5810b80f88573167fddce21e3a4f2c43a84e8cfd3c60ded743a03cba61664b49",
+              "block_number": 3994024,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52869797422777"
+            },
+            {
+              "tx_hash": "0x82a4e7195120171e3c5fe0cc30650eff5615f4f125f38d1ee93cb96b677805df",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x148b34897aee75cc21f02175d2e65f8fb7ae6ed3e92a18c6d2a006beaee97f68",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x2121b0de754c276c4b532a47aa32bac620691e5b1f943c9c660e04d436de5f70",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0xe45281dde8243faecc8107a7ad49e616addf8f328e08596c7fc4fe402e667369",
+              "block_number": 3994024,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52869797422777"
+            },
+            {
+              "tx_hash": "0x68b112e5a4613a4ed1d366232ea856e933e67ef9049828f28c941cef1ac3a07f",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x6808a603898f21194d93406d4ecc486679563043caffd7b9c32328ac700c83f3",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0x2ef665d09a0eb76e233eac86989b3b0020428d1993fd87b75d5a4682f940fb25",
+              "block_number": 3994024,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1074742289",
+              "fee_wei": "52882694330245"
+            },
+            {
+              "tx_hash": "0xdf66485e529d58464accc52d6a2b85ba411dff7ad5b9251aaf372017e2742269",
+              "block_number": 3994025,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119491939",
+              "fee_wei": "55084600858495"
+            },
+            {
+              "tx_hash": "0x3259de536ec9dd9f97aeac9497850069b3199c97a8396b15a539729a3a5a7128",
+              "block_number": 3994025,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119491939",
+              "fee_wei": "55084600858495"
+            },
+            {
+              "tx_hash": "0xf8cd7210018e3b35f5f5d09abe5c8469c5006be0a2dd83200dada47fe606d9dc",
+              "block_number": 3994025,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119491939",
+              "fee_wei": "55084600858495"
+            },
+            {
+              "tx_hash": "0x98baae040cd1618bce21cd91fdf0ab3df663712cf3098211076cbff5c73b1201",
+              "block_number": 3994025,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119491939",
+              "fee_wei": "55071166955227"
+            }
+          ]
+        }
+      },
+      {
+        "batch_size": 100,
+        "incremental_tx_count": 100,
+        "incremental_total_gas": 4920032,
+        "single_update_gas_median": 49205,
+        "batch_tx_count": 1,
+        "batch_total_gas_median": 49193,
+        "gas_per_revocation_incremental": 49200,
+        "gas_per_revocation_batch": 492,
+        "batch_gain_formula": "1 - (batch_total_gas_median / batch_size) / single_update_gas_median",
+        "batch_gain_pct": 99,
+        "samples": {
+          "batch_update": [
+            {
+              "tx_hash": "0x05f3026b2809bd83f820c248f6519e760da671d64fac3bc5054b6ae2fa2f3f9e",
+              "block_number": 3994039,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1210585686",
+              "fee_wei": "59552341651398"
+            },
+            {
+              "tx_hash": "0x58b6190fc1a604dac6137e6ee9cad8970ff22d44ce4259c6d231c2adc8ee7dc0",
+              "block_number": 3994039,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1210585686",
+              "fee_wei": "59552341651398"
+            },
+            {
+              "tx_hash": "0xbdc9f6a363120b5d264b84087208c35bba038675c7f21e8376772814189f1225",
+              "block_number": 3994039,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1210585686",
+              "fee_wei": "59552341651398"
+            },
+            {
+              "tx_hash": "0x808daa2ebb1c88f4153444d9f0160b525e0857a349f7b1907bdba1e2ce72c35b",
+              "block_number": 3994039,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1210585686",
+              "fee_wei": "59552341651398"
+            },
+            {
+              "tx_hash": "0x26eb2f80d0f9a8a32cda56d6f25da5499cc4d7611583ecb59a9ca9067b60dc2f",
+              "block_number": 3994039,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1210585686",
+              "fee_wei": "59552341651398"
+            }
+          ],
+          "incremental_update": [
+            {
+              "tx_hash": "0xed82c17f1bf3626117e600f6486c6a3da7c2409c430c895fa52747367fa9a1bd",
+              "block_number": 3994027,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55142027171176"
+            },
+            {
+              "tx_hash": "0x9a0ddf19db56eb09804729c2f70c501834e2917619ff267793543f010db0365a",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0x40f2de8ce30b7ee119d0c7235b8e1e88e132bfd5437e178db6c18e9bbbaa3a1d",
+              "block_number": 3994027,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55155481641928"
+            },
+            {
+              "tx_hash": "0x29a61cdf695c01535716269c1cb770367ff7c88b96fc51705b36a99ed5be2c45",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0xecbfd96d5e32d89cacde0bea221ed11db0b6a72237c4b8007947363b8fde0b4c",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0xd266754d9655f7d6517e12fa161e3824df82f2ef611bcf30c7c6359e7afb8bcf",
+              "block_number": 3994027,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55155481641928"
+            },
+            {
+              "tx_hash": "0xcd658c1e4fc7f67cc6a3fe0228312bcc95163b41d99464ea2e45036011b1a091",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0x201de5d05f5a050880450a4db23144eb080624b9d1ace9e15f94e77999821100",
+              "block_number": 3994027,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55155481641928"
+            },
+            {
+              "tx_hash": "0x0abc205db3130dbeea6130c3dd9c61fe6ef4d379dc74530c26dfa29495e91552",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0x78f811dc01aabe1848f289872f6e59fc34b275d855467cd487a285c9e9126ea0",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0x1b252e694cddf7a652f4fa78406820975a23179829d39dadd49140ad45e26c38",
+              "block_number": 3994027,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1121205896",
+              "fee_wei": "55168936112680"
+            },
+            {
+              "tx_hash": "0x10213d4edaf1c9952a7355fe341db7819568cfb895808c02e81f5e23cf392e05",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x4ec8bdecb35e8c9d5ccfe500f332ff891679382a551714bc832702ef7fe77875",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x8997356546cb3003e5d2c7133d99a8310eeb38275cdb2728021f0ff807796000",
+              "block_number": 3994028,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49489992370379"
+            },
+            {
+              "tx_hash": "0x7e1c519c4bee9a5d8028388a8d1b8ee1da3b1839d2966a3cdc53adcf51183c71",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x87a2ead95e35677ccd04c48edd11741038fb106c6458c957cd28aa9cc0b62cec",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x7504938b5847f6bb10348fdc858ff74312531d6337599daa3c9ff932546d1ef7",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x9e8d784ca9d86674508c403353b295213f0ea78a439a9ba86afd3158d7646c04",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0xbd1cb517df91c4c5831e74ef1237745573f226752787d1b78817abd62a762e59",
+              "block_number": 3994028,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49502067763487"
+            },
+            {
+              "tx_hash": "0x0771fcaaab5624b6c5c3824d5be441a24fdffcb2d8e8bd14e59dfea34bd48766",
+              "block_number": 3994028,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49502067763487"
+            },
+            {
+              "tx_hash": "0x59bde8d229f5a002280c05f224be9672967200aad7e52fbded36e0531a517014",
+              "block_number": 3994028,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49502067763487"
+            },
+            {
+              "tx_hash": "0xb01dc697aea7f219efa05ffb8aa4aa76ea78ae2fa390f7088ef64ff7df7cb092",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x4730cf11f0674c3a1d688754398143cd45fbe1b5c8012b6261636f118c67b089",
+              "block_number": 3994028,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1006282759",
+              "fee_wei": "49514143156595"
+            },
+            {
+              "tx_hash": "0x6aa9ba43b6f9e10dfcd01428c812b8dfd144b67c6dd85a85ee19327727231fba",
+              "block_number": 3994029,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55050732920922"
+            },
+            {
+              "tx_hash": "0xfde60ba0be525424ee2fa526a21c9b386aea184adb6afbbd8a967d3da10bb5b6",
+              "block_number": 3994029,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55064161839570"
+            },
+            {
+              "tx_hash": "0xfee2b90559fe1027042783e7873ecaa1a26fce2541dd1ba3daebd42b98f91779",
+              "block_number": 3994029,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55050732920922"
+            },
+            {
+              "tx_hash": "0x0c39006dc47ad8e3de133ffaa56d1c7ce60a0ddbb4db6c5fb786ad1a49de022c",
+              "block_number": 3994029,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55050732920922"
+            },
+            {
+              "tx_hash": "0x5f036bc9093f9e4aca6bb5ef2aefd31fc483ce414262af85f959956d977c6812",
+              "block_number": 3994029,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55050732920922"
+            },
+            {
+              "tx_hash": "0x35f4d4398ab0a02f199ea4f3b9a24dcbab2f9d882c2ed4c0e5a15a736c503922",
+              "block_number": 3994029,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55064161839570"
+            },
+            {
+              "tx_hash": "0xfe70691641bbecae8694b3f796c743bde5780a99614f9bb8ce425c076c2cd5b5",
+              "block_number": 3994029,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55050732920922"
+            },
+            {
+              "tx_hash": "0x5979f1fea4bcef0b35fbc1d204270ddc1a439f7ffd36579bb6833011e09dc5ad",
+              "block_number": 3994029,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55064161839570"
+            },
+            {
+              "tx_hash": "0x9e20fc193f81601df973dae32542c04550a6168ae6896fc0db7e8b8480c45a95",
+              "block_number": 3994029,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55064161839570"
+            },
+            {
+              "tx_hash": "0xf94ccf7e3cf701dc7afbd2dcce077d42082525c61fb65a852aaadfc8167cf6fd",
+              "block_number": 3994029,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55064161839570"
+            },
+            {
+              "tx_hash": "0xe99278b1a96a30c484a74bd2455df3d6cdc268090bf637139ecc0d7e8ae6af39",
+              "block_number": 3994029,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55050732920922"
+            },
+            {
+              "tx_hash": "0xe25ae905c0c1e5d30200cf2908c8303fe7303a0504565c05a3ef110620ae8811",
+              "block_number": 3994029,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1119076554",
+              "fee_wei": "55064161839570"
+            },
+            {
+              "tx_hash": "0xfbd36362d73be32901018066c76d9d2aedd0a3839f3ca924199b14644175ecc1",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0x5480595ad9dd0ebf171571d34752be652df8d780fb9b3edd3d70342a7e6de116",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0x387c586e2043c1e65e35a1feb030fdfe235b83a34e74763975b2a5548a6ce09f",
+              "block_number": 3994030,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51505063670243"
+            },
+            {
+              "tx_hash": "0xd9301e6f15295f9a743392900232a582b5a3ce68337cb3250ea511b84f4e66e2",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0x5c7013f75715ed2d359a65fa186c39c0cc449e51b2f43a81e5ec779d78b37205",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0x18ecd67198efcd691789cc4e4c1a05e8d995b1adda5eb45055484f5742b5b307",
+              "block_number": 3994030,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51492499672031"
+            },
+            {
+              "tx_hash": "0x624585f6a5a8765964f814fea180d60f776474b72dfce6052e6f3bdd06cbfbf8",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0x8b6772cdb78def2c288ea927f750229694d312bc316871a36cfcdc932270b29a",
+              "block_number": 3994030,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51505063670243"
+            },
+            {
+              "tx_hash": "0xca85e2ae9d81f8ea5f2818fa145d5a2495c1d615c1c792cdf0c677c60698489b",
+              "block_number": 3994030,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51505063670243"
+            },
+            {
+              "tx_hash": "0xe172c75720492eb9871c59d273c7741346e84fd758222e662ff997ad0cd3f918",
+              "block_number": 3994030,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51505063670243"
+            },
+            {
+              "tx_hash": "0xf539af44aee32d53f14da115d9c31c47de064f79ed38827eeec07b1c50913b55",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0xff12ab9ddaf942f41039720b17c1a722e8b5ba32dd8cd62a9d229a85408dd94c",
+              "block_number": 3994030,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1046999851",
+              "fee_wei": "51517627668455"
+            },
+            {
+              "tx_hash": "0x02eb8f9210077c69988b43871f26fe2706613d8e3940c1d6ddae9f246167dbcf",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0x9812dd6bfa44555deab7e422d7f5dbe1377206b1a41fefb18cf2e437dfaf1463",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0xc736e648e16bd99c120a2525b6470a34180820149792b0246ebe4c284a1baf5d",
+              "block_number": 3994032,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54173347578333"
+            },
+            {
+              "tx_hash": "0x1bac8a8885f14a0dc8d7769223b7bbb546e65fec3ca417912f1575b4b0699dad",
+              "block_number": 3994032,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54173347578333"
+            },
+            {
+              "tx_hash": "0xe3a410c153e215d5cd2145133b9be184f1e621700753fc235329b1d38ec8ebe5",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0x03f3c1e776f74b110caac909c7c2ce6521a313fe4822db1569369461aa96b0fd",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0x2c01d0a7a639cc02cf342a113f9f5604829717e545489b040c32d094804f15f2",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0xa90215c1183ba2492be6d922800d7006645056d3d65115af7aef7b3990b5634c",
+              "block_number": 3994032,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54173347578333"
+            },
+            {
+              "tx_hash": "0x8577049d42b5136e84d8bd189728326094ae8abe1fe5a0909a9c8d290e25725d",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0x7b7a73a286a58d6122cb9ce57a414d89942bda66a3dcb43e5b37603078afc749",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0x630397649e1fcf7cb728f8b002ac278c04af7ed480317ca67a6af4a502aa586f",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0x55ff1ccb691b0c8f801c407a31a3c526592dd25e857e99e1a7a736d27049be61",
+              "block_number": 3994032,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1101240981",
+              "fee_wei": "54186562470105"
+            },
+            {
+              "tx_hash": "0xcd07d7983f2fe5626cbc56a274616139d705eae78d67a1b8a10449ccf3434b08",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0xa5cbf9956907dba5eba7a27092071d75d86a2c8cefb510ebcc834bcb29241bc6",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0xe00f4b67a3f07e72357e4348cffd044fafd12e17e6e562c5e79a83066ceac8b5",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x96987eb190ee7a377822e5527a920ea2bd98e1b270a6b35547a97278805d99f9",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x9a8ed667acd88157a83b1a46b175958f3b263809684d03f2e41d3d019b27701b",
+              "block_number": 3994033,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56235125479807"
+            },
+            {
+              "tx_hash": "0xd04f96687522417ec2d2b135f4af62c951168c859d7805c5fb52fb3a6be78e57",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x7f80df1c9e222b02dbda3d9904522107e49d1e24a41b9c8c0e803e63dbb3fccd",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x2928b9e816a75eeef62a66dd9d3f115bc561cb7408292f2e53290f3da5471cda",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x11bb6dcb6296207aa2d03244334b0ed9c7adc1e90bf797df060d7903457b6a44",
+              "block_number": 3994033,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56235125479807"
+            },
+            {
+              "tx_hash": "0xc1dd56efa5ea77449b1843952da361bb0feac5b9f7f8b576e98009f01fb68d47",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x4b368c72b6e3e7dd280980adda214a13b9a1deb22cfc067259f018bbc27aa4b9",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0x5e131d2baa99701dffe4b81c89828bb953011bebdaece8bbe9b1263fb247092d",
+              "block_number": 3994033,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1143152999",
+              "fee_wei": "56248843315795"
+            },
+            {
+              "tx_hash": "0xdbdb441f86f9796081670b958251ae7e2fd2f3370042ac7e7306a3938f031f17",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0xeba6c8410727c10cdd3fe81123f188e29fc672584e062c0271ca11206d82bb26",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0xa3ef3b9820e647e52bfec1a687928cdba53d846e0725946c4859d105f9b9a2b0",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0xc1f7233b1108033bc5b8b44bb50d931bab63aaef8103cd3801f7c6bd0036b49e",
+              "block_number": 3994035,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54527099557405"
+            },
+            {
+              "tx_hash": "0xd7172d5143a6fd78ccdb0aa3d9803f536a69ab2bb2638f3408a45abce03ef37c",
+              "block_number": 3994035,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54513798372385"
+            },
+            {
+              "tx_hash": "0xdbe4d0858e1c3e43b05949bd30ea3511e7bbdab38db39aaf468306477f61a4ed",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0x78ab44c9993a9fea660b4501679155a53188000b228217e2ea600be28f861407",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0x0e40e921757dd80cfa0392abe35ada58923f6e7ba138d299d7c9a76e9e8ef6d8",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0xc731aec650b1882faa7b40d9f3790850475eecb16ad7a177d2cb93e9b874e803",
+              "block_number": 3994035,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54527099557405"
+            },
+            {
+              "tx_hash": "0xb0b2cb6be6544b7b19e78420196ee1fdea20f46871e02fc97da663fc20469ee7",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0x117f200679f9a78ab69e200c3fa96419debef6b2a6419e1830875108ea4dd125",
+              "block_number": 3994035,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54527099557405"
+            },
+            {
+              "tx_hash": "0x3930a14bee4948f02165627ddc1b3020b1efae49340f5457efcaeec03d5a5fe6",
+              "block_number": 3994035,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1108432085",
+              "fee_wei": "54540400742425"
+            },
+            {
+              "tx_hash": "0xd03fcbb16b36e2f74d8d0f28d07bdc31b70632d54912fe6fbd2c92ee7ed6a7ec",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0xbb6e6c3e467c57fa561552808a06c60c25dbfe50476d88188336103531455de5",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0xa919b018132638a7bb8064b0e12ab6b2bb489aaaaef1bffee7affd9973ea7b9f",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0x741f7af454d632f83ffd0792b22cdf12c7c4d4f1f5afba1f86c421c7af5e6e5e",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0x5e0d4f3d8480e8bd7879d14a249b599f00f3620582ec997526e3edae75ccf2d7",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0xabd3a8dd7cceb94d0808a4f1edd72fe373bd3239ec4584f1764383b00226b24c",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0x9298563f48b294863ae54e7052ef636755b1cdd6576681ac3c65e15c5ac2861f",
+              "block_number": 3994036,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52910393798448"
+            },
+            {
+              "tx_hash": "0xae99f593eb27845b4142eac1d50121236c5d986adc7185cb747aea80095b9212",
+              "block_number": 3994036,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52897486988016"
+            },
+            {
+              "tx_hash": "0x52c5ec835f4f817585cbb9b5c6518c4c5e0e83faf9212e0e5fdd3b72340f29b3",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0x4fb54982c798fc0158dc5b06e7f0ef4835d0bb798dbe9d08de6ebe31e0bd8d2d",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0xef00fba2c606058d397453e51b7db3b7fdad10bf9e59f8fa0126f93bce76eeca",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0x0645ca5b67647d9ab9ecc8213da0279e2fdc3287792a5fd33447b13d5247546d",
+              "block_number": 3994036,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1075567536",
+              "fee_wei": "52923300608880"
+            },
+            {
+              "tx_hash": "0x89485068eaf280a6618152279b82305ebcb4306d2eb0e40acdf6f9cf61730a43",
+              "block_number": 3994037,
+              "gas_used": 49181,
+              "effective_gas_price_wei": "1115394684",
+              "fee_wei": "54856225953804"
+            },
+            {
+              "tx_hash": "0x71061472c7164c0cf8d4383fc6ff22fe294a24473f829cfd35811db07460ca53",
+              "block_number": 3994038,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1079037000",
+              "fee_wei": "53094015585000"
+            },
+            {
+              "tx_hash": "0x171cbb40bbeba98ed28a61eb1a8111beadf33f54312e0ae40c100f7abeb57df3",
+              "block_number": 3994038,
+              "gas_used": 49205,
+              "effective_gas_price_wei": "1079037000",
+              "fee_wei": "53094015585000"
+            },
+            {
+              "tx_hash": "0x90400563f08cbbe20c9e10397c37fd883993ae9ed3e068d7ea73ef9232e042ae",
+              "block_number": 3994038,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1079037000",
+              "fee_wei": "53081067141000"
+            },
+            {
+              "tx_hash": "0x817a6e55e0d6ea1dd3b8d10fb0dd863b153a51150fdbe42f429df5b7dae40e2f",
+              "block_number": 3994038,
+              "gas_used": 49193,
+              "effective_gas_price_wei": "1079037000",
+              "fee_wei": "53081067141000"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

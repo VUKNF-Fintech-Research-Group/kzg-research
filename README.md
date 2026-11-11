@@ -9,11 +9,11 @@ Compares two ways of publishing a credential revocation list on Ethereum:
 
 The code was audited and corrected in November 2026. Earlier result files came from a mock pairing contract. They are kept in [`_to_delete/`](_to_delete/) for reference and must not be cited.
 
-The figures below are from the in-process Hardhat network (Prague hardfork, real EIP-2537 precompiles). Testnet measurements with transaction hashes will be added.
+The gas figures below were measured on the Hoodi testnet with the real EIP-2537 precompiles. Every figure links to a transaction hash in [`results/`](results/README.md).
 
 ## Results
 
-### On-chain gas (Hardhat network, median of 5)
+### On-chain gas (Hoodi testnet, median of 5)
 
 | Revoked IDs | KZG update | KZG verify | Merkle update | Merkle verify | KZG proof | Merkle proof |
 |------------:|-----------:|-----------:|--------------:|--------------:|----------:|-------------:|
@@ -28,7 +28,22 @@ The figures below are from the in-process Hardhat network (Prague hardfork, real
 - The KZG commitment is stored uncompressed (128 bytes) because the precompiles do not accept compressed points. Its compressed form is 48 bytes. The KZG witness is likewise 128 bytes in calldata, 48 compressed.
 - One polynomial holds at most 4,095 revoked IDs (the degree bound of the EIP-4844 setup).
 
-Source files: [`results/kzg_gas_sweep_hardhat.json`](results/kzg_gas_sweep_hardhat.json), [`results/merkle_baseline_hardhat.json`](results/merkle_baseline_hardhat.json). Both record every transaction with its gas and logged result.
+### Batch revocation (Hoodi testnet)
+
+An update costs the same however many IDs it revokes, so revoking k IDs in one update divides the cost per revocation by k.
+
+| k   | KZG, k updates | KZG, 1 update | Merkle, k updates | Merkle, 1 update | Saving |
+|----:|---------------:|--------------:|------------------:|-----------------:|-------:|
+| 1   | 49,181         | 49,181        | 28,036            | 28,036           | 0% |
+| 10  | 491,990        | 49,205        | 280,348           | 28,036           | 90% |
+| 25  | 1,229,993      | 49,205        | 700,852           | 28,036           | 96% |
+| 50  | 2,459,974      | 49,193        | 1,401,692         | 28,036           | 98% |
+| 75  | 3,690,039      | 49,193        | 2,102,580         | 28,036           | 98.67% |
+| 100 | 4,920,032      | 49,193        | 2,803,444         | 28,036           | 99% |
+
+Source files and checks: [`results/README.md`](results/README.md). The result files record every transaction with its hash, gas and logged result. The local Hardhat network gives the same gas for every measurement.
+
+Deployed contracts on Hoodi, source verified: KZGRevocation [`0x24fFED6Ff447c457829cce7c1F3Ec6C766c40fAa`](https://hoodi.etherscan.io/address/0x24fFED6Ff447c457829cce7c1F3Ec6C766c40fAa#code), MerkleRevocation [`0xb6fC7e264Cf5e6d4d682Ac0d779E3A4297650C4c`](https://hoodi.etherscan.io/address/0xb6fC7e264Cf5e6d4d682Ac0d779E3A4297650C4c#code). See [`deployments/hoodi.json`](deployments/hoodi.json).
 
 ### Off-chain time (ms, mean of 30 runs)
 
@@ -95,6 +110,7 @@ HOODI_RPC=https://rpc.hoodi.ethpandaops.io
 ```
 
 ```bash
+npx hardhat run scripts/deploy.js --network hoodi    # deploy and verify (needs ETHERSCAN_API_KEY in contracts/.env)
 npx hardhat run scripts/benchmarkUpdateCommitmentGas.js --network hoodi
 npx hardhat run scripts/benchmarkBaseline.js --network hoodi
 node scripts/compareResults.js hoodi

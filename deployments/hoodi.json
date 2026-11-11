@@ -1,0 +1,30 @@
+{
+  "network": "hoodi",
+  "chain_id": 560048,
+  "deployer": "0xCA1C3c4242D700259B66dcCFfcd355abD8f17BA9",
+  "commit": "c29cd1317039ab8a00b9288ff3e91faa68373fe7",
+  "date": "2026-11-11T10:39:05.858Z",
+  "pairing_backend": "eip2537",
+  "contracts": {
+    "KZGRevocation": {
+      "address": "0x24fFED6Ff447c457829cce7c1F3Ec6C766c40fAa",
+      "deploy_tx_hash": "0x342ea4ec985101df8deb0aa584ebad839e981849a83d85c40b5b79b34494838e",
+      "block_number": 3993981,
+      "deploy_gas": 869940,
+      "constructor_args": {
+        "initialCommitment": "0x0000000000000000000000000000000017f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb0000000000000000000000000000000008b3f481e3aaa0f1a09e30ed741d8ae4fcf5e095d5d00af600db18cb2c04b3edd03cc744a2888ae40caa232946c5e7e1"
+      },
+      "source_verification": "verified"
+    },
+    "MerkleRevocation": {
+      "address": "0xb6fC7e264Cf5e6d4d682Ac0d779E3A4297650C4c",
+      "deploy_tx_hash": "0x07227461fb5e3f3e31f3606a329cfa3c79cfa47b893912664ed334b6c8300ae8",
+      "block_number": 3993982,
+      "deploy_gas": 334004,
+      "constructor_args": {
+        "initialRoot": "0xdd0cf899a9aaf4653d0f806d72f30f442e5e6f18ea7791627de7a935a723c018"
+      },
+      "source_verification": "verified"
+    }
+  }
+}
