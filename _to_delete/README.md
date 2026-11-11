@@ -20,3 +20,7 @@ approves deleting them.
 - `contracts/merkle/MerkleRevocation.sol` and `test/MerkleRevocation.test.js`:
   the pre-audit Merkle baseline, which returned "not revoked" whenever an
   inclusion proof failed, so any invalid proof passed (audit task T6).
+- `src/benchmark_kzg_timing.c`: the old off-chain timing benchmark. It filled
+  all 4,096 blob entries with a byte pattern for every "degree", so the degree
+  had no effect on what was measured. Replaced by
+  `scripts/benchmark_offchain_timing.py` (audit task T5).
