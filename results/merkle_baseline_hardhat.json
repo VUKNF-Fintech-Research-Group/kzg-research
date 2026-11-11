@@ -1,0 +1,1177 @@
+{
+  "experiment": "merkle_baseline",
+  "scheme": "sorted range-leaf Merkle tree, keccak256, real non-membership proofs",
+  "network": "hardhat",
+  "chain_id": 31337,
+  "commit": "4559d5f40266970c9d1d102003dc6bf6475182ec",
+  "date": "2026-11-11T09:56:46.113Z",
+  "contract_address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "deploy_tx_hash": "0x9fc2bd5d0a412e245e6844ee9a37c56a3f78b22da32c583526b0d5a47e1982a2",
+  "deploy_gas": 334004,
+  "samples_per_measurement": 5,
+  "checks": {
+    "verified_event": "notRevoked = true asserted for every non-revoked verify, false for every revoked verify",
+    "fee_reconciliation": "gasUsed == fee / effective gas price, asserted for every transaction",
+    "negative_controls": "a revoked ID with a dummy proof must give notRevoked = false"
+  },
+  "scenario_a": [
+    {
+      "depth": 2,
+      "leaf_count": 4,
+      "revoked_count": 3,
+      "proof_elements": 2,
+      "proof_size_bytes": 128,
+      "update_root_gas_median": 28036,
+      "verify_non_revoked_gas_median": 28696,
+      "verify_revoked_gas_median": 25512,
+      "update_root_ms_median": 0,
+      "verify_ms_median": 0,
+      "samples": {
+        "update_root": [
+          {
+            "tx_hash": "0x644acc81188f33331ae229a71fc21b9b15225506f8c79a186b0f12662af0e453",
+            "block_number": 3,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1671076963",
+            "fee_wei": "46850313734668",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x5706c7bc7b62e932c6b20936a34748ede7e09e7fdbf316ed3a3ce5055b615d71",
+            "block_number": 7,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1393579615",
+            "fee_wei": "39070398086140",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x54911f406dbc0fae78c1f382589b7636c5b60220e6d2d5b2b802a673ec663f0c",
+            "block_number": 11,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1230830325",
+            "fee_wei": "34507558991700",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x21cb751e441344788364942d6ffcab2f6199c89d4b8dfcf64bde382f4f5ae9a4",
+            "block_number": 15,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1135379571",
+            "fee_wei": "31831501652556",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0xa9a4a43b72bb81869d69b6bbc6a44b4228cc5ba20cc64adecfabd40b99a8fa55",
+            "block_number": 19,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1079398703",
+            "fee_wei": "30262022037308",
+            "confirmation_ms": 0
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0xdbb6bd01773e27d6c6ec9a758960d65b2e607620f91325b45255cef6903a0128",
+            "block_number": 5,
+            "gas_used": 28696,
+            "effective_gas_price_wei": "1513930498",
+            "fee_wei": "43443749570608",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xbd6f9f267cda21867a27ebae701bb820e634725f7d1057487cce3afd457dfc25",
+            "block_number": 9,
+            "gas_used": 28696,
+            "effective_gas_price_wei": "1301414858",
+            "fee_wei": "37345400765168",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x6dd22753e180c071e4b25561ca9c2f6491e46efa5e4b9125bf83f7c3c5512628",
+            "block_number": 13,
+            "gas_used": 28696,
+            "effective_gas_price_wei": "1176776660",
+            "fee_wei": "33768783035360",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x5083ef63c1aa07c7437086488f160da2e900250a766c52f90b065e0a27ad4af6",
+            "block_number": 17,
+            "gas_used": 28696,
+            "effective_gas_price_wei": "1103677663",
+            "fee_wei": "31671134217448",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x24362176ac127cf083de320e81cd75f0a7d4220cc9747803ed079e1b2952fb34",
+            "block_number": 21,
+            "gas_used": 28696,
+            "effective_gas_price_wei": "1060805866",
+            "fee_wei": "30440885130736",
+            "confirmation_ms": 0,
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0x5a2d27e4c5d3930068cf07bfe37f56d2ccef847d3d7139a532076f7dcc4cecea",
+            "block_number": 6,
+            "gas_used": 25512,
+            "effective_gas_price_wei": "1449750635",
+            "fee_wei": "36986038200120",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xebc0a435b209914b9e265ab83b43f9230758f921ec7da6c255dc4ddf79e3e619",
+            "block_number": 10,
+            "gas_used": 25512,
+            "effective_gas_price_wei": "1263774040",
+            "fee_wei": "32241403308480",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x2c4ff603788e17bb3f6017b73576da5c52e3acb12132d62ca247387bd9ebdad0",
+            "block_number": 14,
+            "gas_used": 25512,
+            "effective_gas_price_wei": "1154700715",
+            "fee_wei": "29458724641080",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x8ba5a97db521f1ea2c34b56e92dbcb80a9c96fc1aeae50f3277d6a3ca141a67d",
+            "block_number": 18,
+            "gas_used": 25512,
+            "effective_gas_price_wei": "1090730352",
+            "fee_wei": "27826712740224",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xcd2edf5bfad309e9b64e19938948bc0f25dabf4fd2a3179c1674fd1157b0f42a",
+            "block_number": 22,
+            "gas_used": 25512,
+            "effective_gas_price_wei": "1053212404",
+            "fee_wei": "26869554850848",
+            "confirmation_ms": 1,
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "revoked_with_dummy_proof": {
+          "tx_hash": "0x83f59735f9f9cf365480126c0461550eb6615d60b67e91b0d81f5fc23c733dcd",
+          "block_number": 23,
+          "gas_used": 28240,
+          "effective_gas_price_wei": "1046566510",
+          "fee_wei": "29555038242400",
+          "confirmation_ms": 1,
+          "ok": false
+        }
+      }
+    },
+    {
+      "depth": 4,
+      "leaf_count": 16,
+      "revoked_count": 15,
+      "proof_elements": 4,
+      "proof_size_bytes": 192,
+      "update_root_gas_median": 28036,
+      "verify_non_revoked_gas_median": 30320,
+      "verify_revoked_gas_median": 28000,
+      "update_root_ms_median": 0,
+      "verify_ms_median": 0,
+      "samples": {
+        "update_root": [
+          {
+            "tx_hash": "0x2394b7607349c2da74b98be6eab87a157736af606a2ee374974c811f80bfc5b6",
+            "block_number": 25,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1035662040",
+            "fee_wei": "29035820953440",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x0de1dad9a47fc642a110dc7f4d01e333a49738e644b53365988385bfbd4483c7",
+            "block_number": 29,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1020915824",
+            "fee_wei": "28622396041664",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x6cc637bb7e6fbab62cd12247e37f477319682e5f8414c105dbac33ac227a48d2",
+            "block_number": 33,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1012267154",
+            "fee_wei": "28379921929544",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x0b89157c51fbfdd38156a45915b00bbb1c9714d05a05957764a1b8dd9e3600ff",
+            "block_number": 37,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1007194700",
+            "fee_wei": "28237710609200",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x81958908dc0f4a3bb89e572735781f51764100fd3ca0dcbb60ad5a848b975988",
+            "block_number": 41,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1004219700",
+            "fee_wei": "28154303509200",
+            "confirmation_ms": 1
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0xc4d6c04790fcef07f22b4cd85636eb09e7858c30ba9a9ae2631e13401800d0c1",
+            "block_number": 27,
+            "gas_used": 30320,
+            "effective_gas_price_wei": "1027311041",
+            "fee_wei": "31148070763120",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x708303f07932bd319d60b1a7b878a338c9cc1d97ec3022428f35eff83ccfa3d7",
+            "block_number": 31,
+            "gas_used": 30320,
+            "effective_gas_price_wei": "1016017955",
+            "fee_wei": "30805664395600",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xe4058b0e281b4d6b2e0b35bd40115a30e1e0eab2683be616bb99366f9c57141f",
+            "block_number": 35,
+            "gas_used": 30320,
+            "effective_gas_price_wei": "1009394548",
+            "fee_wei": "30604842695360",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xa2dbc9fa67e734e4e01cd8cc7fbf7e2f7f1bc73a0808f4ad2b44e93ec535f955",
+            "block_number": 39,
+            "gas_used": 30320,
+            "effective_gas_price_wei": "1005509914",
+            "fee_wei": "30487060592480",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xd8649ac6b8a112a5ebe52d56e84ae7271b7e984b98d08c6b6fe54f69ca0df889",
+            "block_number": 43,
+            "gas_used": 30320,
+            "effective_gas_price_wei": "1003231571",
+            "fee_wei": "30417981232720",
+            "confirmation_ms": 0,
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0xf13876ef8b3d973637353edf1e1d607e3473a732e60fd72d7e8c3baedc40e740",
+            "block_number": 28,
+            "gas_used": 28000,
+            "effective_gas_price_wei": "1023900612",
+            "fee_wei": "28669217136000",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xd26db8991a6392b2e13226b9a48b161cdb51426c9abae20d1427d9857795378b",
+            "block_number": 32,
+            "gas_used": 28000,
+            "effective_gas_price_wei": "1014017735",
+            "fee_wei": "28392496580000",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x773a0d1b1b5975f4f4b5e55a017f3bf120c4f10b7843977a5f6c7e6b05658497",
+            "block_number": 36,
+            "gas_used": 28000,
+            "effective_gas_price_wei": "1008221417",
+            "fee_wei": "28230199676000",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xa73e556d15f81098e22598f9136dc3d54f66e5ade099ed9217da0224e6733cc6",
+            "block_number": 40,
+            "gas_used": 28000,
+            "effective_gas_price_wei": "1004821871",
+            "fee_wei": "28135012388000",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x4af5e6a7546f106e2bf4b771e452a93af88f026757acc5f8f121e9109a1581ec",
+            "block_number": 44,
+            "gas_used": 28000,
+            "effective_gas_price_wei": "1002828033",
+            "fee_wei": "28079184924000",
+            "confirmation_ms": 1,
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "revoked_with_dummy_proof": {
+          "tx_hash": "0xa31bbad54995426cf3b221f71fa214bd712b309154fc235bc58f6628c339db93",
+          "block_number": 45,
+          "gas_used": 29126,
+          "effective_gas_price_wei": "1002474859",
+          "fee_wei": "29198082743234",
+          "confirmation_ms": 0,
+          "ok": false
+        }
+      }
+    },
+    {
+      "depth": 8,
+      "leaf_count": 256,
+      "revoked_count": 255,
+      "proof_elements": 8,
+      "proof_size_bytes": 320,
+      "update_root_gas_median": 28036,
+      "verify_non_revoked_gas_median": 33672,
+      "verify_revoked_gas_median": 33150,
+      "update_root_ms_median": 0,
+      "verify_ms_median": 0,
+      "samples": {
+        "update_root": [
+          {
+            "tx_hash": "0x2edfaa098fecaebecceaeb356f117472e51e8b839daef342c385471344099896",
+            "block_number": 47,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1001895330",
+            "fee_wei": "28089137471880",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x2a74d9311bbf44562e11a5563079a5e6d90ece2f3b276dd6a1288131c1af183f",
+            "block_number": 51,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1001111660",
+            "fee_wei": "28067166499760",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x0c00bbd9aef823f8a2be4516db4c8367909fee5aba81af2aac145af944427b49",
+            "block_number": 55,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000652018",
+            "fee_wei": "28054279976648",
+            "confirmation_ms": 1
+          },
+          {
+            "tx_hash": "0x9686840dc3bd9743f82ef84ed7ebfb3dd76953bd7a800a7b36b9e0af5c95cf24",
+            "block_number": 59,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000382426",
+            "fee_wei": "28046721695336",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x53a2ed608632da1269ae43e61bd87b2f0476efde1e7e8948e0df91a5b9a30f58",
+            "block_number": 63,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000224304",
+            "fee_wei": "28042288586944",
+            "confirmation_ms": 0
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0xf781c1cdde1ec848f08d02d4da1673551d25e1131f08142190d20eca13e69b4f",
+            "block_number": 49,
+            "gas_used": 33672,
+            "effective_gas_price_wei": "1001451501",
+            "fee_wei": "33720874941672",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x6468a1c0b6e2ac3864f03073863d97a646794aec5663cb64c07852c6d3ee7710",
+            "block_number": 53,
+            "gas_used": 33672,
+            "effective_gas_price_wei": "1000851343",
+            "fee_wei": "33700666421496",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xfd14f968f93601f3557ec4a45354e8d712d2298bc8ffe22132a7345f17e50fda",
+            "block_number": 57,
+            "gas_used": 33672,
+            "effective_gas_price_wei": "1000499335",
+            "fee_wei": "33688813608120",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xb450d8c3a948a5019e72bbc66a680d17858f0174d0eba990fa36ffe666b86f01",
+            "block_number": 61,
+            "gas_used": 33672,
+            "effective_gas_price_wei": "1000292874",
+            "fee_wei": "33681861653328",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x989f43b6bdf4006c5687c5fd8a024c9a9b651f6eec9e5c7658afa5413264d61d",
+            "block_number": 65,
+            "gas_used": 33672,
+            "effective_gas_price_wei": "1000171780",
+            "fee_wei": "33677784176160",
+            "confirmation_ms": 0,
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0x085fdb28af1ba87a88a88f89eca27bfa39bd71187926eb33415d69f003630181",
+            "block_number": 50,
+            "gas_used": 33150,
+            "effective_gas_price_wei": "1001270268",
+            "fee_wei": "33192109384200",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x8ce1c6c9fb2df8e325f1451089843e69fcacb7f1f721fd1021ea8908dcc4979d",
+            "block_number": 54,
+            "gas_used": 33150,
+            "effective_gas_price_wei": "1000745045",
+            "fee_wei": "33174698241750",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x68573d06afe3596cbb3acfc1d178ee43ad9a3c7bb3b42c851711b1d3a25e1cfe",
+            "block_number": 58,
+            "gas_used": 33150,
+            "effective_gas_price_wei": "1000436989",
+            "fee_wei": "33164486185350",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xe713ed834639fb80f695d5a317fc422eb5d749d30fe8e4940ebbfb289bd5cf0c",
+            "block_number": 62,
+            "gas_used": 33150,
+            "effective_gas_price_wei": "1000256306",
+            "fee_wei": "33158496543900",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x0720120a983bceb9044f17b1aa859ef60aa5d636e11eb695d1d4e9d7ce7f15f7",
+            "block_number": 66,
+            "gas_used": 33150,
+            "effective_gas_price_wei": "1000150332",
+            "fee_wei": "33154983505800",
+            "confirmation_ms": 1,
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "revoked_with_dummy_proof": {
+          "tx_hash": "0xd95556b7d9bd0bb275a631f0f59fe724237392390a317158e4f281ea392a62b0",
+          "block_number": 67,
+          "gas_used": 30898,
+          "effective_gas_price_wei": "1000131562",
+          "fee_wei": "30902065002676",
+          "confirmation_ms": 0,
+          "ok": false
+        }
+      }
+    },
+    {
+      "depth": 10,
+      "leaf_count": 1024,
+      "revoked_count": 1023,
+      "proof_elements": 10,
+      "proof_size_bytes": 384,
+      "update_root_gas_median": 28036,
+      "verify_non_revoked_gas_median": 35680,
+      "verify_revoked_gas_median": 35710,
+      "update_root_ms_median": 0,
+      "verify_ms_median": 0,
+      "samples": {
+        "update_root": [
+          {
+            "tx_hash": "0x513f33c38d87d676934c59133699d3373082e39aae935befb0771e7253d6650a",
+            "block_number": 69,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000100756",
+            "fee_wei": "28038824795216",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0xc7b119f03363da4ed91592b02b5b9363cf7e7a603a3f2e659e045fa48c25ca7e",
+            "block_number": 73,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000059099",
+            "fee_wei": "28037656899564",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0xbd8a858b30bba395c9a90c559c2bf87fe55fb036be0d7da5a9d97bc963fb4d36",
+            "block_number": 77,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000034666",
+            "fee_wei": "28036971895976",
+            "confirmation_ms": 1
+          },
+          {
+            "tx_hash": "0x5be4bf1244b84f0574ac4160d7bfa69d1c70fd511a91ce1679adc89eed4b0e81",
+            "block_number": 81,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000020335",
+            "fee_wei": "28036570112060",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0xdaa6ca36081421ab5928ba4a1c74fb224630b1194a77588cc4795422172616f0",
+            "block_number": 85,
+            "gas_used": 28036,
+            "effective_gas_price_wei": "1000011929",
+            "fee_wei": "28036334441444",
+            "confirmation_ms": 0
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0xc83d784574243f5fb81324aa3032cae179f3ad1d4a2aec09c8c6e7741db3d329",
+            "block_number": 71,
+            "gas_used": 35680,
+            "effective_gas_price_wei": "1000077163",
+            "fee_wei": "35682753175840",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x28053a4170e4186ac812a76be64e5ef8c75d7b0f70c8154c00b91e3f8ae375ab",
+            "block_number": 75,
+            "gas_used": 35680,
+            "effective_gas_price_wei": "1000045261",
+            "fee_wei": "35681614912480",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xf307369b09f9b40e18f29cc6fe49f1f59292ec2817f5212e34f7e72e01fc254b",
+            "block_number": 79,
+            "gas_used": 35680,
+            "effective_gas_price_wei": "1000026549",
+            "fee_wei": "35680947268320",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xfaf69d2e5d41910b3997327aa5a3ae4e1d7ce7a201f13f8049ffe45597cd7694",
+            "block_number": 83,
+            "gas_used": 35680,
+            "effective_gas_price_wei": "1000015574",
+            "fee_wei": "35680555680320",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xf9b0e5032457f5b2cd966bce977e1a0f5d291a66c603226387ef6d01a146e636",
+            "block_number": 87,
+            "gas_used": 35680,
+            "effective_gas_price_wei": "1000009137",
+            "fee_wei": "35680326008160",
+            "confirmation_ms": 1,
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0xf06e9fac876cce79d36b02c9a8adbe208fb686ac31ec811a52b2b4d597cfeb8b",
+            "block_number": 72,
+            "gas_used": 35710,
+            "effective_gas_price_wei": "1000067530",
+            "fee_wei": "35712411496300",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x2c257774661cd976a425ba299f8c5ec3d2ae9366b016874f46e15a77aae6e8ef",
+            "block_number": 76,
+            "gas_used": 35710,
+            "effective_gas_price_wei": "1000039611",
+            "fee_wei": "35711414508810",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xe0f77dd1d831fda3f9951e2629ad226251d646095829f653be50daa644ae1e5d",
+            "block_number": 80,
+            "gas_used": 35710,
+            "effective_gas_price_wei": "1000023235",
+            "fee_wei": "35710829721850",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x2f7b974dca6a8255e593e24c3a2b0f54864f674af608545e59505502f7fa690c",
+            "block_number": 84,
+            "gas_used": 35710,
+            "effective_gas_price_wei": "1000013630",
+            "fee_wei": "35710486727300",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xc02742db1216c802bca1cc1ef2b3a816c7e9282a1853fc7c95a8847f2a9d80e5",
+            "block_number": 88,
+            "gas_used": 35710,
+            "effective_gas_price_wei": "1000007997",
+            "fee_wei": "35710285572870",
+            "confirmation_ms": 0,
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "revoked_with_dummy_proof": {
+          "tx_hash": "0x199c59a0aff1debd578ebed8deb78160fafa479ec9ce4c90305f3330e3221e51",
+          "block_number": 89,
+          "gas_used": 31784,
+          "effective_gas_price_wei": "1000006999",
+          "fee_wei": "31784222456216",
+          "confirmation_ms": 1,
+          "ok": false
+        }
+      }
+    },
+    {
+      "depth": 12,
+      "leaf_count": 4096,
+      "revoked_count": 4095,
+      "proof_elements": 12,
+      "proof_size_bytes": 448,
+      "update_root_gas_median": 28024,
+      "verify_non_revoked_gas_median": 38300,
+      "verify_revoked_gas_median": 38300,
+      "update_root_ms_median": 0,
+      "verify_ms_median": 1,
+      "samples": {
+        "update_root": [
+          {
+            "tx_hash": "0x955119112e9a2e91af4e759d9fbaaea5f61a9e52e0ff3d5034501df0f55270c5",
+            "block_number": 91,
+            "gas_used": 28024,
+            "effective_gas_price_wei": "1000005361",
+            "fee_wei": "28024150236664",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0xbf092482e68961c0f93b1c474c2224e8045fe855c534255a0a533bddd5961dd5",
+            "block_number": 95,
+            "gas_used": 28024,
+            "effective_gas_price_wei": "1000003147",
+            "fee_wei": "28024088191528",
+            "confirmation_ms": 0
+          },
+          {
+            "tx_hash": "0x1f67f579d35585620ebb639c2597939b326084779511cb4a705b9ae8ddd498f4",
+            "block_number": 99,
+            "gas_used": 28024,
+            "effective_gas_price_wei": "1000001848",
+            "fee_wei": "28024051788352",
+            "confirmation_ms": 1
+          },
+          {
+            "tx_hash": "0x3cc61932c8d947e8dc4c9fc80305e30e54cd5637dbc38f4a840dc43341433a13",
+            "block_number": 103,
+            "gas_used": 28024,
+            "effective_gas_price_wei": "1000001086",
+            "fee_wei": "28024030434064",
+            "confirmation_ms": 1
+          },
+          {
+            "tx_hash": "0x36eae76bb7a6d5d8bb36a88dff9864e26a16205a78f51fef25b7c3a20d0a4562",
+            "block_number": 107,
+            "gas_used": 28024,
+            "effective_gas_price_wei": "1000000639",
+            "fee_wei": "28024017907336",
+            "confirmation_ms": 0
+          }
+        ],
+        "verify_non_revoked": [
+          {
+            "tx_hash": "0xecaf4116e150f0947f38f8efda9cf63bc78ad75af7fd5dad6bc7c90646dafcd4",
+            "block_number": 93,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000004107",
+            "fee_wei": "38300157298100",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x0ed8081436d362da2803e51e59e50630c674189a3ac82559e51039ffca462752",
+            "block_number": 97,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000002411",
+            "fee_wei": "38300092341300",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x803f1d91110c275eb102cc0e7064ab953eaaedc246ea7f090d171445598a05e7",
+            "block_number": 101,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000001416",
+            "fee_wei": "38300054232800",
+            "confirmation_ms": 1,
+            "ok": true
+          },
+          {
+            "tx_hash": "0xb5f9dd5a1ec5a2679e6803bfdc463ca285794d437d1587369562e3386fb15101",
+            "block_number": 105,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000000833",
+            "fee_wei": "38300031903900",
+            "confirmation_ms": 0,
+            "ok": true
+          },
+          {
+            "tx_hash": "0x5ac5e8f150cb3eccaf448f46d0dfcf8fc5c1f9c027af36e31751944abae33f13",
+            "block_number": 109,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000000491",
+            "fee_wei": "38300018805300",
+            "confirmation_ms": 0,
+            "ok": true
+          }
+        ],
+        "verify_revoked": [
+          {
+            "tx_hash": "0x9509d8e1ad213717be3db83898d449ba262770fdc99ee9a2ec906535b68320b4",
+            "block_number": 94,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000003595",
+            "fee_wei": "38300137688500",
+            "confirmation_ms": 1,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x7fda547be9215404be53ccda9979285334aaebe96ed609909e70e6d42dda868b",
+            "block_number": 98,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000002111",
+            "fee_wei": "38300080851300",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xba544d42a5878f6c1a2dc683c9f8b7f897b1351d07343076f0178eb0cf427720",
+            "block_number": 102,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000001240",
+            "fee_wei": "38300047492000",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0xc622062a2d843ae6d0c790c04ef7c61e98d6078ebb3171b660326b931079eba1",
+            "block_number": 106,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000000730",
+            "fee_wei": "38300027959000",
+            "confirmation_ms": 0,
+            "ok": false
+          },
+          {
+            "tx_hash": "0x7f409cbf58559e4b11b4b6ae61f340f2e473778d9cd061ee185e8eb857d34627",
+            "block_number": 110,
+            "gas_used": 38300,
+            "effective_gas_price_wei": "1000000430",
+            "fee_wei": "38300016469000",
+            "confirmation_ms": 1,
+            "ok": false
+          }
+        ]
+      },
+      "negative_controls": {
+        "revoked_with_dummy_proof": {
+          "tx_hash": "0xbfa11278e6c3034b9ad2aaea3b0da0b6edb4bb862dcf123810397cb4e2a4248e",
+          "block_number": 111,
+          "gas_used": 32670,
+          "effective_gas_price_wei": "1000000377",
+          "fee_wei": "32670012316590",
+          "confirmation_ms": 0,
+          "ok": false
+        }
+      }
+    }
+  ],
+  "scenario_b": [
+    {
+      "batch_size": 1,
+      "incremental_tx_count": 1,
+      "incremental_total_gas": 28036,
+      "single_update_gas_median": 28036,
+      "batch_tx_count": 1,
+      "batch_total_gas": 28036,
+      "gas_per_revocation_incremental": 28036,
+      "gas_per_revocation_batch": 28036,
+      "batch_gain_formula": "1 - (batch_total_gas / batch_size) / single_update_gas_median",
+      "batch_gain_pct": 0,
+      "batch_tx_hash": "0x1dedf1610a797062f666b5807b0786a57ff06bc18c4d8b62f5cb79241bf422b9",
+      "incremental_tx_hashes": [
+        "0x4298b12e327700fcacdb8b031bb9ab0646cb9b4f76e560759cca39eb68c8b12c"
+      ]
+    },
+    {
+      "batch_size": 10,
+      "incremental_tx_count": 10,
+      "incremental_total_gas": 280348,
+      "single_update_gas_median": 28036,
+      "batch_tx_count": 1,
+      "batch_total_gas": 28036,
+      "gas_per_revocation_incremental": 28035,
+      "gas_per_revocation_batch": 2804,
+      "batch_gain_formula": "1 - (batch_total_gas / batch_size) / single_update_gas_median",
+      "batch_gain_pct": 90,
+      "batch_tx_hash": "0xd561f68ae99b915e497a229bbc17f0a4a826fcb189def97afc37664e4088a4f6",
+      "incremental_tx_hashes": [
+        "0x64bd9b2e9d6a36841b21a0dfc7167d02918d35c8d86732afac18946bcce782e0",
+        "0x2e909c8a111232d4b5e319bcd323e5e8694c4f27a1383cc4d079d588eccbf1cf",
+        "0xddc7e5febf7d533114dccc4c009b0247cda61374ac05d41d89c2141d3f869f0f",
+        "0x8dca8ad39ef498724bc0f9dc4e16af64055d011bda511f1ca9f3617324e754d2",
+        "0x5f51ea6bbfc281021fdbfd693fdf3303612876c9ba18107211dee2b4f6085e18",
+        "0xe1d0472d9c81a3143938ef5c02761b2f9e308c109248d879d3ec182da54d9adb",
+        "0xf08856d6dea53e27d9a61d4455207f7450b826a01e0be6cd1052b42583542b70",
+        "0xdc42fb27c063e9c442a7d1f10d14581dd6005d1749a5797318fc395fe1ca57f3",
+        "0x83a2b39b72a75d9b96ddc317e31bb2d91eccc8507ac9bb203b4240621923d116",
+        "0xda091b37d541e4f3cec576dfd3e7dfaf25d9456e3081a32ee2c243a67a42af31"
+      ]
+    },
+    {
+      "batch_size": 25,
+      "incremental_tx_count": 25,
+      "incremental_total_gas": 700852,
+      "single_update_gas_median": 28036,
+      "batch_tx_count": 1,
+      "batch_total_gas": 28036,
+      "gas_per_revocation_incremental": 28034,
+      "gas_per_revocation_batch": 1121,
+      "batch_gain_formula": "1 - (batch_total_gas / batch_size) / single_update_gas_median",
+      "batch_gain_pct": 96,
+      "batch_tx_hash": "0xfabb37e07a2ae32906a78240002dc0eb28f17e1c994b84582ed372283e8d7171",
+      "incremental_tx_hashes": [
+        "0xf4a953d758c3673cd47dd827420089b96201e23e15741028cd9741163192e835",
+        "0x534abfb775b73b75fc1fa6b30fb4df3853b8ea84cf00ed4fea317c536d11e593",
+        "0x89e7b4f6d9022a52bd1db94be3a0ed6c371eeae7f35e5a841712a7acee56764d",
+        "0x8c4364351e1d1db6fa03e58af6b90f9871dcdb9051ebbcf5214680169bb48bbd",
+        "0xa1c731a0221334f5a4ea2adac5d840cd1e93671d44d5152b91b29bd8a08dc09f",
+        "0x7f61f62a22f28e3bdb1b5b4214f8f810e2e5fb5332b3433b7d7db4e5cbf64ffe",
+        "0x3adf5cccbbd8f725ff6005f51432b51de50b7e8608232d0a13e2e917bcc17c20",
+        "0x10457f09838989b84c8b51464ec8af8b409ab7061647b92cb21bc863d3047465",
+        "0x618a7178f0c84807503f23c8c050a00b807d72e234c0cc4d81efda6f1a39f671",
+        "0x78f82e46fed8a93460163acf21094c58eef31a0f05ccb814dabf029e2429ee9e",
+        "0x16f9464b81ad21ab8ce2e97c01c4ed5e744a1e4199581b6d794a90e7079aec8c",
+        "0xd59954b331a66c7bcbb046eed293266cd8115e2a83a015d9a28fa87501821bdb",
+        "0xfe8dc52121db4f360a6632e88ece166b9fb2e236d365d541f8f0ead15bfa144a",
+        "0x9344a5ba05d157b329f6f5af573020939ff9abb2aa91eea5b2c0aa9ac272b7e8",
+        "0x0b3f364a86fa8479c18624ac292a4097a506d689bfe43c5ca5ef350cfe916c69",
+        "0xa452b661513893d277c4989264ac7e3eb792b7440d9d8411689b36c2a112aeb2",
+        "0x8523010cfe6f00a897de57c0a17cbc3ae87b5c3f760599ed2409ce82509a518c",
+        "0xec770133f60c32757798b1514332d65ec18fc0841a446a9fdfb26ceeabb74cd1",
+        "0x0d033b6ff21347ad25520cb51ddd57287169877e483e3911192463b0a4de11ce",
+        "0x51d5c26f71c85dfd8bdf217fc8da5da428e70499b223f0e7817d7b90dc3b5aa5",
+        "0x2d1d9be0567c107422bce712de80a0ee92bd8239e01aafec4f5166c388fac8de",
+        "0xdaf4e7ec156e14462a6219b3b112182001a35966506719693657da72f1b47221",
+        "0xa9c9ebf19492127000d449a2de92dc0f76c559eb4bf2510287ee5d557d8f3961",
+        "0x38263006f210ad692c1593a5b74ff7f93f821e4be6e9f66db0e93f283ec6ee45",
+        "0x602181ed8dd261459e05c1392274a3fdf688507c426f22d74d75b2cd17595fc1"
+      ]
+    },
+    {
+      "batch_size": 50,
+      "incremental_tx_count": 50,
+      "incremental_total_gas": 1401692,
+      "single_update_gas_median": 28036,
+      "batch_tx_count": 1,
+      "batch_total_gas": 28036,
+      "gas_per_revocation_incremental": 28034,
+      "gas_per_revocation_batch": 561,
+      "batch_gain_formula": "1 - (batch_total_gas / batch_size) / single_update_gas_median",
+      "batch_gain_pct": 98,
+      "batch_tx_hash": "0x93c1d091844a98c6716fba205efab4abc21464e1a5b4fd5ff559196543f8929c",
+      "incremental_tx_hashes": [
+        "0x12515837bb7cc780cc4e58b2f59f6d2557a2a68ec3dcfc930845c4a5a736b28e",
+        "0xef25ceead76d01b007417eddbf03ab50efdcaf0fe2849dd9079edcc043dd5e83",
+        "0x42b911d8bf02ee4ee2e2fcb403752d4eb576143a409385442cd7011676a95ce3",
+        "0x63f1b5676bf3addc6f6449377e38e6fc66964ff10e9b4f004856226b317fd8bb",
+        "0x057fabcd7911a1ad547d2f83683db3a4e53bcbc72212485ffc31bb86a57cb71c",
+        "0xf65208107e620d28aa7ac2e0f58f3ac1a85895a963edeb3a4e06ebcdf84de88a",
+        "0x45a10d3a0b2647009a4d3002a71becd2734586527b72f196eff60242e02c59cc",
+        "0x005beede795e37988d07d0ac02a3a051a2c9e3a157f12314d64f8b53ef0b8699",
+        "0xe30e8b66df753937bc033c9f41839f9dbabeaa8ce170e4542845c121374470bc",
+        "0xacdd8f7c32b4c4fb87c8c9966ffafff431283c71c9a1750386659b35df5fecef",
+        "0xdf858d94eb0d7baa10c023d499460d3f46271c83dc0e0d20790833853cd325b6",
+        "0x2bcf7da06429bdc2d7318ba8ddd22a6c8efb60d1eb83876b72340fa4c0fddfc5",
+        "0x907e77d31af0b0d02e9674b3c5e8d7db2252061f77f3bc557583811750aa89e2",
+        "0xda41098a488029c73bb2aa61be4f6fd022e501fcd9f84450477afa7b701ffeba",
+        "0x8a25b762f0eb6435beb08778acb28d79cef50e7a8eff72f1a56155516a9d3f42",
+        "0x179cd9176c27e9bb1f06588028f420ddebc7cfddb0285de00159c8f16b99c854",
+        "0xad371bf7640e4586712b73e0ede4008c9d130a898fcbe52206caf7c2a41bfdd2",
+        "0x8235c6c529b67bd3d08e95895a4125fed852429ec240e6fefb2fd9601a0951b3",
+        "0x9431553ce734c431bcb1a900fa93348412b911217fbc4716700ecc37eeba0bd3",
+        "0x118ca2aa98a70cb9cc176fb4662056a101c7ff63b3ca6e7b95441a8fc88fa5fa",
+        "0x4f0a847ef3ef9b062ab2ebc1a701243e65f3730c2f7d80bb301932ecbc4d6a7e",
+        "0xa8299eeaeebbd9bb3e7e6443b8268f8196814520a1696642ab34b3317284c2c3",
+        "0x8ffc1a43976ffc34014651b06e2ba64db18f9c3bcc880364c4f24bccde1072a2",
+        "0xddb9c234a6c22efee11ce0c117aabf18b2019aae745b12d52f9a39eb12c46139",
+        "0x29e54595b1b27ab33816088056fca13d3ac9fd0871b65dbdd2992e603b02ae68",
+        "0xd32f76f3e1b7b9c3f85aeeaab9e6ea971f3f57522b8cbc74f59c55aefdfd3b4a",
+        "0x5190f90a1b5883c291e508f0c70181cc6ea73385c837147a2ae723ddb3f68e26",
+        "0x481128c98776d91a8c88863b9921bcb3c9a97542168fbe3aabed5f0d51ebca84",
+        "0x7e64dfbfc7eb272d28d81e133d9edde338c3642f2756be3ba52e768f873b1376",
+        "0x74e9708bf7b2ee1654ea8c5ca4d29ae1f67f50d9b155795354c5894b7bf91019",
+        "0x99ed4550188c6786a421a3208ebfdac863101e4bd8d57840647258eb0722e06f",
+        "0x50032ba8eb8504e64a98a3ba84866a18f3c158ebb5d0db160421bff7ff9fb43e",
+        "0x7ee6eaccbeb9811ed67dd7094254c915116135e2e1ce3a4478513e440065ebf5",
+        "0xf1566a1ba00274cacd9d405cacbec73b5f2ce300ccc87029a7539f82b4bb61fc",
+        "0xced3fd0bd8309dc458d4b5ff610cddd078a9960bad108040ae8fa6bc755138bd",
+        "0xba2d8706db8632b0386c31b61863d417877f242c95370cc8d0ae33b9c5a50460",
+        "0x0cc39d7438b6c579e0d9e796184dd54248264ad206ed67c1c9e1a5e62e257226",
+        "0xc936e6e967c9147a24afe306c63267725a47d28f5366f5db4bef8922112c5d1d",
+        "0x0eedee354384204dcab6f08fd0511ba5a7b585346e84d6f2554e246cadc5c74c",
+        "0xab9edba1b9776f4841934e6a3d3d34af596ff9c89b53de98710326662bf8409d",
+        "0x8f6f1b373fa4d9c9d6f0a99d8c3d4768d38093796d2b3e208e32db510ea8c8df",
+        "0x1d5386446c99632a3acca9b2b866a7127bea5f7782d106005f929cbfb5a8310a",
+        "0x989f15f9efe2ce49bce06129480ea7c4835c47ae7665c9d396a0d8b7483e8a23",
+        "0xfaeee748ff33685e20a82d62f59f6a97220a489d54c2a7af3c62661ce35d7cc7",
+        "0x6889b176c04a2ea35faa38d514524abe0db8beab97fcee496833ca0d3aaae598",
+        "0x29530dd738709f27327939f11e085bb551c88d35e240c0c12ea82056cce7a8c0",
+        "0xb94e124303d06819247a20b1ad4c029128a65a8fb64f78ecf267bd67f63e18ac",
+        "0xd6cc770994cb595148b934ada42342a5ad30a7b4a0af5b8a6a186444ac4ab491",
+        "0xd5dd9b969de38de942979fc0359f5adf55bfcd401906d22119fe71c9331cc14f",
+        "0x436ec08a749ab97a84cdae24a3a8f2e8a706c32fff32c45bb83ab2ce39c65445"
+      ]
+    },
+    {
+      "batch_size": 75,
+      "incremental_tx_count": 75,
+      "incremental_total_gas": 2102580,
+      "single_update_gas_median": 28036,
+      "batch_tx_count": 1,
+      "batch_total_gas": 28036,
+      "gas_per_revocation_incremental": 28034,
+      "gas_per_revocation_batch": 374,
+      "batch_gain_formula": "1 - (batch_total_gas / batch_size) / single_update_gas_median",
+      "batch_gain_pct": 98.67,
+      "batch_tx_hash": "0x6dd58c904bbf7690ba34ffb7b25fde8d5114d707c28dee73dd7b3ada4e719d05",
+      "incremental_tx_hashes": [
+        "0xe0235ec0688c9f7d2dff6fa034355b16a444b966b7af193bafcb2ae70b59e1ae",
+        "0x5a756a731b96e341f2e8172a702a9f05a80fa6b6dfcde6d1e946101a897d3642",
+        "0x4c01bac59e98bd52aee2ba350283adfe7de5d4fdb0724a655593bc39590b97be",
+        "0x5b8e3ea984cc3a2a1e731824e33a14cbb6f51dc58a637392b22a2065f8590c2c",
+        "0x26f70009b87bdd211bd2ed06bb004dc9dd9ee9f10becbaf05cf657a316e9b7e1",
+        "0x098fa6aa940232ec914f14fc82b47ff7b8e8fa2189a798f1ca4e58ee435c9cc4",
+        "0x4c414885889c9a9cb73136fddd138a9a552968de99969e9189f2e21f390a5d4d",
+        "0xec90ebca40ac11dc0a393590673a7f30147aebcd2668ae69740ad4f638b6a83b",
+        "0x73f1696ff881a917e40917673688d9dc3f36aea74514cc178fd1096328660e7d",
+        "0x8367e328f8feb4bbb385d887e40190e8bed33dc53eaff5e5170ed7d430212d7d",
+        "0xf60584b0c4ff439c69fb01420685ef133d45e55a26d8f1c28e4842f0e91a4c44",
+        "0xabe6f485ee151684693d4575c74da1202896faa367976a46590a34fb7bbfa367",
+        "0xfdbe9496a2b0b8fe9a5f3a6e5adc933efe0b14089da51e6c5dacbfe63646c87e",
+        "0xf20918b1cee15ae500e71ab7430950a4c897bf41e3cdac2345a7d968b83cea65",
+        "0x826fe7b7656a9e45845d7d7430c3e3f9e291ac72be59f52666065a4be1bbc7ff",
+        "0xdd9e43d12bd1eb86606a07ab71199b7547577d5d0f271f5efc7127ef8d4e7492",
+        "0x4fdaffa21687d6de8af5e5093c9fcb3d997e77c293f22e31bad1f82f6555ff86",
+        "0x249caa9c634156376784d40049b06676d7cac687b135aeef60733349e1bf0d31",
+        "0xb3eacd2f393c6bd328c7b092674ffc1ac11113669e5c120a12de093eac078bfb",
+        "0xfd109cfdd59e51c68fcb70c66a334dbec5d127b78c587b2e711e9724960fff2f",
+        "0x4ef880a129d898077c4f9278813fa43b78d05aee0479941266c36c5680a8e61a",
+        "0x9c875e062eb6fbd0391031a722c2b864c79a133311490c0d4aefd60381e66435",
+        "0xc32ae843075470010c09d412627a2a2f92b4f1240b72c6feb94042223a2f0df7",
+        "0xf95dd72c76eb87cc74db6698f8725a9e936337c08d275fa7b10dc518bde869ff",
+        "0xd190c7ca8abe5169fd88e2c87577c294b31025246bc37ab289aceefe3e45fd3a",
+        "0x6572333b1792e10837aa8c365a4d37febfe38a7731d06eb598c4c85088a87125",
+        "0x949ff75445c1934e1897dbdacd322b1697a154d21c815bcb9f250099623db047",
+        "0xbba5fa828beae8c5dd92fcb82642d18701acdb9511273f0fbe29eb867633509a",
+        "0x2a435c2d790aab95d241e13b8815c21c1859a51386cc9034a18cdd31bd2ed213",
+        "0x9c22db748ee849c494e1f0ebf494dda70a14012374997d4dd89511310bd307c0",
+        "0x8caf93af59d78e172d54ac4824fc77c62127e35b3c34ac021b8b70bb1b38abac",
+        "0x3a6f0e378ab3234e95106ef1cc05e4a2a80a61a1e4064e7a4c01c161129febe1",
+        "0x06e973ad7ed7834bb226996b36005a195072e463bbd6c75ed8880fbe910d01a3",
+        "0x93406db34967c925c1c8e9d51fa9216ac183d47d28d28661f2621296c2f3824a",
+        "0x45a3231fdfb048424b4c8036730cff22e08fb9c5a82dd3adf9ddc8d18fd2366d",
+        "0xefd54c8b606807dd2601fa7b2e10b55deba479abe6f81ece4fa872cde2c0a9fd",
+        "0x847b44d8f8021b4bec7a31b11338c5f2b2433363abd3307cdb7cea60a04047de",
+        "0x4045d965db6b08fd1a398a7a1b024174b7d086fd8de38f8450f1b8de65a46c4a",
+        "0x87d39505f7fe67cbcb1bfbc6b1d80bf9b3adc3c1c8f2892f5dd8095bdd18ec06",
+        "0x0c6215d007a97d99dee42f9e3f28259c611f7afbe46d0522d59009baf940c2e7",
+        "0xb139e3aac9a52fb6415ef644bef9819ef2dc9e2772ce32d5c5e4b4038a2b935c",
+        "0xa858a789926562426bbb960f83e15168ace2941ef3d754f71c283bd21baaf8dd",
+        "0x98fd58e875a3a96c342e0381d4ae37b6443a54aa6e52534b4e4599c7ac2c59c2",
+        "0x231ca2386a47f19420292f024d1413cbeff2a45d54958420e84de7157e53f6ae",
+        "0xc8cf96a2c49c5fafe87bedcfce4c3e399e34a4c4cb9aee37196dca0d29415d8b",
+        "0x84b1e4f82827d4c066d2a8607987d538db348bf24f88f85e65b42218676607ad",
+        "0xa5a02384210e26d348e1b75e3d3796bbd199fcf03bdd54eeb7e072c23717b5c4",
+        "0xc9179578d1ef53ca1b47be1bbfee73a12e304630d925b2313230e0f490e4fac2",
+        "0xb9d2228f38b7ba7f59e935e73eeed1ec0281c42057ef3c21ea69e63db29cefa2",
+        "0xa0677f80cc7e3c065ffc8799207ae177880b11820d446660e302f87d94bbd6f9",
+        "0x27450ea2a199600a295176825207484a00b961198ef626c55e4600da5d5b73ab",
+        "0xd1f78d758f4b1a1a81d6331210baf41a07a8415e6a8294858fdafae19a78a7b6",
+        "0x358003017e3203a324fce8815a4177303c5883b71c857b16e8a62550b397f31e",
+        "0x82f2bd782e4347021f946aa61847b2714e820be14ee5039cb94cdaac8fe5952f",
+        "0x08136c061b32ddc9c9dfa93d7c5c6fcfb51f9bda70552415c7e8c2b88d74b439",
+        "0xfa7838e9a1efc4f2a2601d61b6c26439259e1d0430fab37b0e907048ef69b91a",
+        "0x2d3e3379ab29726e218eca1f58575fe9e7bef9d678d9f56dfff3faff7579bc75",
+        "0x02c9f91ead5040ff76d3704b8097bc92fe13a5c1656023c03680876a172ddc98",
+        "0x0ff3bdf4fb75dfb61e8bff45a74aee2fb4ee9113c3698c3cca237fa8d7edc67b",
+        "0xb87dd11af37d02df928bbfae744c470b29284dc884475b011489df6a5a232586",
+        "0x0f4057beeb2de45bef593d8fcb5b3e7b4595eb10ad762301c06038477dd6a421",
+        "0x8f029b087cd5f2e52c41bd2e6695d9cf687090bd5393a53140cd0b43e3a4016d",
+        "0x9d88e699a640ac8298155022488ec659cdc4f7cc26527d822ed8a8d9388d69b4",
+        "0x8c74a2b647f4d4533cf92c8932e86931c8cefb01ba4f38ee8a3628907c940c6d",
+        "0xad93f349dbe24594872cfbc1eb89ea48c49600a1b53a902e897309117f66eabf",
+        "0x062cb6a8bf9b51191bae5a2eeca1884b7d7eb9642fcee6a8510610aa32a8e88f",
+        "0x04e11cd2d07e4dba03f931fe51eeb4b60d93de010f6cbdc48973c94e16925376",
+        "0x645c583b43f6c83f9e4062adaa865fe15281d76b53a24f0b84f5a062c12381ab",
+        "0x6ffd60037050ab119533315e577427dcd8b625e96bb8cef2858dd3f752092f7e",
+        "0x07cbbfc0bf1eda1b893a98af2a108aaa3638a34f7d94bfcecd90bfcd8b1adcfe",
+        "0x2aa44537d8b04e09092d87a9ed1561b31fa070c8b55b6a7abc0b4669ea442860",
+        "0xfc2c6fb26e1b87ce98d81ce31717dc444a86f7d0db218db13da7e7e6c033a1f8",
+        "0x847ab129431a2320fe523b4c8736e3865097808781703e699e6badee4975cdf9",
+        "0x66c9ddece07e6339016eed9db9c216e4d41a3dbcf91a0232a9c6925ba26d63c0",
+        "0x425de8ba8e370ca27ee252be7f21813946ec98c993f8849cf09a39b30ede9da2"
+      ]
+    },
+    {
+      "batch_size": 100,
+      "incremental_tx_count": 100,
+      "incremental_total_gas": 2803444,
+      "single_update_gas_median": 28036,
+      "batch_tx_count": 1,
+      "batch_total_gas": 28036,
+      "gas_per_revocation_incremental": 28034,
+      "gas_per_revocation_batch": 280,
+      "batch_gain_formula": "1 - (batch_total_gas / batch_size) / single_update_gas_median",
+      "batch_gain_pct": 99,
+      "batch_tx_hash": "0x324417b903d5d29f3f4b0d2f0c3385228cb310a245baa0fa65845fbb4226d430",
+      "incremental_tx_hashes": [
+        "0x1c56591ff9a1c82a4c9adfe9708cf254d772d8833bb6b98de86bc6940486151c",
+        "0xaa5f1f1937e5c74b90808f6b201f74421b03dcf80c67e59306c385dee5c933f8",
+        "0x8ddc348341f4c3a88a47b00105ed0b3226bb1a718ae9bfe66da1215e72165079",
+        "0xe870aedda7f6c986bf5ac6d84d00fbee5faa1742125c9ba0f9e6964b0f12f825",
+        "0x899f2c0a1f13162a1b80c5ef803d8e35a3e1dc759c555697447c1110023a2279",
+        "0x48dd5e9f236bbb8192f1acb8e7012f6f93b20d038ffb001f3998501a0a7aeaa8",
+        "0x9e7a3b58ded4cde05d9facc7a928ebe253cc0fe6cc04b7553765bb3952c72b82",
+        "0x509d17ced09815a569832a3d71f90f5a577a0de41abc1c5218037cf8c4a6bab1",
+        "0xc96837741d8b8927b05bc2252036f44302a28aa73409fbfb22f14982ea16777a",
+        "0x1da662aec336305bd689062234cc58ae7be1abcbffe2cb549ec46f72bdc9b18f",
+        "0x6e1ed3f5df627cd14ec0d7b9f4a551a102d8d8f53c1402c0d4bd8ddf94b1ca47",
+        "0x3e16fd39d3fbece53dca5b9fadbf935d2036ef98b0d1dc6e6c04f734257ce7ec",
+        "0x1e0c275ca0ede115e8e386952e06664f8f41efd946ba65758a1acc74ec418af5",
+        "0x8d22f62b2fbcbbfa4660e3915d003741d3e93a5acaab163a252fcc7c17d080aa",
+        "0x5a83d1bdb71973506ba38b935a04607cd27f3d1c0ec214b820632f27b2486cb9",
+        "0x758aff3a5e623ee04ad9d0ac875966cfef545982fb5583af7250fb12978cbc05",
+        "0x744bfc99f88e695ccf268d6ad403b1fe1edbc20b957c061e13a22df4aafa9cd7",
+        "0x5beee5a3e6bb7ee251f0986889680879ecd98ff56611f609aad2aa883989d483",
+        "0x1f85e674dd9219bf229be8d09275fc9c1603e91650926d8850dd7b34e7302a2f",
+        "0xd9448ca8210ccbf1a398681f19c42bab0984899eae755cbc5f3a146feb03106b",
+        "0xfb286fbc36edfee359a709cb9665111a1e25b5843acde5be244ad87a59569f4d",
+        "0xff8a7a100a81aba2ee8a36dc4a8601b52d9092369ce047039460d5007cc4bfb3",
+        "0x281eafb4104dcf9eb9aab3435f2506b49baec706a3598a0a5fae88204baa9056",
+        "0x753020e2190eeaf3e60568a4bff10f52bdbb2346ba60fef7b423447343ed27bf",
+        "0x9a272ebee73f4ae9c2b9f512b9e5b212432768edffee7a7f7a144e88f3f31fce",
+        "0xe0bc6ee4cb7b42e536c354619eef15ea5c56de97f781fdcb1ab7e8fbb3cdebe3",
+        "0xbb80981b0bf9871aced8e4560c5f5b4591c075ae0b8b028445f0c9b08dfb174e",
+        "0x0d274aab9c9ceaac4e92de7c46755f2218b935e25a52749d643a5039b94bd1c7",
+        "0x86dae7a1fd2775812a2b8b73f50e7d6e338d11dc19959eec2ef6523cc911dc14",
+        "0xe856db2c8e92e723223ba37f3d3461498ddf8eed9262f2d3602f63f2572f49f8",
+        "0x5926b2deda27c5f0db9ad7c01a13b327e5566878600566a99a97fd5553bcaa4d",
+        "0xf19391d3e410c7e3585a0c6b9df93a129df98fea461130a5f93a9e2558e072e0",
+        "0xfabe5151344db5e9bbb48b3fda8ca770651cb2164a43d8f8948dc287d47b162a",
+        "0x288ad8256ab8b64e68348d1dc039f233de18bd436fd9d97d735943bac011face",
+        "0x5ff35d5d3a47de3f5c76f214d80cd0996a08193eaddc0361f7964e1006b37e7d",
+        "0x7646545f6e4d1ed085b536f26841ceba9091249d2d77002a7c1dc87e3d551b9b",
+        "0x2e85de8fe3aa644851161089c9dddef2bc53da07dc1ec31b5c970ab60ddf7f0a",
+        "0xbf0995c100ccb0fb0b626706a0a05dfb9cd5e788529d1d732423ffff91d7d1e1",
+        "0xe8b19f7f5b8c23ecaaa00c4b912bdce60e2563a3f99d27c18331dd2b62a7cadc",
+        "0x1340df0c88e80cd51c9ce89214e22f80efe1f2b7c779e7a70ea6213dddf66edb",
+        "0x599a9bf13ce5b1b9eb59dac92f7b0beadee1246508130f1c992b01fd0eacdc3b",
+        "0x72f4c2a66016592dc0d2d9c6bdc4c763b30a7e0bf7ac64dbcd03b4872e888a3c",
+        "0xcbb026856bf515e535c05aa099109ebce047d6d0c285f73dcff3bdf004102959",
+        "0xb7db1e0978cebc8b3a5ccb92e6c52f8cc3b888e8685484fe5b33004cca10bef7",
+        "0x340649531ed9596a94afde3b8d9d60f65ccb28ee2d0ac340be517ad0f7c2386f",
+        "0xe92aac9c346a9aaa47ceb7abc5676807b74fa827d784edfadc73927a7b1461d4",
+        "0xf5d7522b1d1c4de98d31dc75ca1b2ac278944e3e952444ee45a537da1d4e2549",
+        "0x69287d3b86813a2ab51952aeafaaf7627e33841179e19897fc88f91b3b70208b",
+        "0xff2be68e4ec41041a7018f99a2f302ac0bc409b3caf3793012bf1b09aebc282c",
+        "0x4440f80014bd7813c83664a4c2a7b8160f4f24903d4eddb3cb805752f47d8b3d",
+        "0xee8cb9cc1b83e549a78a5a3ae9406414e7ffc6951826e65cd2c603c7a2781076",
+        "0xe75a363d632ee5e8d1e903f4a6d815ec6176bf125aaa824a2ce2467b97cce7a8",
+        "0x0de123440c94eda8775995313d723ad5ee40e739d15f0dd4f7a9cb91fd1208e7",
+        "0xf31f292580cb216c39a971e21d429f691e8eb1ef46764b4fb4a3506b56282991",
+        "0xdbb9761f9b46d6e2943a078c6084e2b0b826499b0b889b7b06920df786e6a8a2",
+        "0xe7ede9654ef33e49f6f58150f3fd718f66d080d3126cbc92cae1e010b51ed2eb",
+        "0x5c80b0e0fda89fb1b19eddff7459988a2f2cf60e6a248df1414b9a7c7ac9ed8e",
+        "0x6ee0dc9252e4bf875844f213fec108ad08abe5275d48080ab080da473f015f5f",
+        "0xabb04017590d2ca2137fa83bcbc34992cdb324b531b96f05880bc00317d948c9",
+        "0x6a0d1dfc628fed6acaa931f6e9096b44decd38320ad4672e903eecd16a08e4d0",
+        "0x5c18e6ef52c1a6e3c8a99927bf06070ec25be27799b7bf5701400c39739b477d",
+        "0x27890b608ce8664d6d5ecf5dc461a4088a170e6c40c8a564e2d4832376323f08",
+        "0x432c613f4ed2738320659cedb531676cfba4998757d881593c8f2505fdecef72",
+        "0xdc6dd9a4c5b9968803075aea348f8524409b74a9b2f16e2854c3c0bf484fc3ab",
+        "0xf451df83bb5e1d8ec82dc08b8414198c2a84f62e143f0dd6910ce1bdd67de7ee",
+        "0xb483f749e860115fc6ad3fb92565a8a8aff80989717462a9b676bf4bad9fb804",
+        "0x7a0d4d03315cb3f2735b872dfa5416f533f8144f7fd11f21aa81fad2e3c2d60a",
+        "0xa3683e5a3242bd07212f2dc5224f648a4e3da5a2b515c39390465a2f2c277d73",
+        "0x6f192c5a905f91852dc678ca0d7e2cb82dad6b23f23fc1ab1c02b5e03068a531",
+        "0xf57f7194cfd243ca3d0dc5439f650b6f9150a44a3695e384bf45a259524a57ce",
+        "0x77282163f0898c979967cf8db84b12ff3912fb15bc1e1331eca25d6bf0ae146e",
+        "0x3f96a530f840ff1c93f60ba2f973210cedc0b7ea10948a7c6ad28140a0498cce",
+        "0x20a36a5b442375f7030464370ba3b7122e3c526745f96af62716a894abb3fd69",
+        "0xc60b151145295c3c600bbf1b99f8ed72e9c70eac14833af53a6c9d493ac442de",
+        "0x0c6a98d1814886b14dacbe6e68f238da9bddca576b174bb7df75a7f3afc1b03e",
+        "0x8884c745250fdb79585541b40cd733c1552093ac8e3efe42ed925479f5246748",
+        "0xed9818425ffb1e785fb7041694c30db75656c6e17cf2b5cfef9beb047ce1fa12",
+        "0x6f6685b48867bfeb6e66420b5da066a4ff6f2b3f9b3dab1974881dbea3feaa2c",
+        "0xeca38911a46bd2f31c4921b5df52b935ddb6456b0016a849f204640578d5f230",
+        "0x4f57986708c80e9ad0c2ac93b70b8a91b10e637c193b185a477d73154926b904",
+        "0xe4941948798d6eeb5085e4c38d59c1617ab1f13b1502f51e9e0e53dcccb60d98",
+        "0xa52285395cd4abbd0b16ff8c63289be25de62bf3e035062498d64cf5a66da643",
+        "0x31622eae1ac3f04949e1d7a0bfd7e6e1f56bb83636b84e6a555a651e89b3aa9b",
+        "0x23e9c95b00ef895f95adbcddde9a59d19dc58e535cbc688df63c4e6ba67d7f68",
+        "0x702603f1591b0bd3568cf17ac5e5ba2070fe5cc575bcb7c7d0387abdcac3156d",
+        "0x81cd7f01dd302eb937387db6c1f7fc17d5a27d9467c18cb7a6ba100f43bdfc2d",
+        "0x29b207801e5855ea8d98bab7a88f9bd6de4904f212386df9b9bb75d5a9b80c79",
+        "0x3fa8dec3fd08c574ddab73d5387722859e0ae6547101c85551feff1ac2ab3cad",
+        "0xf7ccf442751ebb6fc94a682f9d04b3f9eee29c450813d92976d44f25f2f2a357",
+        "0x840d965d223f903ed8cb5e4cee8f2de5f0991a28e30abc3fe3da47fb823bef77",
+        "0x8ea9cc4a17c17b7b05cfefc316b43210d44ba286308471ce4700ed2fd93241de",
+        "0x284d5b6721473650cd6283b6169e38cd9df532fc3fd75f40d84d6747a480d39d",
+        "0x4ec511f38edf00d629e90301949a1d2018b99d33d4c24c4062e60fe0f8f8f77b",
+        "0x86669167029fb1051e1a03a1a163f13f823cb4de7d51ff01c29b7ee072f31a04",
+        "0xa535e80cad2f0fca2dfac6145f07a7c9f6b7e2c4d1da2ae4bea2ab5ff2b355e7",
+        "0x5a5b0afd3d7d8dbbe593ee8545f3ef6e985be0e6b927ba05c9e80a2dee7868ed",
+        "0xb1f36831370c43fa1ba057357316ad76ec043d5c16092fb4609070c3d1a88345",
+        "0x6a4b12bb6827af0207691114f421160e3b0b699ce25c574c38d6839c736c7ec2",
+        "0x26b970735e5a5b00dd703f95afd67e72d05353b3ef8634f099be10af09373a0a",
+        "0x8bdf3830f4dda4cf05c27fc8933f66b971bc70451252b744338e3133f17c73a0"
+      ]
+    }
+  ]
+}
