@@ -18,29 +18,26 @@ try:
 except Exception as e:
     raise ImportError("Failed to import `ckzg`. Install it with `pip install -r requirements.txt`: " + str(e))
 
-# Constants from the C implementation / spec
-FIELD_ELEMENTS_PER_BLOB = 4096
-BYTES_PER_FIELD_ELEMENT = 32
-BYTES_PER_BLOB = FIELD_ELEMENTS_PER_BLOB * BYTES_PER_FIELD_ELEMENT
-BYTES_PER_COMMITMENT = 48
-BYTES_PER_PROOF = 48
-
-# Helper: convert integer scalar -> 32-byte big-endian
-# BLS12-381 scalar field modulus (r)
-# r = 52435875175126190479447740508185965837690552500527637822603658699938581184512
-FR_MODULUS = 52435875175126190479447740508185965837690552500527637822603658699938581184512
+from kzg_constants import (
+    BLS_MODULUS,
+    BYTES_PER_BLOB,
+    BYTES_PER_COMMITMENT,
+    BYTES_PER_FIELD_ELEMENT,
+    BYTES_PER_PROOF,
+    FIELD_ELEMENTS_PER_BLOB,
+)
 
 
 def int_to_field_bytes(v: int) -> bytes:
     """Convert an integer to a canonical 32-byte big-endian field element.
 
     This reduces modulo the BLS12-381 scalar field modulus and handles negative
-    values by mapping into the field representative range [0, FR_MODULUS).
+    values by mapping into the field representative range [0, BLS_MODULUS).
     """
     if v is None:
         v = 0
     # reduce to canonical representative
-    v_mod = int(v) % FR_MODULUS
+    v_mod = int(v) % BLS_MODULUS
     return int(v_mod).to_bytes(BYTES_PER_FIELD_ELEMENT, byteorder="big")
 
 
