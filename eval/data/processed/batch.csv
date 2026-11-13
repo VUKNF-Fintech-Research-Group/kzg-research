@@ -1,0 +1,7 @@
+sut,k,base_N,incremental_total_gas,single_update_gas_median,batch_gas_median,gain_formula,gain_pct,label
+S2,1,16,49193,49193,49193,1 - (batch_gas_median / k) / single_update_gas_median,0,"transaction amortisation, not a property of KZG"
+S2,10,16,491966,49205,49205,1 - (batch_gas_median / k) / single_update_gas_median,90,"transaction amortisation, not a property of KZG"
+S2,25,16,1229945,49205,49205,1 - (batch_gas_median / k) / single_update_gas_median,96,"transaction amortisation, not a property of KZG"
+S2,50,16,2459962,49205,49193,1 - (batch_gas_median / k) / single_update_gas_median,98,"transaction amortisation, not a property of KZG"
+S2,75,16,3689943,49205,49205,1 - (batch_gas_median / k) / single_update_gas_median,98.67,"transaction amortisation, not a property of KZG"
+S2,100,16,4919948,49205,49205,1 - (batch_gas_median / k) / single_update_gas_median,99,"transaction amortisation, not a property of KZG"

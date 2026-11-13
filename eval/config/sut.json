@@ -1,0 +1,11 @@
+{
+  "description": "Systems under test. Only S1 and S2 are runnable on 2026-11-13; S3-S6 are not in this repository yet.",
+  "systems": {
+    "S1": { "design": "Merkle, revealed ID (sorted range-leaf tree, lo < id < hi)", "contract": "contracts/MerkleRevocation.sol", "verify": "verifyNonRevocation(uint256 id, uint256 lo, uint256 hi, bytes32[] proof)", "update": "updateRoot(bytes32)", "scope": "revocation only", "hides_id": false, "public_inputs": 3, "status": "available" },
+    "S2": { "design": "KZG, revealed ID", "contract": "contracts/KZGRevocation.sol + contracts/KZGVerifier.sol", "verify": "verifyNonRevocation(bytes w, uint256 z, uint256 y)", "update": "updateCommitment(bytes)", "scope": "revocation only", "hides_id": false, "public_inputs": 2, "status": "available" },
+    "S3": { "design": "Merkle + Groth16, commitment to the handle", "scope": "revocation only", "hides_id": true, "status": "not in repository yet" },
+    "S4": { "design": "Pairing-accumulator non-membership proof", "scope": "revocation only", "hides_id": true, "status": "not in repository yet" },
+    "S5": { "design": "Accumulator proof + BBS presentation, joint challenge", "scope": "full presentation", "hides_id": true, "status": "not in repository yet" },
+    "S6": { "design": "Groth16 full presentation", "scope": "full presentation", "hides_id": true, "status": "not built" }
+  }
+}

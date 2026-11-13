@@ -1,0 +1,6 @@
+N,ratio,base,value,S1,S2
+1,S2 / S1 verify gas,S1 median M1,6.252,28758.0,179787.0
+16,S2 / S1 verify gas,S1 median M1,5.573,32261.0,179787.0
+256,S2 / S1 verify gas,S1 median M1,4.836,37175.0,179787.0
+1024,S2 / S1 verify gas,S1 median M1,4.523,39750.0,179799.0
+4094,S2 / S1 verify gas,S1 median M1,4.382,41030.0,179787.0
