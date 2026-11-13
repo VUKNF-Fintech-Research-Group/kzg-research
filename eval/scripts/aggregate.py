@@ -87,7 +87,7 @@ def manifest(headers, network):
         "experiment": "EXP-001 (evaluation plan rev 25, 2026-11-13), S1 and S2 only",
         "git_commit": sh(["git", "rev-parse", "HEAD"]),
         "git_branch": sh(["git", "branch", "--show-current"]),
-        "dirty": sh(["git", "status", "--porcelain"]) != "",
+        "dirty": sh(["git", "status", "--porcelain", "--untracked-files=no"]) != "",
         "spec_version": "n/a for S1/S2",
         "srs_sha256": hashlib.sha256(srs.read_bytes()).hexdigest(),
         "node": sh(["node", "--version"]),

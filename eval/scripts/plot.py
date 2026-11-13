@@ -50,7 +50,7 @@ def rows(name):
 
 def source_line(fig, network):
     commit = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=REPO, text=True).strip()
-    dirty = "-dirty" if subprocess.check_output(["git", "status", "--porcelain"], cwd=REPO, text=True).strip() else ""
+    dirty = "-dirty" if subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no"], cwd=REPO, text=True).strip() else ""
     date = json.loads((EVAL / "reports" / "manifest.json").read_text())["generated_utc"][:10]
     fig.text(0.01, 0.01, f"Source: {network} (Prague, real EIP-2537 precompiles), commit {commit}{dirty}, {date}. EXP-001.",
              fontsize=7, color=INK2, ha="left", va="bottom")
