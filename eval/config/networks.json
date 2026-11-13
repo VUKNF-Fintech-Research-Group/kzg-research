@@ -1,0 +1,4 @@
+{
+  "hardhat": { "hardfork": "prague", "chainId": 31337, "automine": true, "block_gas_limit": "default" },
+  "hoodi": { "rpc_env": "HOODI_RPC_URL (falls back to HOODI_RPC)", "rpc_env_2": "HOODI_RPC_URL_2", "expected_chain_id": 560048, "chain_id_check": "eth_chainId at run time" }
+}

@@ -1,0 +1,16 @@
+{
+  "description": "Registry sizes and repetition counts for EXP-001 (evaluation plan rev 25, 13 Nov 2026).",
+  "seed": 20261113,
+  "handle_domain": "uniform in [1, r - 2]: Z_p* minus r - 1, which is the Merkle upper sentinel",
+  "hardhat_sizes": [1, 16, 256, 1024, 4094],
+  "hoodi_sizes": [16, 1024, 4094],
+  "real_path_sizes": [16, 256],
+  "q11_cross_check_size": 256,
+  "verify_repetitions_hardhat": 10,
+  "verify_repetitions_hoodi": 5,
+  "update_repetitions": 5,
+  "batch_base_size": 16,
+  "batch_sizes": [1, 10, 25, 50, 75, 100],
+  "merkle_depth_formula_plan": "ceil(log2(N + 2))",
+  "merkle_depth_note": "MerkleRevocation has N + 1 range leaves (gaps between the N handles and the sentinels 0 and r - 1), so merkletreejs builds depth ceil(log2(N + 1)). The two formulas differ only at N = 1 (1 vs 2). Rows record the measured proof length."
+}

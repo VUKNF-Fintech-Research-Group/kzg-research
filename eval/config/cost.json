@@ -1,0 +1,6 @@
+{
+  "description": "Fixed grid for M12 (cost per verification). Never live prices.",
+  "gas_price_gwei": [1, 5, 20],
+  "eth_price_usd": 3000,
+  "eth_price_note": "Stated assumption for the cost model, not a market quote. Change it here and rerun aggregate.py."
+}
