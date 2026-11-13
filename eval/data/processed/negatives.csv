@@ -1,0 +1,81 @@
+sut,N,case,expected,outcome,revert_reason,gas_used,tx_hash,pass
+S2,1,revoked_handle_honest_opening,ok=false,ok=false,,179403,0xde7b1156a46f8c3b271e6ef02fbdef747c572652b56af0ab67d2bb134b4bbc82,True
+S2,1,revoked_handle_claim_y1,ok=false,ok=false,,179404,0x050da5c687be74fc313c2f8f7961bd84443edf667c3aa974fabe52eba2b6e73b,True
+S2,1,tampered_witness,ok=false,ok=false,,179788,0x8c367746701e55be2eb37e2cd29d01724f9927cfa65d7c072abaf2a8ba931f81,True
+S2,1,wrong_y,ok=false,ok=false,,179776,0x47ac0052e7db0d7ba73cc240efcc25aa0b0676cf39a537264e8866682557431c,True
+S2,1,non_canonical_z,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,1,non_canonical_y,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,1,witness_not_on_curve,revert PrecompileFailed,revert,"VM Exception while processing transaction: reverted with custom error 'PrecompileFailed(""0x000000000000000000000000000000000000000C"")'",,,True
+S2,1,wrong_commitment,ok=false,ok=false,,179776,0x57769b83d523887b385c3939d34b18bdfaff0c067ed41e8b8df3dde1396b33a2,True
+S2,1,stale_commitment,ok=false,ok=false,,179776,0xb5309d1811e3a4b32a42fa5c3093b772a3ce8658b21176605f22d952c1ada46e,True
+S2,16,revoked_handle_honest_opening,ok=false,ok=false,,179415,0xb123e95ccaebf34bfefd21f33bb81d2ace4665c9701c3c753dc2252d426a8b2d,True
+S2,16,revoked_handle_claim_y1,ok=false,ok=false,,179416,0x47e7bead6b36ac225cad3e97e8e07b85595c5f97d06aa4a82ef86c33f5bcb40e,True
+S2,16,tampered_witness,ok=false,ok=false,,179776,0x6964db640faad1d8f40524ee2cd19da261cd02998538553b1f426e30c880a82b,True
+S2,16,wrong_y,ok=false,ok=false,,179776,0xaf310762d0cbc3b88252d432f59cef4ecb04d0dadb866f337f690ebd492993db,True
+S2,16,non_canonical_z,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,16,non_canonical_y,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,16,witness_not_on_curve,revert PrecompileFailed,revert,"VM Exception while processing transaction: reverted with custom error 'PrecompileFailed(""0x000000000000000000000000000000000000000C"")'",,,True
+S2,16,wrong_commitment,ok=false,ok=false,,179776,0xc6e014e04b4433b20b86924b2afefc61359b598eccf32e3526a82d7be4fdf532,True
+S2,16,stale_commitment,ok=false,ok=false,,179788,0xc5f394488627b9de34fa198c17805bd08ccca50c56eb683d32f258d5257a8004,True
+S2,256,revoked_handle_honest_opening,ok=false,ok=false,,179403,0xde008699d0d92ad54c77b90f3b688f5350d4f8ecd5f949484b9343f631cb45e6,True
+S2,256,revoked_handle_claim_y1,ok=false,ok=false,,179404,0x272d54fad13fbc7874057d492bbbd5a426e4f8d6d3e5aed9a87141a5c8366be3,True
+S2,256,tampered_witness,ok=false,ok=false,,179788,0xc071c09621e5b4e62cc81a72dc776962cef1dff262958a23772da2d6274cc064,True
+S2,256,wrong_y,ok=false,ok=false,,179764,0xee9788d269de35c9581bc3d14305d84517596cfc0c4ff6339f016839e294fc85,True
+S2,256,non_canonical_z,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,256,non_canonical_y,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,256,witness_not_on_curve,revert PrecompileFailed,revert,"VM Exception while processing transaction: reverted with custom error 'PrecompileFailed(""0x000000000000000000000000000000000000000C"")'",,,True
+S2,256,wrong_commitment,ok=false,ok=false,,179764,0x3cb1b232bde44bf155a8483520f493ad9b02fe65f62d3267f808591fa71465c6,True
+S2,256,stale_commitment,ok=false,ok=false,,179788,0x7e4a247709af334051bc47d57383c640c6ff0e450b7d01e19edc0691c173ea73,True
+S2,1024,revoked_handle_honest_opening,ok=false,ok=false,,179415,0x235deda91e01f7039ebdd97322497c97507862e875162ecee0f898116f073f2e,True
+S2,1024,revoked_handle_claim_y1,ok=false,ok=false,,179416,0x036c1b6f41121c79de40d43a85aa10cd261fae5f0e4ccf591b77b7af42a09046,True
+S2,1024,tampered_witness,ok=false,ok=false,,179788,0x81685eebac5df1c75840e4465e95552b181b1d825861df3b1bb94d0237d52317,True
+S2,1024,wrong_y,ok=false,ok=false,,179788,0x57d29bd124811b66f535ce6215abe5cfed8c7895e844d48df130447eb65bfffc,True
+S2,1024,non_canonical_z,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,1024,non_canonical_y,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,1024,witness_not_on_curve,revert PrecompileFailed,revert,"VM Exception while processing transaction: reverted with custom error 'PrecompileFailed(""0x000000000000000000000000000000000000000C"")'",,,True
+S2,1024,wrong_commitment,ok=false,ok=false,,179788,0xd161b18048826b2e0f79465599f4063deffb733823aa7343787940fc66771e62,True
+S2,1024,stale_commitment,ok=false,ok=false,,179776,0x48cbfecb9a4c0444ebc47855572e3b847191783a3dea640c398201a5987857bb,True
+S2,4094,revoked_handle_honest_opening,ok=false,ok=false,,179415,0xf8199ea09e8f31c9b4c5670de9b7d73d7f7eeeadef4c2dc2af5b5100fcf76568,True
+S2,4094,revoked_handle_claim_y1,ok=false,ok=false,,179416,0x04c28f51301687756d608293f639995d178e68372d1115355b49d59f68560521,True
+S2,4094,tampered_witness,ok=false,ok=false,,179764,0xe2b0ee28794e05fdd14ffd4cbd4c8230a36ca56621465d9c4b0f8dac7a54e224,True
+S2,4094,wrong_y,ok=false,ok=false,,179764,0x66295054f38e562aa1bdeb7d0c7ab725450759f93eddbd09fd19dfa26cba4983,True
+S2,4094,non_canonical_z,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,4094,non_canonical_y,revert NonCanonicalScalar,revert,VM Exception while processing transaction: reverted with custom error 'NonCanonicalScalar()',,,True
+S2,4094,witness_not_on_curve,revert PrecompileFailed,revert,"VM Exception while processing transaction: reverted with custom error 'PrecompileFailed(""0x000000000000000000000000000000000000000C"")'",,,True
+S2,4094,wrong_commitment,ok=false,ok=false,,179764,0x636dc7591eb64f602fcd7626445de3fba0b0195df39503307deed268da8ca47e,True
+S2,4094,stale_commitment,ok=false,ok=false,,179788,0x293e8811b25acbaf251080b0c6720dab7ee8df9474d45fc2b4621dacd165c7f0,True
+S1,1,revoked_handle_neighbour_leaf,ok=false,ok=false,,26020,0x6ce9e237587cd3319d9df527ba82b0a11cbc8915c45f20eb80f94be9212969e7,True
+S1,1,revoked_handle_dummy_proof,ok=false,ok=false,,28169,0xcd31920370c80f09f0914baa6d6bc5b2e7ceac32732e36c50b81cb999ec5af61,True
+S1,1,id_outside_claimed_gap,ok=false,ok=false,,26770,0x778705b0d8ae3e272ba65a1eb10ccaedfb8938b1ed76fcc0f49a6897a04a49c7,True
+S1,1,tampered_sibling,ok=false,ok=false,,28927,0xc95dd083b1f2860e2322a7b71510e19a00473fac69d75071accde5c0f19d0ed4,True
+S1,1,id_out_of_domain,ok=false,ok=false,,26740,0xf5652fe84904708667043ef3079637b5e2e6cab1cdee146cc8bb686224ec927c,True
+S1,1,wrong_root,ok=false,ok=false,,28927,0xe57aabcdb4ddb3080cede7cbca9e5a4ae3e56ec3c63af274ca3d0fa51a3253e4,True
+S1,1,stale_root,ok=false,ok=false,,28927,0x82332bbc6d8bd9288baea38871d364a3b78cfc6a7dc0736e3367fa02f01239ef,True
+S1,16,revoked_handle_neighbour_leaf,ok=false,ok=false,,31140,0x03fc1ce217dff43d7faa6ee41dd5705b2d16a6e0bdd50aaadd34ff1041a00b82,True
+S1,16,revoked_handle_dummy_proof,ok=false,ok=false,,28169,0xd0d0651fb4019c22b4a8311f10d4230a2a5e2f797fef5794d5f36d42a3c0c4fe,True
+S1,16,id_outside_claimed_gap,ok=false,ok=false,,26740,0x382e7db8194def66d192cc18b1a46114952926cfcc9e015fcf9a5ceac54d7211,True
+S1,16,tampered_sibling,ok=false,ok=false,,28925,0xe4e9bafe595e709ecc31ea5026cff0d01844ca999546723d8ac358d2895d757d,True
+S1,16,id_out_of_domain,ok=false,ok=false,,26740,0x47a3425d84d36850f9477d1a21fe9786f8cb263468433414aae0357acd53ae98,True
+S1,16,wrong_root,ok=false,ok=false,,28925,0x55dda9a5417f5e29e6672e016a302be85f1b5002798efb447a3f927258b70b72,True
+S1,16,stale_root,ok=false,ok=false,,32261,0xfa05eff2ba039bc2dd33316b1fcc3f9c3893cf81f557a1b2cc79d56c47c818b8,True
+S1,256,revoked_handle_neighbour_leaf,ok=false,ok=false,,37070,0x28f70bbf1f0d5cc494ba6410fa188eca4afd93bd9a7ffb882c9ce33572990c52,True
+S1,256,revoked_handle_dummy_proof,ok=false,ok=false,,31701,0x41cccf024e76086ec9f903958379048f0554be42fc6926e527f174841bffe1be,True
+S1,256,id_outside_claimed_gap,ok=false,ok=false,,37190,0x8bdf3643f612f3c2917575021621835afc9b2087daab1b7e9c9509fa8f40327b,True
+S1,256,tampered_sibling,ok=false,ok=false,,37190,0x724c8a8c9fab7289c642c87cec999301e8c771df0f441dad18a9b466eea7ea26,True
+S1,256,id_out_of_domain,ok=false,ok=false,,36950,0xbf82ff4a31a7a791dfeb57d1fb973c517ca54361c62d6f07cd45c11f81f951da,True
+S1,256,wrong_root,ok=false,ok=false,,37190,0x5abf7f884fed4f5322a5dbb91f59b0d36d26fd55aef82ae3ec490cca3d57e1d2,True
+S1,256,stale_root,ok=false,ok=false,,37190,0xd491e9f4e528f476de2c6f05e471005c50e3ba1a589e88aa09f8ee0b97d3decc,True
+S1,1024,revoked_handle_neighbour_leaf,ok=false,ok=false,,39720,0xed954df0621e29787eb220c8569d6b6248adf7e1c675c7aee7d361f6f36c34a2,True
+S1,1024,revoked_handle_dummy_proof,ok=false,ok=false,,32599,0x0e87886de82374f0e853093b28b9a3ac4a5754392be69466737cc3db8748becf,True
+S1,1024,id_outside_claimed_gap,ok=false,ok=false,,39720,0xb4e9dd29f927768e0fd7cc50807bdc68356778fdf5d43e2c3fdba98f14d27ce6,True
+S1,1024,tampered_sibling,ok=false,ok=false,,39750,0xfb22407320c6199b37297675b43b104e41cddf2236d7fa77cdce0bb23b8212e1,True
+S1,1024,id_out_of_domain,ok=false,ok=false,,39540,0x13b5a87ce3cf2cdbc3c8e74ace358054a102fdebcf1fe191e20251d604e195ab,True
+S1,1024,wrong_root,ok=false,ok=false,,39750,0x61b7f5756e9f10848f330fe24950549849a1cf93f5a6c420f85d3f7db403ebc1,True
+S1,1024,stale_root,ok=false,ok=false,,39690,0xf128b2dd42ed3096026474503c602e28f2bb1f8645722ab3299c5574da5a20e5,True
+S1,4094,revoked_handle_neighbour_leaf,ok=false,ok=false,,41000,0x0d5b601e5526d56938f44265555b5cd324bdd9b251e7aa07666780cb55941f6e,True
+S1,4094,revoked_handle_dummy_proof,ok=false,ok=false,,33042,0x62967a85ff236a35db56e5da868535e87bce1b25653830d95b77bc0b4e9a9a74,True
+S1,4094,id_outside_claimed_gap,ok=false,ok=false,,40970,0x7903f432f0f1ed6aeccd51db2123871b4dcc11313def59766a1b852ef88c25c7,True
+S1,4094,tampered_sibling,ok=false,ok=false,,40970,0xe4083d182ef07ab71d41a5fa859e287b27f4d71b7c974dbae487703d2505ee91,True
+S1,4094,id_out_of_domain,ok=false,ok=false,,40730,0x872e3a40a59772dd5f211db7840758dc835876bce328d4ada404c3e2d8266ea7,True
+S1,4094,wrong_root,ok=false,ok=false,,40970,0x6a5783323cda88266a1369dfdb05b68672f11e9dbaae9f286012ed5787c8a0a2,True
+S1,4094,stale_root,ok=false,ok=false,,41030,0x0a945b6bd0c47109a4089969b0fd7296db81cdd5f5c25c8ab8add68abfa384ca,True
